@@ -27,11 +27,17 @@
 
 发布后，根地址会自动跳转到 `ecc_cn_command_center/` 页面。
 
+当前仓库的 GitHub Pages 地址为：
+
+```text
+https://fuhuojay.github.io/ecc-cn/
+```
+
 ## 更新数据
 
 当前页面不是实时同步数据库，而是静态生成的 HTML。仓库已包含自动更新工作流，默认每 6 小时检查一次上游内容；如果有变化，会自动提交更新并触发 GitHub Pages 重新部署。
 
-如果上游 `everything-claude-code` 有新条目，可以运行：
+如果上游 `affaan-m/ECC` 有新条目，可以运行：
 
 ```bash
 python3 ecc_cn_command_center.py --update

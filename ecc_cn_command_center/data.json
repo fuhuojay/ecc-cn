@@ -126,6 +126,19 @@
         "legacy-command-shims": [
           "README"
         ]
+      },
+      "repo": {
+        "owner": "affaan-m",
+        "name": "ECC",
+        "full_name": "affaan-m/ECC",
+        "html_url": "https://github.com/affaan-m/ECC",
+        "api_base": "https://api.github.com/repos/affaan-m/ECC",
+        "readme_url": "https://github.com/affaan-m/ECC#readme"
+      },
+      "install": {
+        "plugin_command": "/plugin marketplace add https://github.com/affaan-m/ECC\n/plugin install ecc@ecc",
+        "plugin_id": "ecc@ecc",
+        "marketplace": "https://github.com/affaan-m/ECC"
       }
     }
   },
@@ -154,7 +167,16 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"csharp-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"csharp-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"csharp-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 csharp-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -181,7 +203,16 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"cpp-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"cpp-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"cpp-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 cpp-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -208,7 +239,16 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"flutter-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"flutter-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"flutter-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 flutter-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -235,7 +275,16 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"go-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"go-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"go-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 go-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -262,7 +311,16 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"java-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"java-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"java-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 java-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -289,7 +347,16 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"kotlin-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"kotlin-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"kotlin-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 kotlin-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -316,7 +383,16 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"python-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"python-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"python-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 python-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -343,7 +419,16 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"rust-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"rust-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"rust-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 rust-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -370,7 +455,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"typescript-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"typescript-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"typescript-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 typescript-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "typescript-reviewer",
+    "reference_ids": [
+      "typescript-reviewer"
+    ]
   },
   {
     "category": "Agents",
@@ -406,7 +502,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"healthcare-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"healthcare-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"healthcare-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 healthcare-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "healthcare-reviewer",
+    "reference_ids": [
+      "healthcare-reviewer"
+    ]
   },
   {
     "category": "Agents",
@@ -433,7 +540,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"database-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"database-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"database-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 database-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "database-reviewer",
+    "reference_ids": [
+      "database-reviewer"
+    ]
   },
   {
     "category": "Agents",
@@ -468,7 +586,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"a11y-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"a11y-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"a11y-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 a11y-architect 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "a11y-architect",
+    "reference_ids": [
+      "a11y-architect"
+    ]
   },
   {
     "category": "Agents",
@@ -496,7 +625,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"code-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"code-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"code-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 code-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "code-reviewer",
+    "reference_ids": [
+      "code-reviewer"
+    ]
   },
   {
     "category": "Agents",
@@ -524,7 +664,16 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"cpp-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"cpp-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"cpp-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 cpp-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -552,7 +701,16 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"dart-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"dart-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"dart-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 dart-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -580,7 +738,16 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"go-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"go-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"go-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 go-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -608,7 +775,16 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"java-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"java-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"java-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 java-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -636,7 +812,16 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"kotlin-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"kotlin-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"kotlin-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 kotlin-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -664,7 +849,16 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"pytorch-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"pytorch-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"pytorch-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 pytorch-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -692,7 +886,16 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"rust-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"rust-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"rust-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 rust-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -721,7 +924,18 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"build-error-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"build-error-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"build-error-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 build-error-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "build-error-resolver",
+    "reference_ids": [
+      "build-error-resolver"
+    ]
   },
   {
     "category": "Agents",
@@ -748,7 +962,18 @@
     ],
     "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"code-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"code-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"code-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 code-architect 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "code-architect",
+    "reference_ids": [
+      "code-architect"
+    ]
   },
   {
     "category": "Agents",
@@ -776,7 +1001,18 @@
     ],
     "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"planner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"planner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"planner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 planner 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "planner",
+    "reference_ids": [
+      "planner"
+    ]
   },
   {
     "category": "Agents",
@@ -803,7 +1039,18 @@
     ],
     "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 architect 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "architect",
+    "reference_ids": [
+      "architect"
+    ]
   },
   {
     "category": "Agents",
@@ -829,7 +1076,18 @@
     ],
     "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"pr-test-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"pr-test-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"pr-test-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 pr-test-analyzer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "pr-test-analyzer",
+    "reference_ids": [
+      "pr-test-analyzer"
+    ]
   },
   {
     "category": "Agents",
@@ -855,7 +1113,18 @@
     ],
     "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"tdd-guide\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"tdd-guide\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"tdd-guide\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 tdd-guide 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "tdd-guide",
+    "reference_ids": [
+      "tdd-guide"
+    ]
   },
   {
     "category": "Agents",
@@ -881,7 +1150,18 @@
     ],
     "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"e2e-runner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"e2e-runner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"e2e-runner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 e2e-runner 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "e2e-runner",
+    "reference_ids": [
+      "e2e-runner"
+    ]
   },
   {
     "category": "Agents",
@@ -918,7 +1198,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"security-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"security-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"security-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 security-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "security-reviewer",
+    "reference_ids": [
+      "security-reviewer"
+    ]
   },
   {
     "category": "Agents",
@@ -946,7 +1237,18 @@
     ],
     "use_case": "涉及登录、权限、敏感数据、开源发布或合规检查时使用。",
     "avoid_case": "没有安全、隐私或发布风险时，可以先用普通代码审查。",
-    "recommended_prompt": "/plan \"opensource-forker\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"opensource-forker\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"opensource-forker\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 opensource-forker 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "opensource-forker",
+    "reference_ids": [
+      "opensource-forker"
+    ]
   },
   {
     "category": "Agents",
@@ -974,7 +1276,18 @@
     ],
     "use_case": "涉及登录、权限、敏感数据、开源发布或合规检查时使用。",
     "avoid_case": "没有安全、隐私或发布风险时，可以先用普通代码审查。",
-    "recommended_prompt": "/plan \"opensource-packager\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"opensource-packager\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"opensource-packager\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 opensource-packager 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "opensource-packager",
+    "reference_ids": [
+      "opensource-packager"
+    ]
   },
   {
     "category": "Agents",
@@ -1002,7 +1315,18 @@
     ],
     "use_case": "涉及登录、权限、敏感数据、开源发布或合规检查时使用。",
     "avoid_case": "没有安全、隐私或发布风险时，可以先用普通代码审查。",
-    "recommended_prompt": "/plan \"opensource-sanitizer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"opensource-sanitizer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"opensource-sanitizer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 opensource-sanitizer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "opensource-sanitizer",
+    "reference_ids": [
+      "opensource-sanitizer"
+    ]
   },
   {
     "category": "Agents",
@@ -1030,7 +1354,18 @@
     ],
     "use_case": "需要查 API、同步 README、生成代码地图或解释项目结构时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"doc-updater\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"doc-updater\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"doc-updater\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 doc-updater 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "doc-updater",
+    "reference_ids": [
+      "doc-updater"
+    ]
   },
   {
     "category": "Agents",
@@ -1058,7 +1393,18 @@
     ],
     "use_case": "需要查 API、同步 README、生成代码地图或解释项目结构时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"docs-lookup\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"docs-lookup\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"docs-lookup\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 docs-lookup 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "docs-lookup",
+    "reference_ids": [
+      "docs-lookup"
+    ]
   },
   {
     "category": "Agents",
@@ -1078,7 +1424,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"performance-optimizer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"performance-optimizer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"performance-optimizer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 performance-optimizer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "performance-optimizer",
+    "reference_ids": [
+      "performance-optimizer"
+    ]
   },
   {
     "category": "Agents",
@@ -1098,7 +1455,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"harness-optimizer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"harness-optimizer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"harness-optimizer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 harness-optimizer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "harness-optimizer",
+    "reference_ids": [
+      "harness-optimizer"
+    ]
   },
   {
     "category": "Agents",
@@ -1118,7 +1486,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"code-simplifier\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"code-simplifier\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"code-simplifier\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 code-simplifier 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "code-simplifier",
+    "reference_ids": [
+      "code-simplifier"
+    ]
   },
   {
     "category": "Agents",
@@ -1138,7 +1517,16 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"comment-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"comment-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"comment-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 comment-analyzer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Agents",
@@ -1158,7 +1546,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"type-design-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"type-design-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"type-design-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 type-design-analyzer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "type-design-analyzer",
+    "reference_ids": [
+      "type-design-analyzer"
+    ]
   },
   {
     "category": "Agents",
@@ -1182,7 +1581,18 @@
     ],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"refactor-cleaner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"refactor-cleaner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"refactor-cleaner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 refactor-cleaner 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "refactor-cleaner",
+    "reference_ids": [
+      "refactor-cleaner"
+    ]
   },
   {
     "category": "Agents",
@@ -1202,7 +1612,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"silent-failure-hunter\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"silent-failure-hunter\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"silent-failure-hunter\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 silent-failure-hunter 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "silent-failure-hunter",
+    "reference_ids": [
+      "silent-failure-hunter"
+    ]
   },
   {
     "category": "Agents",
@@ -1227,7 +1648,18 @@
     ],
     "use_case": "任务较复杂、需要多轮规划/实现/评审收敛时使用。",
     "avoid_case": "小改动和单文件问题通常不需要启动复杂协作流程。",
-    "recommended_prompt": "/plan \"gan-generator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"gan-generator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"gan-generator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 gan-generator 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "gan-generator",
+    "reference_ids": [
+      "gan-generator"
+    ]
   },
   {
     "category": "Agents",
@@ -1261,7 +1693,18 @@
     ],
     "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"gan-planner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"gan-planner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"gan-planner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 gan-planner 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "gan-planner",
+    "reference_ids": [
+      "gan-planner"
+    ]
   },
   {
     "category": "Agents",
@@ -1286,7 +1729,18 @@
     ],
     "use_case": "任务较复杂、需要多轮规划/实现/评审收敛时使用。",
     "avoid_case": "小改动和单文件问题通常不需要启动复杂协作流程。",
-    "recommended_prompt": "/plan \"gan-evaluator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"gan-evaluator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"gan-evaluator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 gan-evaluator 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "gan-evaluator",
+    "reference_ids": [
+      "gan-evaluator"
+    ]
   },
   {
     "category": "Agents",
@@ -1308,7 +1762,18 @@
     ],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"seo-specialist\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"seo-specialist\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"seo-specialist\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 seo-specialist 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "seo-specialist",
+    "reference_ids": [
+      "seo-specialist"
+    ]
   },
   {
     "category": "Agents",
@@ -1328,7 +1793,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"code-explorer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"code-explorer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"code-explorer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 code-explorer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "code-explorer",
+    "reference_ids": [
+      "code-explorer"
+    ]
   },
   {
     "category": "Agents",
@@ -1348,7 +1824,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"chief-of-staff\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"chief-of-staff\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"chief-of-staff\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 chief-of-staff 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "chief-of-staff",
+    "reference_ids": [
+      "chief-of-staff"
+    ]
   },
   {
     "category": "Agents",
@@ -1368,7 +1855,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"conversation-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"conversation-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"conversation-analyzer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 conversation-analyzer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "conversation-analyzer",
+    "reference_ids": [
+      "conversation-analyzer"
+    ]
   },
   {
     "category": "Agents",
@@ -1388,7 +1886,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"loop-operator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"loop-operator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"loop-operator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 loop-operator 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "loop-operator",
+    "reference_ids": [
+      "loop-operator"
+    ]
   },
   {
     "category": "Commands",
@@ -1415,7 +1924,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"C++ Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"C++ Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"C++ Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 C++ Code Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/cpp-review",
+    "reference_ids": [
+      "/cpp-review"
+    ]
   },
   {
     "category": "Commands",
@@ -1442,7 +1962,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Flutter Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Flutter Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Flutter Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Flutter Code Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/flutter-review",
+    "reference_ids": [
+      "/flutter-review"
+    ]
   },
   {
     "category": "Commands",
@@ -1469,7 +2000,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Go Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Go Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Go Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Go Code Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/go-review",
+    "reference_ids": [
+      "/go-review"
+    ]
   },
   {
     "category": "Commands",
@@ -1496,7 +2038,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Kotlin Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Kotlin Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Kotlin Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Kotlin Code Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/kotlin-review",
+    "reference_ids": [
+      "/kotlin-review"
+    ]
   },
   {
     "category": "Commands",
@@ -1523,7 +2076,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"review-pr\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"review-pr\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"review-pr\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 review-pr 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/review-pr",
+    "reference_ids": [
+      "/review-pr"
+    ]
   },
   {
     "category": "Commands",
@@ -1550,7 +2114,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Python Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Python Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Python Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Python Code Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/python-review",
+    "reference_ids": [
+      "/python-review"
+    ]
   },
   {
     "category": "Commands",
@@ -1577,7 +2152,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Rust Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Rust Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Rust Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Rust Code Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/rust-review",
+    "reference_ids": [
+      "/rust-review"
+    ]
   },
   {
     "category": "Commands",
@@ -1604,7 +2190,18 @@
     ],
     "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Code Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/code-review",
+    "reference_ids": [
+      "/code-review"
+    ]
   },
   {
     "category": "Commands",
@@ -1632,7 +2229,18 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"C++ Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"C++ Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"C++ Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 C++ Build and Fix 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/cpp-build",
+    "reference_ids": [
+      "/cpp-build"
+    ]
   },
   {
     "category": "Commands",
@@ -1660,7 +2268,18 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"Flutter Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Flutter Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Flutter Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Flutter Build and Fix 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/flutter-build",
+    "reference_ids": [
+      "/flutter-build"
+    ]
   },
   {
     "category": "Commands",
@@ -1688,7 +2307,18 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"Go Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Go Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Go Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Go Build and Fix 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/go-build",
+    "reference_ids": [
+      "/go-build"
+    ]
   },
   {
     "category": "Commands",
@@ -1716,7 +2346,18 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"Gradle Build Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Gradle Build Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Gradle Build Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Gradle Build Fix 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/gradle-build",
+    "reference_ids": [
+      "/gradle-build"
+    ]
   },
   {
     "category": "Commands",
@@ -1744,7 +2385,18 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"Kotlin Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Kotlin Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Kotlin Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Kotlin Build and Fix 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/kotlin-build",
+    "reference_ids": [
+      "/kotlin-build"
+    ]
   },
   {
     "category": "Commands",
@@ -1772,7 +2424,18 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"Rust Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Rust Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Rust Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Rust Build and Fix 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/rust-build",
+    "reference_ids": [
+      "/rust-build"
+    ]
   },
   {
     "category": "Commands",
@@ -1792,7 +2455,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Package Manager Setup\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Package Manager Setup\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Package Manager Setup\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Package Manager Setup 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/setup-pm",
+    "reference_ids": [
+      "/setup-pm"
+    ]
   },
   {
     "category": "Commands",
@@ -1820,7 +2494,18 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Build and Fix 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/build-fix",
+    "reference_ids": [
+      "/build-fix"
+    ]
   },
   {
     "category": "Commands",
@@ -1846,7 +2531,18 @@
     ],
     "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"C++ TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"C++ TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"C++ TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 C++ TDD Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/cpp-test",
+    "reference_ids": [
+      "/cpp-test"
+    ]
   },
   {
     "category": "Commands",
@@ -1872,7 +2568,18 @@
     ],
     "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Flutter Test\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Flutter Test\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Flutter Test\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Flutter Test 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/flutter-test",
+    "reference_ids": [
+      "/flutter-test"
+    ]
   },
   {
     "category": "Commands",
@@ -1898,7 +2605,18 @@
     ],
     "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Go TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Go TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Go TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Go TDD Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/go-test",
+    "reference_ids": [
+      "/go-test"
+    ]
   },
   {
     "category": "Commands",
@@ -1924,7 +2642,18 @@
     ],
     "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Kotlin TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Kotlin TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Kotlin TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Kotlin TDD Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/kotlin-test",
+    "reference_ids": [
+      "/kotlin-test"
+    ]
   },
   {
     "category": "Commands",
@@ -1950,7 +2679,18 @@
     ],
     "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Rust TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Rust TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Rust TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Rust TDD Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/rust-test",
+    "reference_ids": [
+      "/rust-test"
+    ]
   },
   {
     "category": "Commands",
@@ -1977,7 +2717,18 @@
     ],
     "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Test Coverage\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Test Coverage\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Test Coverage\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Test Coverage 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/test-coverage",
+    "reference_ids": [
+      "/test-coverage"
+    ]
   },
   {
     "category": "Commands",
@@ -2003,7 +2754,18 @@
     ],
     "use_case": "需要查 API、同步 README、生成代码地图或解释项目结构时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Product Requirements Document Generator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Product Requirements Document Generator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Product Requirements Document Generator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Product Requirements Document Generator 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/prp-prd",
+    "reference_ids": [
+      "/prp-prd"
+    ]
   },
   {
     "category": "Commands",
@@ -2025,7 +2787,18 @@
     ],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"PRP Implement\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"PRP Implement\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"PRP Implement\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 PRP Implement 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/prp-implement",
+    "reference_ids": [
+      "/prp-implement"
+    ]
   },
   {
     "category": "Commands",
@@ -2052,7 +2825,18 @@
     ],
     "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"PRP Plan\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"PRP Plan\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"PRP Plan\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 PRP Plan 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/prp-plan",
+    "reference_ids": [
+      "/prp-plan"
+    ]
   },
   {
     "category": "Commands",
@@ -2079,7 +2863,18 @@
     ],
     "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Plan Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Plan Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Plan Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Plan Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/plan",
+    "reference_ids": [
+      "/plan"
+    ]
   },
   {
     "category": "Commands",
@@ -2099,7 +2894,16 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Phases\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Phases\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Phases\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Phases 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Commands",
@@ -2119,7 +2923,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Create Pull Request\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Create Pull Request\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Create Pull Request\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Create Pull Request 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/prp-pr",
+    "reference_ids": [
+      "/prp-pr"
+    ]
   },
   {
     "category": "Commands",
@@ -2139,7 +2954,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Smart Commit\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Smart Commit\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Smart Commit\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Smart Commit 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/prp-commit",
+    "reference_ids": [
+      "/prp-commit"
+    ]
   },
   {
     "category": "Commands",
@@ -2165,7 +2991,18 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Checkpoint Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Checkpoint Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Checkpoint Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Checkpoint Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/checkpoint",
+    "reference_ids": [
+      "/checkpoint"
+    ]
   },
   {
     "category": "Commands",
@@ -2185,7 +3022,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Quality Gate Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Quality Gate Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Quality Gate Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Quality Gate Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/quality-gate",
+    "reference_ids": [
+      "/quality-gate"
+    ]
   },
   {
     "category": "Commands",
@@ -2207,7 +3055,18 @@
     ],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Refactor Clean\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Refactor Clean\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Refactor Clean\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Refactor Clean 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/refactor-clean",
+    "reference_ids": [
+      "/refactor-clean"
+    ]
   },
   {
     "category": "Commands",
@@ -2234,7 +3093,18 @@
     ],
     "use_case": "需要查 API、同步 README、生成代码地图或解释项目结构时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Update Codemaps\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Update Codemaps\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Update Codemaps\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Update Codemaps 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/update-codemaps",
+    "reference_ids": [
+      "/update-codemaps"
+    ]
   },
   {
     "category": "Commands",
@@ -2261,7 +3131,18 @@
     ],
     "use_case": "需要查 API、同步 README、生成代码地图或解释项目结构时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Update Documentation\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Update Documentation\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Update Documentation\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Update Documentation 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/update-docs",
+    "reference_ids": [
+      "/update-docs"
+    ]
   },
   {
     "category": "Commands",
@@ -2296,7 +3177,18 @@
     ],
     "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
     "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
-    "recommended_prompt": "/plan \"GAN-Style Harness Build\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"GAN-Style Harness Build\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"GAN-Style Harness Build\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 GAN-Style Harness Build 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/gan-build",
+    "reference_ids": [
+      "/gan-build"
+    ]
   },
   {
     "category": "Commands",
@@ -2321,7 +3213,18 @@
     ],
     "use_case": "任务较复杂、需要多轮规划/实现/评审收敛时使用。",
     "avoid_case": "小改动和单文件问题通常不需要启动复杂协作流程。",
-    "recommended_prompt": "/plan \"GAN-Style Design Harness\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"GAN-Style Design Harness\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"GAN-Style Design Harness\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 GAN-Style Design Harness 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/gan-design",
+    "reference_ids": [
+      "/gan-design"
+    ]
   },
   {
     "category": "Commands",
@@ -2346,7 +3249,18 @@
     ],
     "use_case": "任务较复杂、需要多轮规划/实现/评审收敛时使用。",
     "avoid_case": "小改动和单文件问题通常不需要启动复杂协作流程。",
-    "recommended_prompt": "/plan \"Frontend - Frontend-Focused Development\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Frontend - Frontend-Focused Development\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Frontend - Frontend-Focused Development\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Frontend - Frontend-Focused Development 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/multi-frontend",
+    "reference_ids": [
+      "/multi-frontend"
+    ]
   },
   {
     "category": "Commands",
@@ -2371,7 +3285,18 @@
     ],
     "use_case": "任务较复杂、需要多轮规划/实现/评审收敛时使用。",
     "avoid_case": "小改动和单文件问题通常不需要启动复杂协作流程。",
-    "recommended_prompt": "/plan \"Backend - Backend-Focused Development\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Backend - Backend-Focused Development\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Backend - Backend-Focused Development\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Backend - Backend-Focused Development 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/multi-backend",
+    "reference_ids": [
+      "/multi-backend"
+    ]
   },
   {
     "category": "Commands",
@@ -2396,7 +3321,18 @@
     ],
     "use_case": "任务较复杂、需要多轮规划/实现/评审收敛时使用。",
     "avoid_case": "小改动和单文件问题通常不需要启动复杂协作流程。",
-    "recommended_prompt": "/plan \"Workflow - Multi-Model Collaborative Development\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Workflow - Multi-Model Collaborative Development\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Workflow - Multi-Model Collaborative Development\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Workflow - Multi-Model Collaborative Development 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/multi-workflow",
+    "reference_ids": [
+      "/multi-workflow"
+    ]
   },
   {
     "category": "Commands",
@@ -2421,7 +3357,18 @@
     ],
     "use_case": "任务较复杂、需要多轮规划/实现/评审收敛时使用。",
     "avoid_case": "小改动和单文件问题通常不需要启动复杂协作流程。",
-    "recommended_prompt": "/plan \"Execute - Multi-Model Collaborative Execution\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Execute - Multi-Model Collaborative Execution\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Execute - Multi-Model Collaborative Execution\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Execute - Multi-Model Collaborative Execution 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/multi-execute",
+    "reference_ids": [
+      "/multi-execute"
+    ]
   },
   {
     "category": "Commands",
@@ -2455,7 +3402,18 @@
     ],
     "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Plan - Multi-Model Collaborative Planning\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Plan - Multi-Model Collaborative Planning\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Plan - Multi-Model Collaborative Planning\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Plan - Multi-Model Collaborative Planning 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/multi-plan",
+    "reference_ids": [
+      "/multi-plan"
+    ]
   },
   {
     "category": "Commands",
@@ -2480,7 +3438,18 @@
     ],
     "use_case": "任务较复杂、需要多轮规划/实现/评审收敛时使用。",
     "avoid_case": "小改动和单文件问题通常不需要启动复杂协作流程。",
-    "recommended_prompt": "/plan \"Santa Loop\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Santa Loop\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Santa Loop\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Santa Loop 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/santa-loop",
+    "reference_ids": [
+      "/santa-loop"
+    ]
   },
   {
     "category": "Commands",
@@ -2500,7 +3469,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Loop Start Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Loop Start Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Loop Start Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Loop Start Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/loop-start",
+    "reference_ids": [
+      "/loop-start"
+    ]
   },
   {
     "category": "Commands",
@@ -2522,7 +3502,18 @@
     ],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Loop Status Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Loop Status Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Loop Status Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Loop Status Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/loop-status",
+    "reference_ids": [
+      "/loop-status"
+    ]
   },
   {
     "category": "Commands",
@@ -2542,7 +3533,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Model Route Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Model Route Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Model Route Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Model Route Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/model-route",
+    "reference_ids": [
+      "/model-route"
+    ]
   },
   {
     "category": "Commands",
@@ -2568,7 +3570,18 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Sessions Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Sessions Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Sessions Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Sessions Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/sessions",
+    "reference_ids": [
+      "/sessions"
+    ]
   },
   {
     "category": "Commands",
@@ -2594,7 +3607,18 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Save Session Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Save Session Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Save Session Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Save Session Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/save-session",
+    "reference_ids": [
+      "/save-session"
+    ]
   },
   {
     "category": "Commands",
@@ -2620,7 +3644,18 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Resume Session Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Resume Session Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Resume Session Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Resume Session Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/resume-session",
+    "reference_ids": [
+      "/resume-session"
+    ]
   },
   {
     "category": "Commands",
@@ -2646,7 +3681,16 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"/learn - Extract Reusable Patterns\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"/learn - Extract Reusable Patterns\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/learn - Extract Reusable Patterns\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /learn - Extract Reusable Patterns 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Commands",
@@ -2672,7 +3716,16 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"/learn-eval - Extract, Evaluate, then Save\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"/learn-eval - Extract, Evaluate, then Save\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/learn-eval - Extract, Evaluate, then Save\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /learn-eval - Extract, Evaluate, then Save 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Commands",
@@ -2698,7 +3751,18 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"evolve\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"evolve\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"evolve\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 evolve 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/evolve",
+    "reference_ids": [
+      "/evolve"
+    ]
   },
   {
     "category": "Commands",
@@ -2718,7 +3782,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"prune\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"prune\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"prune\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 prune 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/prune",
+    "reference_ids": [
+      "/prune"
+    ]
   },
   {
     "category": "Commands",
@@ -2744,7 +3819,18 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"instinct-import\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"instinct-import\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"instinct-import\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 instinct-import 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/instinct-import",
+    "reference_ids": [
+      "/instinct-import"
+    ]
   },
   {
     "category": "Commands",
@@ -2770,7 +3856,18 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"instinct-export\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"instinct-export\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"instinct-export\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 instinct-export 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/instinct-export",
+    "reference_ids": [
+      "/instinct-export"
+    ]
   },
   {
     "category": "Commands",
@@ -2790,7 +3887,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"promote\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"promote\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"promote\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 promote 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/promote",
+    "reference_ids": [
+      "/promote"
+    ]
   },
   {
     "category": "Commands",
@@ -2817,7 +3925,18 @@
     ],
     "use_case": "需要保存上下文、沉淀经验、恢复工作或管理长期项目记忆时使用。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"instinct-status\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"instinct-status\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"instinct-status\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 instinct-status 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/instinct-status",
+    "reference_ids": [
+      "/instinct-status"
+    ]
   },
   {
     "category": "Commands",
@@ -2837,7 +3956,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"projects\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"projects\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"projects\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 projects 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/projects",
+    "reference_ids": [
+      "/projects"
+    ]
   },
   {
     "category": "Commands",
@@ -2859,7 +3989,18 @@
     ],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Harness Audit Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Harness Audit Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Harness Audit Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Harness Audit Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/harness-audit",
+    "reference_ids": [
+      "/harness-audit"
+    ]
   },
   {
     "category": "Commands",
@@ -2881,7 +4022,18 @@
     ],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"hookify-list\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"hookify-list\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"hookify-list\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 hookify-list 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/hookify-list",
+    "reference_ids": [
+      "/hookify-list"
+    ]
   },
   {
     "category": "Commands",
@@ -2901,7 +4053,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"hookify\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"hookify\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"hookify\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 hookify 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/hookify",
+    "reference_ids": [
+      "/hookify"
+    ]
   },
   {
     "category": "Commands",
@@ -2921,7 +4084,16 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Hook System Overview\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Hook System Overview\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Hook System Overview\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Hook System Overview 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   },
   {
     "category": "Commands",
@@ -2941,7 +4113,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"hookify-configure\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"hookify-configure\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"hookify-configure\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 hookify-configure 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/hookify-configure",
+    "reference_ids": [
+      "/hookify-configure"
+    ]
   },
   {
     "category": "Commands",
@@ -2961,7 +4144,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Jira Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Jira Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Jira Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Jira Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/jira",
+    "reference_ids": [
+      "/jira"
+    ]
   },
   {
     "category": "Commands",
@@ -2981,7 +4175,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"PM2 Init\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"PM2 Init\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"PM2 Init\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 PM2 Init 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/pm2",
+    "reference_ids": [
+      "/pm2"
+    ]
   },
   {
     "category": "Commands",
@@ -3001,7 +4206,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"skill-health\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"skill-health\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"skill-health\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 skill-health 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/skill-health",
+    "reference_ids": [
+      "/skill-health"
+    ]
   },
   {
     "category": "Commands",
@@ -3021,7 +4237,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"skill-create\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"skill-create\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"skill-create\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 skill-create 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/skill-create",
+    "reference_ids": [
+      "/skill-create"
+    ]
   },
   {
     "category": "Commands",
@@ -3041,7 +4268,18 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Aside Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Aside Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Aside Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Aside Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/aside",
+    "reference_ids": [
+      "/aside"
+    ]
   },
   {
     "category": "Commands",
@@ -3063,7 +4301,18 @@
     ],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Auto Update\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Auto Update\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Auto Update\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Auto Update 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/auto-update",
+    "reference_ids": [
+      "/auto-update"
+    ]
   },
   {
     "category": "Legacy Commands",
@@ -3083,6 +4332,15 @@
     "tags": [],
     "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
     "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/plan \"Legacy Command Shims\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。"
+    "recommended_prompt": "/ecc:plan \"Legacy Command Shims\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Legacy Command Shims\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Legacy Command Shims 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
   }
 ]

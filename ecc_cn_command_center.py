@@ -15,6 +15,17 @@ DATA_FILE = OUTPUT_DIR / "data.json"
 REFERENCE_DATA_FILE = OUTPUT_DIR / "reference-data.json"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
+SOURCE_REPO = {
+    "owner": "affaan-m",
+    "name": "ECC",
+    "full_name": "affaan-m/ECC",
+    "html_url": "https://github.com/affaan-m/ECC",
+    "api_base": "https://api.github.com/repos/affaan-m/ECC",
+    "readme_url": "https://github.com/affaan-m/ECC#readme",
+}
+
+INSTALL_COMMAND = "/plugin marketplace add https://github.com/affaan-m/ECC\n/plugin install ecc@ecc"
+
 # category / sub / zh_name / zh_desc / simple
 TRANSLATIONS = {
     # ===== Agents - 代码审查 =====
@@ -791,7 +802,7 @@ SUB_ORDER = {
 def fetch_md_files(dir_name):
     if requests is None:
         raise RuntimeError("缺少 requests 依赖，请先运行 python3 -m pip install requests")
-    api_url = f"https://api.github.com/repos/affaan-m/everything-claude-code/contents/{dir_name}"
+    api_url = f"{SOURCE_REPO['api_base']}/contents/{dir_name}"
     r = requests.get(api_url)
     r.raise_for_status()
     return [f for f in r.json() if f['name'].endswith(".md")]
@@ -835,7 +846,7 @@ def parse_md_file(file_url):
 DIRECTORIES = {
     "Agents": "agents",
     "Commands": "commands",
-    "Legacy Commands": "legacy-command-shims"
+    "Legacy Commands": "legacy-command-shims/commands"
 }
 
 TASK_RULES = [
@@ -864,8 +875,78 @@ FREQUENT_KEYS = {
 READ_ONLY_HINTS = ["review", "docs", "lookup", "plan", "architect", "status", "list", "coverage", "audit"]
 CODE_CHANGE_HINTS = ["fix", "build", "resolver", "clean", "update", "implement", "packager", "forker", "sanitizer"]
 
-def enrich_entry(entry):
+REF_ALIASES = {
+    "Build and Fix": "build-fix", "Code Review": "code-review", "C++ Code Review": "cpp-review",
+    "Flutter Code Review": "flutter-review", "Go Code Review": "go-review", "Kotlin Code Review": "kotlin-review",
+    "Python Code Review": "python-review", "Rust Code Review": "rust-review",
+    "C++ Build and Fix": "cpp-build", "Flutter Build and Fix": "flutter-build", "Go Build and Fix": "go-build",
+    "Gradle Build Fix": "gradle-build", "Kotlin Build and Fix": "kotlin-build", "Rust Build and Fix": "rust-build",
+    "C++ TDD Command": "cpp-test", "Go TDD Command": "go-test", "Kotlin TDD Command": "kotlin-test",
+    "Rust TDD Command": "rust-test", "Flutter Test": "flutter-test", "Test Coverage": "test-coverage",
+    "Plan Command": "plan", "Product Requirements Document Generator": "prp-prd", "PRP Implement": "prp-implement",
+    "PRP Plan": "prp-plan", "Create Pull Request": "prp-pr", "Smart Commit": "prp-commit",
+    "Checkpoint Command": "checkpoint", "Quality Gate Command": "quality-gate", "Refactor Clean": "refactor-clean",
+    "Update Codemaps": "update-codemaps", "Update Documentation": "update-docs",
+    "GAN-Style Harness Build": "gan-build", "GAN-Style Design Harness": "gan-design",
+    "Frontend - Frontend-Focused Development": "multi-frontend",
+    "Backend - Backend-Focused Development": "multi-backend",
+    "Workflow - Multi-Model Collaborative Development": "multi-workflow",
+    "Execute - Multi-Model Collaborative Execution": "multi-execute",
+    "Plan - Multi-Model Collaborative Planning": "multi-plan", "Santa Loop": "santa-loop",
+    "Loop Start Command": "loop-start", "Loop Status Command": "loop-status", "Model Route Command": "model-route",
+    "Sessions Command": "sessions", "Save Session Command": "save-session", "Resume Session Command": "resume-session",
+    "Harness Audit Command": "harness-audit", "Hook System Overview": "hookify-help",
+    "Jira Command": "jira", "PM2 Init": "pm2", "Aside Command": "aside",
+    "Auto Update": "auto-update", "Package Manager Setup": "setup-pm",
+}
+
+def norm_key(value):
+    return re.sub(r"[^a-z0-9]+", "", str(value or "").lower().lstrip("/"))
+
+def load_reference_entries():
+    if not REFERENCE_DATA_FILE.exists():
+        return []
+    with open(REFERENCE_DATA_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def build_reference_index(reference_entries):
+    index = {}
+    for ref in reference_entries:
+        for key in {ref.get("n"), str(ref.get("n", "")).lstrip("/")}:
+            if key:
+                index[norm_key(key)] = ref
+    return index
+
+def resolve_reference_ids(entry, reference_index):
+    candidates = [
+        entry.get("original"),
+        entry.get("name"),
+        entry.get("slash_command"),
+        REF_ALIASES.get(entry.get("original")),
+        REF_ALIASES.get(entry.get("name")),
+    ]
+    ids = []
+    for candidate in [c for c in candidates if c]:
+        ref = reference_index.get(norm_key(candidate))
+        if ref:
+            ref_id = ref.get("n")
+            if ref_id and ref_id not in ids:
+                ids.append(ref_id)
+    return ids
+
+def source_meta(meta=None):
+    merged = dict(meta or {})
+    merged["repo"] = SOURCE_REPO
+    merged["install"] = {
+        "plugin_command": INSTALL_COMMAND,
+        "plugin_id": "ecc@ecc",
+        "marketplace": "https://github.com/affaan-m/ECC",
+    }
+    return merged
+
+def enrich_entry(entry, reference_index=None):
     """补充中文开发者更容易使用的场景化字段"""
+    reference_index = reference_index or {}
     key = entry.get("original", "")
     key_lower = key.lower()
     task_groups = []
@@ -904,7 +985,9 @@ def enrich_entry(entry):
         "安全合规": "没有安全、隐私或发布风险时，可以先用普通代码审查。",
         "多模型协作": "小改动和单文件问题通常不需要启动复杂协作流程。",
     }.get(primary_task, "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。")
-    recommended_prompt = f'{entry["slash_command"]} 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。'
+    recommended_prompt = f'/ecc:plan "{entry["original"]}" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。'
+    codex_prompt = f'请参考 ECC 的 {entry["original"]} 能力，结合当前项目给出执行方案、风险点和验证步骤。'
+    reference_ids = resolve_reference_ids(entry, reference_index)
 
     entry["task_groups"] = sorted(set(task_groups))
     entry["keywords"] = sorted(set([k for k in keywords if k]))
@@ -912,6 +995,12 @@ def enrich_entry(entry):
     entry["use_case"] = use_case
     entry["avoid_case"] = avoid_case
     entry["recommended_prompt"] = recommended_prompt
+    entry["claude_prompt"] = recommended_prompt
+    entry["codex_prompt"] = codex_prompt
+    entry["environments"] = ["Claude Code", "Codex 可参考"]
+    entry["environment_note"] = "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。"
+    entry["ref_key"] = reference_ids[0] if reference_ids else None
+    entry["reference_ids"] = reference_ids
     return entry
 
 def build_entry(name, description, category, file_key):
@@ -987,7 +1076,7 @@ def update_entries(existing_entries, existing_meta):
         for fk in new_keys - old_keys:
             print(f"  发现新增: {fk}")
             try:
-                api_url = f"https://api.github.com/repos/affaan-m/everything-claude-code/contents/{dir_path}/{fk}.md"
+                api_url = f"{SOURCE_REPO['api_base']}/contents/{dir_path}/{fk}.md"
                 r = requests.get(api_url)
                 r.raise_for_status()
                 name, description = parse_md_file(r.json()['download_url'])
@@ -1005,10 +1094,10 @@ def update_entries(existing_entries, existing_meta):
                 removed.append(fk)
 
     entries = list(existing_map.values())
-    new_meta = {
+    new_meta = source_meta({
         "last_updated": datetime.now().isoformat(),
         "repo_files": new_files
-    }
+    })
     return entries, new_meta, added, removed
 
 def sort_key(e):
@@ -1056,7 +1145,7 @@ elif args.update:
     if not DATA_FILE.exists():
         print("data.json 不存在，将执行全量抓取...")
         all_entries = fetch_all_entries()
-        meta = {"last_updated": datetime.now().isoformat(), "repo_files": fetch_repo_file_keys()}
+        meta = source_meta({"last_updated": datetime.now().isoformat(), "repo_files": fetch_repo_file_keys()})
     else:
         existing_entries, existing_meta = load_data()
         print(f"已有 {len(existing_entries)} 条记录，正在检查更新...")
@@ -1065,9 +1154,12 @@ elif args.update:
 else:
     print("全量抓取模式...")
     all_entries = fetch_all_entries()
-    meta = {"last_updated": datetime.now().isoformat(), "repo_files": fetch_repo_file_keys()}
+    meta = source_meta({"last_updated": datetime.now().isoformat(), "repo_files": fetch_repo_file_keys()})
 
-all_entries = [enrich_entry(e) for e in all_entries]
+reference_entries = load_reference_entries()
+reference_index = build_reference_index(reference_entries)
+meta = source_meta(meta)
+all_entries = [enrich_entry(e, reference_index) for e in all_entries]
 all_entries.sort(key=sort_key)
 save_data(all_entries, meta)
 print(f"已生成数据，共 {len(all_entries)} 条记录 -> {DATA_FILE}")
@@ -1135,10 +1227,14 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 .scenario-problem{font-size:13px;color:#4b5a6d;line-height:1.65;margin-bottom:9px}
 .scenario-row{font-size:12px;color:#526276;line-height:1.65;margin-top:7px}
 .scenario-row strong{color:#203246}
+.scenario-guide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
+.scenario-guide-item{border:1px solid #dce8ee;background:#fbfdff;border-radius:8px;padding:8px;font-size:12px;line-height:1.55;color:#526276}
+.scenario-guide-item strong{display:block;color:#203246;margin-bottom:2px}
 .scenario-prompt{margin-top:10px;background:#f4f7f8;border:1px solid #dfe8ee;border-radius:7px;padding:9px;font-size:12px;color:#243348;line-height:1.6}
 .scenario-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .mini-btn{border:1px solid #cbd6df;background:#fff;border-radius:7px;padding:6px 10px;font-size:12px;color:#263445;cursor:pointer}
 .mini-btn:hover{border-color:var(--teal);color:var(--teal);background:#f4fbfc}
+.match-reasons{margin-top:8px;font-size:11px;color:#0b6672;background:#edf8fa;border:1px solid #d4ebef;border-radius:999px;padding:4px 9px;display:inline-flex}
 .stats{display:flex;gap:10px;margin:-34px 0 16px;flex-wrap:wrap;position:relative;z-index:2}
 .stat{background:rgba(255,255,255,.92);border-radius:8px;padding:12px 17px;border:1px solid var(--line);text-align:center;min-width:96px;box-shadow:0 12px 30px rgba(23,32,51,.06)}
 .stat-num{font-size:24px;font-weight:700;color:var(--teal)}
@@ -1201,7 +1297,7 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
       <span class="hero-chip">推荐工作流</span>
       <span class="hero-chip">中文场景搜索</span>
       <span class="hero-chip">一键复制用法</span>
-      <span class="hero-chip"><a href="https://github.com/affaan-m/everything-claude-code" target="_blank" rel="noopener noreferrer">原项目 GitHub</a></span>
+      <span class="hero-chip"><a id="heroRepoLink" href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener noreferrer">原项目 GitHub</a></span>
     </div>
   </div>
 </header>
@@ -1216,7 +1312,8 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
     </div>
     <div class="nav-label">快速导航</div>
     <div class="nav-grid">
-      <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">全部</button>
+      <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">首页</button>
+      <button class="filter-btn" data-filter="catalog" onclick="setFilter('catalog',this)">全部条目</button>
       <button class="filter-btn" data-filter="scenarios" onclick="setFilter('scenarios',this)">场景案例</button>
       <button class="filter-btn" data-filter="入门推荐" onclick="setFilter('tag:入门推荐',this)">新手推荐</button>
       <button class="filter-btn" data-filter="高频" onclick="setFilter('tag:高频',this)">高频命令</button>
@@ -1248,8 +1345,14 @@ const WORKFLOWS=[
   {name:'开源发布准备',steps:['opensource-forker','opensource-sanitizer','opensource-packager']},
   {name:'文档同步',steps:['update-codemaps','update-docs','docs-lookup']}
 ];
-const INSTALL_COMMAND=`/plugin marketplace add affaan-m/everything-claude-code
-/plugin install everything-claude-code@everything-claude-code`;
+const DEFAULT_REPO={
+  full_name:'affaan-m/ECC',
+  html_url:'https://github.com/affaan-m/ECC',
+  api_base:'https://api.github.com/repos/affaan-m/ECC',
+  readme_url:'https://github.com/affaan-m/ECC#readme'
+};
+const DEFAULT_INSTALL_COMMAND=`/plugin marketplace add https://github.com/affaan-m/ECC
+/plugin install ecc@ecc`;
 const SCENARIOS=[
   {
     kind:'从 0 到 1',
@@ -1333,6 +1436,13 @@ function renderUpdatedTime(){
   const d=new Date(meta.last_updated);
   document.getElementById('lastUpdated').textContent='数据更新: '+d.toLocaleDateString('zh-CN')+' '+d.toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});
 }
+function repoConfig(){return {...DEFAULT_REPO,...(meta.repo||{})}}
+function installCommand(){return meta.install?.plugin_command||DEFAULT_INSTALL_COMMAND}
+function syncRepoLinks(){
+  const repo=repoConfig();
+  const hero=document.getElementById('heroRepoLink');
+  if(hero)hero.href=repo.html_url;
+}
 // 检查 GitHub 更新
 const REPO_DIRS={Agents:'agents',Commands:'commands','Legacy Commands':'legacy-command-shims'};
 async function checkUpdate(){
@@ -1341,8 +1451,9 @@ async function checkUpdate(){
   try {
     const existing=new Set(entries.map(e=>e.original));
     let newFiles=[];
+    const repo=repoConfig();
     for(const[cat,dir]of Object.entries(REPO_DIRS)){
-      const resp=await fetch(`https://api.github.com/repos/affaan-m/everything-claude-code/contents/${dir}`);
+      const resp=await fetch(`${repo.api_base}/contents/${dir}`);
       if(resp.status===403){
         throw new Error('GitHub 匿名 API 被限流或拒绝。线上数据会通过 GitHub Actions 自动同步，也可以稍后再试。');
       }
@@ -1382,6 +1493,7 @@ async function loadData(){
     showToast('已使用内置数据，建议用静态服务器或 GitHub Pages 访问','info');
   }
   renderUpdatedTime();
+  syncRepoLinks();
   render();
 }
 function normKey(s){return String(s||'').toLowerCase().replace(/^\\//,'').replace(/[^a-z0-9]+/g,'')}
@@ -1406,7 +1518,7 @@ function referenceIndex(){
 }
 function findReference(e){
   const idx=referenceIndex();
-  const candidates=[e.original,e.name,e.slash_command,REF_ALIASES[e.original],REF_ALIASES[e.name]].filter(Boolean);
+  const candidates=[...(e.reference_ids||[]),e.ref_key,e.original,e.name,e.slash_command,REF_ALIASES[e.original],REF_ALIASES[e.name]].filter(Boolean);
   for(const c of candidates){
     const r=idx.get(normKey(c));
     if(r)return r;
@@ -1417,6 +1529,7 @@ function matchesFilter(e){
   if(currentFilter==='reference')return false;
   if(currentFilter==='scenarios')return false;
   if(currentFilter==='all')return true;
+  if(currentFilter==='catalog')return true;
   if(currentFilter.startsWith('tag:'))return (e.tags||[]).includes(currentFilter.slice(4));
   if(currentFilter.startsWith('task:'))return (e.task_groups||[]).includes(currentFilter.slice(5));
   return e.category===currentFilter;
@@ -1424,16 +1537,61 @@ function matchesFilter(e){
 function matchesSearch(e,q){
   if(!q)return true;
   const ref=findReference(e);
-  const hay=[e.name,e.original,e.description,e.simple,e.use_case,e.avoid_case,e.recommended_prompt,ref?.n,ref?.brief,ref?.zh,ref?.en,...(e.keywords||[]),...(e.tags||[]),...(e.task_groups||[])].join(' ').toLowerCase();
-  return hay.includes(q);
+  const hay=[e.name,e.original,e.description,e.simple,e.use_case,e.avoid_case,e.recommended_prompt,e.codex_prompt,ref?.n,ref?.brief,ref?.zh,ref?.en,...(e.keywords||[]),...(e.tags||[]),...(e.task_groups||[])].join(' ').toLowerCase();
+  return expandQuery(q).some(term=>hay.includes(term));
+}
+const SEARCH_SYNONYMS={
+  '跑不起来':['构建失败','启动失败','编译不过','报错'],
+  '构建失败':['跑不起来','启动失败','编译不过','报错'],
+  '写测试':['补测试','覆盖率','防回归','测试质量'],
+  '提交前':['自查','代码审查','质量门禁','PR'],
+  '安全':['漏洞','密钥','权限','合规','OWASP'],
+  '文档':['README','代码地图','说明','资料']
+};
+function expandQuery(q){
+  const base=q.toLowerCase().trim();
+  const terms=new Set([base]);
+  Object.entries(SEARCH_SYNONYMS).forEach(([k,vals])=>{
+    if(base.includes(k))vals.forEach(v=>terms.add(v.toLowerCase()));
+    vals.forEach(v=>{if(base.includes(v.toLowerCase()))terms.add(k.toLowerCase())});
+  });
+  return [...terms].filter(Boolean);
 }
 function matchesReferenceSearch(r,q){
   if(!q)return true;
-  return [r.t,r.cat,r.n,r.brief,r.zh,r.en].join(' ').toLowerCase().includes(q);
+  const hay=[r.t,r.cat,r.n,r.brief,r.zh,r.en].join(' ').toLowerCase();
+  return expandQuery(q).some(term=>hay.includes(term));
+}
+function sanitizeReferenceHtml(html){
+  const allowed=new Set(['H3','H4','P','UL','OL','LI','TABLE','TBODY','THEAD','TR','TH','TD','CODE','PRE','STRONG','EM','BR']);
+  const tpl=document.createElement('template');
+  tpl.innerHTML=String(html||'');
+  [...tpl.content.querySelectorAll('*')].forEach(el=>{
+    if(!allowed.has(el.tagName)){
+      el.replaceWith(document.createTextNode(el.textContent||''));
+      return;
+    }
+    [...el.attributes].forEach(attr=>el.removeAttribute(attr.name));
+  });
+  return tpl.innerHTML;
 }
 function matchesScenarioSearch(s,q){
   if(!q)return true;
-  return [s.kind,s.title,s.problem,s.prompt,s.output,...s.steps].join(' ').toLowerCase().includes(q);
+  return expandQuery(q).some(term=>[s.kind,s.title,s.problem,s.prompt,s.output,...s.steps].join(' ').toLowerCase().includes(term));
+}
+function matchReasons(e,q){
+  if(!q)return '';
+  const ref=findReference(e);
+  const fields=[
+    ['名称',[e.name,e.original].join(' ')],
+    ['说明',[e.simple,e.description,e.use_case,e.avoid_case].join(' ')],
+    ['标签',[...(e.keywords||[]),...(e.tags||[]),...(e.task_groups||[])].join(' ')],
+    ['示范问法',[e.recommended_prompt,e.codex_prompt].join(' ')],
+    ['原参考',[ref?.n,ref?.brief,ref?.zh,ref?.en].join(' ')]
+  ];
+  const terms=expandQuery(q);
+  const hits=fields.filter(([,v])=>terms.some(t=>String(v||'').toLowerCase().includes(t))).map(([k])=>k);
+  return hits.length?`<div class="match-reasons">命中：${escapeHtml([...new Set(hits)].join(' / '))}</div>`:'';
 }
 function renderScenarios(q=''){
   const byOriginal=new Map(entries.map(e=>[String(e.original).toLowerCase(),e]));
@@ -1445,6 +1603,12 @@ function renderScenarios(q=''){
       <div class="scenario-top"><div class="scenario-title">${escapeHtml(s.title)}</div><span class="scenario-kind">${escapeHtml(s.kind)}</span></div>
       <div class="scenario-problem">${escapeHtml(s.problem)}</div>
       <div class="scenario-row"><strong>推荐组合：</strong><div class="workflow-steps">${stepHtml}</div></div>
+      <div class="scenario-guide">
+        <div class="scenario-guide-item"><strong>第一步复制什么</strong>先复制下方示范提问，让模型只做定位、规划或最小修复。</div>
+        <div class="scenario-guide-item"><strong>第二步看什么产出</strong>重点看风险点、涉及文件、验证命令和下一步动作是否清楚。</div>
+        <div class="scenario-guide-item"><strong>什么时候换 Agent</strong>计划不清换 planner；要落地换 feature-dev；质量不放心换 code-reviewer / test-coverage。</div>
+        <div class="scenario-guide-item"><strong>常见误用提醒</strong>不要一次要求规划、实现、测试、提交全做完；先收敛范围再执行。</div>
+      </div>
       <div class="scenario-row"><strong>预期产出：</strong>${escapeHtml(s.output)}</div>
       <div class="scenario-prompt">${escapeHtml(s.prompt)}</div>
       <div class="scenario-actions">
@@ -1462,25 +1626,27 @@ function renderReferenceLibrary(q=''){
     <div class="ref-meta"><span class="ref-kind">${r.t==='cmd'?'命令':r.t==='skill'?'技能':'智能体'}</span><span class="ref-kind">${escapeHtml(r.cat)}</span></div>
     <div class="ref-name">${escapeHtml(r.n)}</div>
     <div class="ref-brief">${escapeHtml(r.brief)}</div>
-    <details class="reference-box"><summary>查看原网页说明</summary><div class="reference-detail">${r.zh||''}${r.en?`<div class="reference-en">${escapeHtml(r.en)}</div>`:''}</div></details>
+    <details class="reference-box"><summary>查看原网页说明</summary><div class="reference-detail">${sanitizeReferenceHtml(r.zh)}${r.en?`<div class="reference-en">${escapeHtml(r.en)}</div>`:''}</div></details>
   </div>`).join('');
   const more=!q&&list.length>shown.length?`<div class="empty">原网页参考库共 ${list.length} 条，当前展示前 ${shown.length} 条。搜索关键词或点击“原参考”可查看全部。</div>`:'';
   return `<section class="panel"><h2>原网页参考库</h2><div class="ref-library">${cards}</div>${more}</section>`;
 }
 function renderInstallPanel(){
+  const repo=repoConfig();
+  const command=installCommand();
   return `<section class="panel install-panel">
     <div class="install-lead">
       <h2>原项目与安装命令</h2>
       <p>本导航站基于 Everything Claude Code 的命令、Agent 和 Skill 内容整理，建议先按官方插件方式安装原项目，再用本页面按中文场景查找用法。</p>
       <div class="install-links">
-        <a class="link-btn" href="https://github.com/affaan-m/everything-claude-code" target="_blank" rel="noopener noreferrer">打开原项目</a>
-        <a class="link-btn" href="https://github.com/affaan-m/everything-claude-code#readme" target="_blank" rel="noopener noreferrer">查看官方 README</a>
+        <a class="link-btn" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer">打开原项目</a>
+        <a class="link-btn" href="${escapeHtml(repo.readme_url||repo.html_url)}" target="_blank" rel="noopener noreferrer">查看官方 README</a>
       </div>
     </div>
     <div class="install-code">
       <div class="install-code-label">Claude Code 插件安装</div>
-      <pre>${escapeHtml(INSTALL_COMMAND)}</pre>
-      <button class="copy-btn" onclick="copyCommand(INSTALL_COMMAND)">复制安装命令</button>
+      <pre>${escapeHtml(command)}</pre>
+      <button class="copy-btn" onclick="copyCommand(installCommand())">复制安装命令</button>
     </div>
   </section>`;
 }
@@ -1514,7 +1680,7 @@ function render(){
   for(const[k,v]of Object.entries(counts))html+=`<div class="stat"><div class="stat-num">${v}</div><div class="stat-label">${k}</div></div>`;
   html+=`<div class="stat"><div class="stat-num">${references.length}</div><div class="stat-label">原参考</div></div>`;
   html+='</div>';
-  if(currentFilter==='all'&&!q)html+=renderHome();
+  if(currentFilter==='all'&&!q){html+=renderHome();app.innerHTML=html;return}
   let curCat='',curSub='';
   filtered.forEach(e=>{
     if(e.category!==curCat){curCat=e.category;curSub='';const n=filtered.filter(x=>x.category===curCat).length;html+=`<div class="cat-header">${curCat} <span class="badge">${n}</span></div>`}
@@ -1522,14 +1688,18 @@ function render(){
     const prompt=escapeHtml(e.recommended_prompt||e.slash_command);
     const tags=(e.tags||[]).slice(0,4).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('');
     const ref=findReference(e);
-    const refHtml=ref?`<details class="reference-box"><summary>原网页详细说明：${escapeHtml(ref.brief)}</summary><div class="reference-detail">${ref.zh||''}${ref.en?`<div class="reference-en">${escapeHtml(ref.en)}</div>`:''}</div></details>`:'';
+    const refHtml=ref?`<details class="reference-box"><summary>原网页详细说明：${escapeHtml(ref.brief)}</summary><div class="reference-detail">${sanitizeReferenceHtml(ref.zh)}${ref.en?`<div class="reference-en">${escapeHtml(ref.en)}</div>`:''}</div></details>`:'';
+    const codexPrompt=escapeHtml(e.codex_prompt||`请参考 ECC 的 ${e.original} 能力，结合当前项目给出执行方案。`);
     html+=`<div class="card">
       <div class="card-head"><div><div class="card-name">${escapeHtml(e.name)}</div>${e.original?`<div class="card-original">${escapeHtml(e.original)}</div>`:''}</div><div class="tags">${tags}</div></div>
+      ${matchReasons(e,q)}
       <div class="card-simple">${escapeHtml(e.simple)}</div>
       <div class="card-desc">${escapeHtml(e.description)}</div>
       <div class="guide"><strong>什么时候用：</strong>${escapeHtml(e.use_case)}</div>
       <div class="guide"><strong>不适合：</strong>${escapeHtml(e.avoid_case)}</div>
+      <div class="guide"><strong>适用环境：</strong>${escapeHtml((e.environments||[]).join(' / ')||'Claude Code / Codex 可参考')}。${escapeHtml(e.environment_note||'')}</div>
       <div class="card-cmd"><code>${prompt}</code><button class="copy-btn" onclick="copyCommand(this.previousElementSibling.textContent)">复制推荐用法</button></div>
+      <details class="reference-box"><summary>Codex 版示范问法</summary><div class="reference-detail"><p>${codexPrompt}</p><button class="copy-btn" onclick="copyCommand(this.previousElementSibling.textContent)">复制 Codex 问法</button></div></details>
       ${refHtml}
     </div>`;
   });
