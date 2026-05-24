@@ -1,0 +1,39 @@
+name: Update ECC Data
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: python -m pip install requests
+
+      - name: Update data
+        run: python ecc_cn_command_center.py --update
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet; then
+            echo "没有数据变化"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ecc_cn_command_center/data.json ecc_cn_command_center/index.html
+          git commit -m "自动更新 ECC 数据"
+          git push
