@@ -1,0 +1,1210 @@
+[
+  {
+    "t": "cmd",
+    "cat": "核心工作流",
+    "n": "/build",
+    "brief": "增量构建：测试→实现→验证→提交",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">增量式构建命令 — 从计划中选取下一个待办任务，逐步实现、测试、验证、提交。</p>\n<h3>执行流程</h3>\n<ol>\n<li>读取任务的验收标准</li>\n<li>加载相关上下文（已有代码、模式、类型）</li>\n<li>先写一个会失败的测试（RED 阶段）</li>\n<li>实现最小代码使测试通过（GREEN 阶段）</li>\n<li>运行完整测试套件检查回归</li>\n<li>运行构建验证编译</li>\n<li>用描述性消息提交</li>\n<li>标记任务完成，进入下一个</li>\n</ol>\n<h3>使用场景</h3>\n<ul>\n<li>按计划逐步实现功能</li>\n<li>每个任务独立构建验证</li>\n<li>任何步骤失败时自动触发调试流程</li>\n</ul>",
+    "en": "Implement the next task incrementally — build, test, verify, commit"
+  },
+  {
+    "t": "cmd",
+    "cat": "核心工作流",
+    "n": "/plan",
+    "brief": "将工作拆分为可验证的小任务",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">规划命令 — 重述需求、评估风险、创建分步实施计划。进入只读模式，不修改代码，等待用户确认后再执行。</p>\n<h3>执行流程</h3>\n<ol>\n<li>读取现有规格（SPEC.md 或等效文件）和相关代码</li>\n<li>进入计划模式 — 只读，不改代码</li>\n<li>识别组件间的依赖图</li>\n<li>垂直切片（每个任务一条完整路径，而非水平分层）</li>\n<li>为每个任务编写验收标准和验证步骤</li>\n<li>在阶段间添加检查点</li>\n<li>提交计划供人工审查</li>\n</ol>\n<h3>任务规模参考</h3>\n<table><tr><th>规模</th><th>文件数</th><th>说明</th></tr>\n<tr><td>XS</td><td>1 个文件</td><td>最小任务</td></tr>\n<tr><td>S</td><td>1-2 个文件</td><td>小任务</td></tr>\n<tr><td>M</td><td>3-5 个文件</td><td>中等任务</td></tr>\n<tr><td>L</td><td>5-8 个文件</td><td>大任务</td></tr>\n<tr><td>XL</td><td>8+ 个文件</td><td>需进一步拆分</td></tr></table>\n<h3>何时需要进一步拆分</h3>\n<ul>\n<li>超过 2 小时的 agent 工作量</li>\n<li>3+ 条验收标准</li>\n<li>涉及 2+ 个独立子系统</li>\n<li>标题中有\"和\"</li>\n</ul>",
+    "en": "Break work into small verifiable tasks with acceptance criteria and dependency ordering"
+  },
+  {
+    "t": "cmd",
+    "cat": "核心工作流",
+    "n": "/review",
+    "brief": "五轴代码审查：正确性、可读性、架构、安全、性能",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">对当前变更（暂存区或最近提交）进行五个维度的全面代码审查。</p>\n<h3>五个审查维度</h3>\n<ol>\n<li><strong>正确性</strong> — 是否匹配规格？边界情况是否处理？测试是否充分？</li>\n<li><strong>可读性</strong> — 命名清晰？逻辑直接？组织合理？</li>\n<li><strong>架构</strong> — 遵循现有模式？边界清晰？抽象层级合适？</li>\n<li><strong>安全</strong> — 输入验证？密钥安全？认证检查？</li>\n<li><strong>性能</strong> — 无 N+1 查询？无无界操作？</li>\n</ol>\n<h3>发现分类</h3>\n<table><tr><th>级别</th><th>含义</th></tr>\n<tr><td>严重 Critical</td><td>阻止合并</td></tr>\n<tr><td>重要 Important</td><td>必须修复</td></tr>\n<tr><td>建议 Suggestion</td><td>推荐改进</td></tr></table>\n<h3>输出格式</h3>\n<p>结构化审查报告，包含具体的 <code>file:line</code> 引用和修复建议。</p>",
+    "en": "Conduct a five-axis code review — correctness, readability, architecture, security, performance"
+  },
+  {
+    "t": "cmd",
+    "cat": "核心工作流",
+    "n": "/test",
+    "brief": "TDD 工作流：先写失败测试，再实现",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">测试驱动开发命令 — 强制执行先写测试方法论。对于 bug 修复使用 Prove-It 模式。</p>\n<h3>新功能流程（TDD 循环）</h3>\n<ol>\n<li><strong>RED</strong> — 编写描述预期行为的测试（应该失败）</li>\n<li><strong>GREEN</strong> — 实现最小代码使测试通过</li>\n<li><strong>REFACTOR</strong> — 在保持测试绿色的前提下重构</li>\n</ol>\n<h3>Bug 修复流程（Prove-It 模式）</h3>\n<ol>\n<li>编写复现 bug 的测试（必须失败）</li>\n<li>确认测试确实失败</li>\n<li>实现修复</li>\n<li>确认测试通过</li>\n<li>运行完整测试套件检查回归</li>\n</ol>\n<h3>测试金字塔</h3>\n<table><tr><th>层级</th><th>占比</th><th>速度</th><th>说明</th></tr>\n<tr><td>单元测试</td><td>~80%</td><td>毫秒</td><td>单进程，无 I/O</td></tr>\n<tr><td>集成测试</td><td>~15%</td><td>秒级</td><td>多进程，localhost</td></tr>\n<tr><td>E2E 测试</td><td>~5%</td><td>分钟级</td><td>多机器，外部服务</td></tr></table>",
+    "en": "Run TDD workflow — write failing tests, implement, verify. For bugs, use the Prove-It pattern."
+  },
+  {
+    "t": "cmd",
+    "cat": "核心工作流",
+    "n": "/spec",
+    "brief": "规格驱动开发：先写规格再写代码",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">在写代码之前创建结构化规格说明。门控工作流：规格→计划→任务→实现，每个阶段必须经人工验证后才能推进。</p>\n<h3>规格涵盖六个核心领域</h3>\n<ol>\n<li><strong>目标</strong> — 做什么、为什么、给谁、成功标准</li>\n<li><strong>命令</strong> — 完整可执行命令及参数</li>\n<li><strong>项目结构</strong> — 目录布局</li>\n<li><strong>代码风格</strong> — 一个真实代码片段胜过三段描述</li>\n<li><strong>测试策略</strong> — 框架、位置、覆盖率、测试层级</li>\n<li><strong>边界</strong> — 必须做 / 先问再做 / 绝不做</li>\n</ol>\n<h3>使用场景</h3>\n<ul>\n<li>开始新项目或新功能时</li>\n<li>需求不清晰或模糊时</li>\n<li>需求只存在于模糊想法中时</li>\n</ul>",
+    "en": "Start spec-driven development — write a structured specification before writing code"
+  },
+  {
+    "t": "cmd",
+    "cat": "核心工作流",
+    "n": "/ship",
+    "brief": "发布前检查清单：并行扇出→合并→Go/No-Go",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">发布前检查编排器 — 并行运行三个专家角色审查当前变更，合并报告后做出 Go/No-Go 决策。</p>\n<h3>Phase A — 并行扇出（同时启动三个子 agent）</h3>\n<ol>\n<li><strong>code-reviewer</strong> — 五轴审查（正确性、可读性、架构、安全、性能）</li>\n<li><strong>security-auditor</strong> — 漏洞和威胁模型检查（OWASP Top 10、密钥、认证授权）</li>\n<li><strong>test-engineer</strong> — 测试覆盖率分析（正常路径、边界、错误路径、并发）</li>\n</ol>\n<h3>Phase B — 合并</h3>\n<p>聚合所有发现：代码质量、安全、性能、无障碍、基础设施、文档。</p>\n<h3>Phase C — 决策和回滚</h3>\n<p>输出：Ship Decision (GO | NO-GO)、阻断项、推荐修复、已知风险、回滚计划。</p>\n<h3>规则</h3>\n<ul>\n<li>三个 Phase A 角色必须并行运行，不能串行</li>\n<li>回滚计划在任何 GO 决策前都是必须的</li>\n<li>任何角色返回严重发现，默认 NO-GO</li>\n<li>可跳过条件：变更 ≤2 文件、diff <50 行、不涉及认证/支付/数据访问</li>\n</ul>",
+    "en": "Run the pre-launch checklist via parallel fan-out to specialist personas, then synthesize a go/no-go decision"
+  },
+  {
+    "t": "cmd",
+    "cat": "核心工作流",
+    "n": "/code-simplify",
+    "brief": "简化代码：降低复杂度，不改变行为",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">简化最近修改的代码（或指定范围），在完全保留行为的前提下提高清晰度和可维护性。</p>\n<h3>简化机会扫描</h3>\n<ul>\n<li>深层嵌套 → 提取为 guard clauses 或辅助函数</li>\n<li>长函数 → 按职责拆分</li>\n<li>嵌套三元表达式 → 改为 if/else 或 switch</li>\n<li>泛化命名 → 使用描述性名称</li>\n<li>重复逻辑 → 提取为共享函数</li>\n<li>死代码 → 确认后移除</li>\n</ul>\n<h3>五项原则</h3>\n<ol>\n<li><strong>精确保留行为</strong> — 相同输入、输出、副作用、错误行为</li>\n<li><strong>遵循项目约定</strong> — 匹配项目风格，非外部偏好</li>\n<li><strong>清晰优于巧妙</strong> — 显式代码胜过紧凑代码</li>\n<li><strong>保持平衡</strong> — 避免过度简化</li>\n<li><strong>聚焦变更范围</strong> — 默认只处理最近修改的代码</li>\n</ol>",
+    "en": "Simplify code for clarity and maintainability — reduce complexity without changing behavior"
+  },
+  {
+    "t": "cmd",
+    "cat": "会话管理",
+    "n": "/save-session",
+    "brief": "保存当前会话状态，以便未来恢复",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">捕获会话中发生的一切 — 构建了什么、什么有效、什么失败、还剩什么 — 写入带日期的文件，下次会话可以无缝接续。</p>\n<h3>使用时机</h3>\n<ul>\n<li>关闭 Claude Code 前的会话结束</li>\n<li>即将达到上下文限制前</li>\n<li>解决复杂问题后想保留记忆</li>\n<li>任何需要将上下文传递给未来会话的时刻</li>\n</ul>\n<h3>会话文件包含</h3>\n<ul>\n<li><strong>我们在构建什么</strong> — 1-3 段描述目标</li>\n<li><strong>什么有效（附证据）</strong> — 仅列出已确认工作的内容</li>\n<li><strong>什么无效（及原因）</strong> — 最重要的部分，防止下次重蹈覆辙</li>\n<li><strong>尚未尝试</strong> — 有前景但未尝试的方法</li>\n<li><strong>文件状态</strong> — 每个触碰的文件及其当前状态</li>\n<li><strong>已做决策</strong> — 架构选择和权衡</li>\n<li><strong>阻断项和开放问题</strong> — 未解决的事项</li>\n<li><strong>下一步</strong> — 恢复时最该做的一件事</li>\n</ul>",
+    "en": "Save current session state to a dated file so work can be resumed in a future session."
+  },
+  {
+    "t": "cmd",
+    "cat": "会话管理",
+    "n": "/resume-session",
+    "brief": "加载最近会话文件，从上次结束处恢复",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">加载最近的会话文件并以前一个会话结束时的完整上下文恢复工作。</p>\n<h3>执行流程</h3>\n<ol>\n<li>扫描 <code>~/.claude/session-data/</code> 目录</li>\n<li>找到最新的会话文件</li>\n<li>读取并解析会话内容</li>\n<li>向用户展示上下文摘要</li>\n<li>从\"下一步\"指示的位置继续工作</li>\n</ol>",
+    "en": "Load the most recent session file and resume work with full context."
+  },
+  {
+    "t": "cmd",
+    "cat": "会话管理",
+    "n": "/sessions",
+    "brief": "管理会话历史、别名和元数据",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">管理 Claude Code 会话历史 — 列出、加载、设置别名、编辑存储在 <code>~/.claude/session-data/</code> 中的会话。</p>\n<h3>子命令</h3>\n<table><tr><th>命令</th><th>说明</th></tr>\n<tr><td><code>/sessions list</code></td><td>列出所有会话</td></tr>\n<tr><td><code>/sessions load &lt;id&gt;</code></td><td>加载指定会话</td></tr>\n<tr><td><code>/sessions alias &lt;id&gt; &lt;name&gt;</code></td><td>为会话创建别名</td></tr>\n<tr><td><code>/sessions info &lt;id&gt;</code></td><td>显示会话详细信息</td></tr>\n<tr><td><code>/sessions aliases</code></td><td>列出所有别名</td></tr></table>",
+    "en": "Manage Claude Code session history, aliases, and session metadata."
+  },
+  {
+    "t": "cmd",
+    "cat": "会话管理",
+    "n": "/checkpoint",
+    "brief": "创建、验证或列出工作流检查点",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">运行验证检查后，创建、验证或列出工作流检查点。用于在长任务中保存进度快照。</p>",
+    "en": "Create, verify, or list workflow checkpoints after running verification checks."
+  },
+  {
+    "t": "cmd",
+    "cat": "PRP 工作流",
+    "n": "/prp-commit",
+    "brief": "自然语言文件定位的快速提交",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">用自然语言描述要提交的内容，自动定位相关文件并提交。无需手动 <code>git add</code>。</p>\n<h3>示例</h3>\n<pre>/prp-commit 修复用户注册时的邮箱验证 bug</pre>",
+    "en": "Quick commit with natural language file targeting."
+  },
+  {
+    "t": "cmd",
+    "cat": "PRP 工作流",
+    "n": "/prp-plan",
+    "brief": "全面的功能实施计划",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">创建全面的功能实施计划，含代码库分析和模式提取。比 <code>/plan</code> 更深入，会主动分析现有代码库。</p>",
+    "en": "Create comprehensive feature implementation plan with codebase analysis and pattern extraction."
+  },
+  {
+    "t": "cmd",
+    "cat": "PRP 工作流",
+    "n": "/prp-implement",
+    "brief": "执行实施计划，带严格验证循环",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">执行由 <code>/prp-plan</code> 创建的实施计划，每步都有严格验证循环确保正确性。</p>",
+    "en": "Execute an implementation plan with rigorous validation loops."
+  },
+  {
+    "t": "cmd",
+    "cat": "PRP 工作流",
+    "n": "/prp-pr",
+    "brief": "从当前分支创建 GitHub PR",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">从当前分支创建 GitHub PR — 自动发现模板、分析变更、推送并创建 PR。</p>",
+    "en": "Create a GitHub PR from current branch with unpushed commits."
+  },
+  {
+    "t": "cmd",
+    "cat": "PRP 工作流",
+    "n": "/prp-prd",
+    "brief": "交互式 PRD 生成器",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">交互式产品需求文档生成器 — 问题优先、假设驱动的产品规格，通过来回问答逐步完善。</p>",
+    "en": "Interactive PRD generator — problem-first, hypothesis-driven product spec."
+  },
+  {
+    "t": "cmd",
+    "cat": "多模型协作",
+    "n": "/multi-plan",
+    "brief": "创建多模型实施计划（不改代码）",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">创建多模型实施计划，不修改生产代码。利用不同模型的优势进行规划。</p>",
+    "en": "Create a multi-model implementation plan without modifying production code."
+  },
+  {
+    "t": "cmd",
+    "cat": "多模型协作",
+    "n": "/multi-execute",
+    "brief": "执行多模型计划，Claude 是唯一写入者",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">执行多模型实施计划，同时保留 Claude 作为唯一的文件系统写入者，确保一致性。</p>",
+    "en": "Execute a multi-model implementation plan while preserving Claude as the only filesystem writer."
+  },
+  {
+    "t": "cmd",
+    "cat": "多模型协作",
+    "n": "/multi-workflow",
+    "brief": "完整多模型开发工作流",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">运行完整的多模型开发工作流：研究→规划→执行→优化→审查，各阶段使用最适合的模型。</p>",
+    "en": "Run a full multi-model development workflow."
+  },
+  {
+    "t": "cmd",
+    "cat": "多模型协作",
+    "n": "/multi-frontend",
+    "brief": "前端聚焦的多模型工作流",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">运行以前端为中心的多模型工作流：组件、布局、动画和 UI 打磨。</p>",
+    "en": "Run a frontend-focused multi-model workflow."
+  },
+  {
+    "t": "cmd",
+    "cat": "多模型协作",
+    "n": "/multi-backend",
+    "brief": "后端聚焦的多模型工作流",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">运行以后端为中心的多模型工作流：API、算法、数据和业务逻辑。</p>",
+    "en": "Run a backend-focused multi-model workflow."
+  },
+  {
+    "t": "cmd",
+    "cat": "质量与审查",
+    "n": "/quality-gate",
+    "brief": "运行 ECC 质量管道",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">对文件或项目范围运行 ECC 质量管道并报告修复步骤。质量门控包括：Lint → 类型检查 → 单元测试 → 构建 → 集成 → E2E → 安全审计 → 包大小。</p>",
+    "en": "Run the ECC quality pipeline for a file or project scope."
+  },
+  {
+    "t": "cmd",
+    "cat": "质量与审查",
+    "n": "/santa-loop",
+    "brief": "对抗性双审查收敛循环",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">两个独立模型审查者必须都通过才能提交代码的对抗性循环。审查者 A（Claude Opus）始终运行，审查者 B 尝试使用不同模型（GPT/Gemini）以获得真正的独立性。</p>\n<h3>流程</h3>\n<ol>\n<li>NICE 轮次：两个审查者独立审查并评分</li>\n<li>NAUGHTY 轮次：发现问题时自动修复并提交</li>\n<li>收敛：两个审查者都给 NICE 评分时退出循环</li>\n<li>仅在最终 NICE 后推送</li>\n</ol>",
+    "en": "Adversarial dual-review convergence loop — two independent model reviewers must both approve."
+  },
+  {
+    "t": "cmd",
+    "cat": "质量与审查",
+    "n": "/review-pr",
+    "brief": "使用专业智能体全面审查 PR",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">使用专业智能体进行全面 PR 审查。可以传入 PR 编号或 URL。</p>",
+    "en": "Comprehensive PR review using specialized agents."
+  },
+  {
+    "t": "cmd",
+    "cat": "质量与审查",
+    "n": "/code-review",
+    "brief": "代码审查：本地变更或 GitHub PR",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">代码审查 — 审查本地未提交变更或 GitHub PR（传入 PR 编号/URL 进入 PR 模式）。</p>",
+    "en": "Code review -- local uncommitted changes or GitHub PR."
+  },
+  {
+    "t": "cmd",
+    "cat": "质量与审查",
+    "n": "/harness-audit",
+    "brief": "仓库 harness 审计评分卡",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">运行确定性的仓库 harness 审计并返回优先级评分卡，评估 agent 配置的可靠性、成本和吞吐量。</p>",
+    "en": "Run a deterministic repository harness audit and return a prioritized scorecard."
+  },
+  {
+    "t": "cmd",
+    "cat": "构建与修复",
+    "n": "/build-fix",
+    "brief": "自动检测并修复构建/类型错误",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">自动检测项目构建系统，以最小安全变更逐步修复构建/类型错误。支持 TypeScript、Webpack、Vite 等。</p>",
+    "en": "Detect the project build system and incrementally fix build/type errors."
+  },
+  {
+    "t": "cmd",
+    "cat": "构建与修复",
+    "n": "/gradle-build",
+    "brief": "修复 Gradle 构建错误",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">修复 Android 和 KMP 项目的 Gradle 构建错误。</p>",
+    "en": "Fix Gradle build errors for Android and KMP projects."
+  },
+  {
+    "t": "cmd",
+    "cat": "构建与修复",
+    "n": "/refactor-clean",
+    "brief": "安全移除死代码",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">安全地识别并移除死代码，每次变更后进行验证。确保不会意外删除仍在使用的代码。</p>",
+    "en": "Safely identify and remove dead code with verification after each change."
+  },
+  {
+    "t": "cmd",
+    "cat": "构建与修复",
+    "n": "/test-coverage",
+    "brief": "分析覆盖率并生成缺失测试",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">分析测试覆盖率，识别缺口，生成缺失测试以达到 80%+ 目标阈值。自动检测测试框架（Jest/Vitest/pytest/Cargo 等）。</p>\n<h3>优先级</h3>\n<ol>\n<li>正常路径 — 核心功能的有效输入</li>\n<li>错误处理 — 无效输入、缺失数据、网络故障</li>\n<li>边界情况 — 空数组、null/undefined、边界值</li>\n<li>分支覆盖 — 每个 if/else、switch case</li>\n</ol>",
+    "en": "Analyze coverage, identify gaps, and generate missing tests toward the target threshold."
+  },
+  {
+    "t": "cmd",
+    "cat": "C++ 命令",
+    "n": "/cpp-build",
+    "brief": "修复 C++ 构建、CMake 和链接器问题",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">逐步修复 C++ 构建错误、CMake 问题和链接器问题。调用 cpp-build-resolver 智能体。</p>",
+    "en": "Fix C++ build errors, CMake issues, and linker problems incrementally."
+  },
+  {
+    "t": "cmd",
+    "cat": "C++ 命令",
+    "n": "/cpp-review",
+    "brief": "C++ 代码审查：内存安全、现代惯用法",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">全面的 C++ 代码审查：内存安全、现代 C++ 惯用法、并发和性能。</p>",
+    "en": "Comprehensive C++ code review for memory safety, modern C++ idioms, concurrency, and security."
+  },
+  {
+    "t": "cmd",
+    "cat": "C++ 命令",
+    "n": "/cpp-test",
+    "brief": "C++ TDD：先写 GoogleTest 测试",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">对 C++ 强制 TDD 工作流。先写 GoogleTest 测试，再实现。用 gcov/lcov 验证覆盖率。</p>",
+    "en": "Enforce TDD workflow for C++. Write GoogleTest tests first, then implement."
+  },
+  {
+    "t": "cmd",
+    "cat": "Go 命令",
+    "n": "/go-build",
+    "brief": "修复 Go 构建、vet 和 linter 问题",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">逐步修复 Go 构建错误、go vet 警告和 linter 问题。</p>",
+    "en": "Fix Go build errors, go vet warnings, and linter issues incrementally."
+  },
+  {
+    "t": "cmd",
+    "cat": "Go 命令",
+    "n": "/go-review",
+    "brief": "Go 代码审查：惯用模式、并发安全",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">全面的 Go 代码审查：惯用模式、并发安全、错误处理和安全。</p>",
+    "en": "Comprehensive Go code review for idiomatic patterns, concurrency safety, error handling, and security."
+  },
+  {
+    "t": "cmd",
+    "cat": "Go 命令",
+    "n": "/go-test",
+    "brief": "Go TDD：先写表驱动测试",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">对 Go 强制 TDD 工作流。先写表驱动测试，再实现。验证 80%+ 覆盖率。</p>",
+    "en": "Enforce TDD workflow for Go. Write table-driven tests first, then implement."
+  },
+  {
+    "t": "cmd",
+    "cat": "Kotlin 命令",
+    "n": "/kotlin-build",
+    "brief": "修复 Kotlin/Gradle 构建错误",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">逐步修复 Kotlin/Gradle 构建错误、编译器警告和依赖问题。</p>",
+    "en": "Fix Kotlin/Gradle build errors, compiler warnings, and dependency issues incrementally."
+  },
+  {
+    "t": "cmd",
+    "cat": "Kotlin 命令",
+    "n": "/kotlin-review",
+    "brief": "Kotlin 代码审查：空安全、协程安全",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">全面的 Kotlin 代码审查：惯用模式、空安全、协程安全和安全。</p>",
+    "en": "Comprehensive Kotlin code review for idiomatic patterns, null safety, coroutine safety, and security."
+  },
+  {
+    "t": "cmd",
+    "cat": "Kotlin 命令",
+    "n": "/kotlin-test",
+    "brief": "Kotlin TDD：先写 Kotest 测试",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">对 Kotlin 强制 TDD 工作流。先写 Kotest 测试，再实现。用 Kover 验证 80%+ 覆盖率。</p>",
+    "en": "Enforce TDD workflow for Kotlin. Write Kotest tests first, then implement."
+  },
+  {
+    "t": "cmd",
+    "cat": "Rust 命令",
+    "n": "/rust-build",
+    "brief": "修复 Rust 构建和借用检查器问题",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">逐步修复 Rust 构建错误、借用检查器问题和依赖问题。</p>",
+    "en": "Fix Rust build errors, borrow checker issues, and dependency problems incrementally."
+  },
+  {
+    "t": "cmd",
+    "cat": "Rust 命令",
+    "n": "/rust-review",
+    "brief": "Rust 代码审查：所有权、生命周期、unsafe",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">全面的 Rust 代码审查：所有权、生命周期、错误处理、unsafe 使用和惯用模式。</p>",
+    "en": "Comprehensive Rust code review for ownership, lifetimes, error handling, unsafe usage."
+  },
+  {
+    "t": "cmd",
+    "cat": "Rust 命令",
+    "n": "/rust-test",
+    "brief": "Rust TDD：先写测试，cargo-llvm-cov 验证",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">对 Rust 强制 TDD 工作流。先写测试，再实现。用 cargo-llvm-cov 验证 80%+ 覆盖率。</p>",
+    "en": "Enforce TDD workflow for Rust. Write tests first, then implement."
+  },
+  {
+    "t": "cmd",
+    "cat": "Python 命令",
+    "n": "/python-review",
+    "brief": "Python 代码审查：PEEP 8、类型提示",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">全面的 Python 代码审查：PEP 8 合规、类型提示、安全和 Pythonic 惯用法。</p>",
+    "en": "Comprehensive Python code review for PEP 8 compliance, type hints, security, and Pythonic idioms."
+  },
+  {
+    "t": "cmd",
+    "cat": "Flutter 命令",
+    "n": "/flutter-build",
+    "brief": "修复 Dart 分析器和 Flutter 构建错误",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">逐步修复 Dart 分析器错误和 Flutter 构建失败。</p>",
+    "en": "Fix Dart analyzer errors and Flutter build failures incrementally."
+  },
+  {
+    "t": "cmd",
+    "cat": "Flutter 命令",
+    "n": "/flutter-review",
+    "brief": "Flutter 代码审查：Widget、状态管理",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">审查 Flutter/Dart 代码：惯用模式、Widget 最佳实践、状态管理、性能、无障碍和安全。</p>",
+    "en": "Review Flutter/Dart code for idiomatic patterns, widget best practices, state management."
+  },
+  {
+    "t": "cmd",
+    "cat": "Flutter 命令",
+    "n": "/flutter-test",
+    "brief": "运行 Flutter/Dart 测试并修复失败",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">运行 Flutter/Dart 测试，报告失败并逐步修复。覆盖单元、Widget、Golden 和集成测试。</p>",
+    "en": "Run Flutter/Dart tests, report failures, and incrementally fix test issues."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/learn",
+    "brief": "从会话中提取可复用模式",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">从当前会话中提取可复用模式并保存为候选技能或指导。持续学习的核心命令。</p>",
+    "en": "Extract reusable patterns from the current session and save them as candidate skills."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/learn-eval",
+    "brief": "提取模式并自评质量后保存",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">从会话中提取可复用模式，保存前自我评估质量，并确定正确的保存位置。</p>",
+    "en": "Extract reusable patterns, self-evaluate quality before saving."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/evolve",
+    "brief": "分析直觉并生成进化结构",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">分析直觉（instincts）并建议或生成进化结构。将零散的学习成果整合为正式技能。</p>",
+    "en": "Analyze instincts and suggest or generate evolved structures."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/instinct-status",
+    "brief": "显示已学习的直觉及置信度",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">显示已学习的直觉（项目级 + 全局级）及其置信度评分。</p>",
+    "en": "Show learned instincts (project + global) with confidence."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/instinct-export",
+    "brief": "导出直觉到文件",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">将直觉从项目/全局范围导出到文件，便于分享或备份。</p>",
+    "en": "Export instincts from project/global scope to a file."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/instinct-import",
+    "brief": "从文件或 URL 导入直觉",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">从文件或 URL 导入直觉到项目/全局范围。</p>",
+    "en": "Import instincts from file or URL into project/global scope."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/promote",
+    "brief": "将项目级直觉提升为全局级",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">将项目级直觉提升为全局级直觉，使其在所有项目中可用。</p>",
+    "en": "Promote project-scoped instincts to global scope."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/prune",
+    "brief": "清理过期的待处理直觉",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">删除超过 30 天且从未被提升的待处理直觉。</p>",
+    "en": "Delete pending instincts older than 30 days that were never promoted."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/skill-create",
+    "brief": "从 git 历史提取编码模式生成 SKILL.md",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">分析本地 git 历史以提取编码模式并生成 SKILL.md 文件。检测提交约定、文件共变、工作流序列、架构和测试模式。</p>",
+    "en": "Analyze local git history to extract coding patterns and generate SKILL.md files."
+  },
+  {
+    "t": "cmd",
+    "cat": "学习与进化",
+    "n": "/skill-health",
+    "brief": "技能组合健康仪表板",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">显示技能组合健康仪表板，包含成功率火花图、失败模式聚类、待审修正和版本历史。</p>",
+    "en": "Show skill portfolio health dashboard with charts and analytics."
+  },
+  {
+    "t": "cmd",
+    "cat": "自动化",
+    "n": "/loop-start",
+    "brief": "启动自主循环模式",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">启动受管理的自主循环模式，带有安全默认值和明确的停止条件。</p>",
+    "en": "Start a managed autonomous loop pattern with safety defaults and explicit stop conditions."
+  },
+  {
+    "t": "cmd",
+    "cat": "自动化",
+    "n": "/loop-status",
+    "brief": "检查循环状态和进度",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">检查活动循环状态、进度、失败信号和建议的干预措施。</p>",
+    "en": "Inspect active loop state, progress, failure signals, and recommended intervention."
+  },
+  {
+    "t": "cmd",
+    "cat": "自动化",
+    "n": "/gan-build",
+    "brief": "GAN 风格构建循环",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">运行生成器/评估器构建循环，用于实现任务，带有限定迭代次数和评分。基于 Anthropic 的 GAN harness 设计。</p>",
+    "en": "Run a generator/evaluator build loop for implementation tasks."
+  },
+  {
+    "t": "cmd",
+    "cat": "自动化",
+    "n": "/gan-design",
+    "brief": "GAN 风格设计循环",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">运行生成器/评估器设计循环，用于前端或视觉工作，带有限定迭代次数和评分。</p>",
+    "en": "Run a generator/evaluator design loop for frontend or visual work."
+  },
+  {
+    "t": "cmd",
+    "cat": "配置",
+    "n": "/hookify",
+    "brief": "从对话中创建钩子预防不良行为",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">从对话分析或明确指令中创建钩子以防止不良行为。例如：自动阻止在非 tmux 环境运行开发服务器。</p>",
+    "en": "Create hooks to prevent unwanted behaviors."
+  },
+  {
+    "t": "cmd",
+    "cat": "配置",
+    "n": "/hookify-configure",
+    "brief": "交互式启用/禁用 hookify 规则",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">交互式启用或禁用 hookify 规则。</p>",
+    "en": "Enable or disable hookify rules interactively."
+  },
+  {
+    "t": "cmd",
+    "cat": "配置",
+    "n": "/hookify-list",
+    "brief": "列出所有 hookify 规则",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">列出所有已配置的 hookify 规则。</p>",
+    "en": "List all configured hookify rules."
+  },
+  {
+    "t": "cmd",
+    "cat": "配置",
+    "n": "/setup-pm",
+    "brief": "配置首选包管理器",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">配置首选的包管理器（npm/pnpm/yarn/bun）。检测优先级：环境变量 → 项目配置 → package.json → 锁文件 → 全局配置。</p>",
+    "en": "Configure your preferred package manager (npm/pnpm/yarn/bun)."
+  },
+  {
+    "t": "cmd",
+    "cat": "配置",
+    "n": "/model-route",
+    "brief": "推荐最佳模型层级",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">根据任务复杂度、风险和预算推荐最佳模型层级。</p>",
+    "en": "Recommend the best model tier for the current task based on complexity, risk, and budget."
+  },
+  {
+    "t": "cmd",
+    "cat": "配置",
+    "n": "/auto-update",
+    "brief": "拉取 ECC 最新变更并重装",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">拉取 ECC 最新仓库变更并重新安装当前管理的目标组件。</p>",
+    "en": "Pull the latest ECC repo changes and reinstall the current managed targets."
+  },
+  {
+    "t": "cmd",
+    "cat": "其他",
+    "n": "/aside",
+    "brief": "快速旁支问题，不中断当前任务",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">回答一个快速的旁支问题，不中断当前任务上下文。回答后自动恢复工作。</p>",
+    "en": "Answer a quick side question without interrupting or losing context."
+  },
+  {
+    "t": "cmd",
+    "cat": "其他",
+    "n": "/feature-dev",
+    "brief": "引导式功能开发",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">引导式功能开发，结合代码库理解和架构聚焦。</p>",
+    "en": "Guided feature development with codebase understanding and architecture focus."
+  },
+  {
+    "t": "cmd",
+    "cat": "其他",
+    "n": "/pm2",
+    "brief": "生成 PM2 服务命令",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">分析项目并为检测到的前端、后端或数据库服务生成 PM2 服务命令。</p>",
+    "en": "Analyze a project and generate PM2 service commands."
+  },
+  {
+    "t": "cmd",
+    "cat": "其他",
+    "n": "/projects",
+    "brief": "列出项目和直觉统计",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">列出已知项目及其直觉统计信息。</p>",
+    "en": "List known projects and their instinct statistics."
+  },
+  {
+    "t": "cmd",
+    "cat": "其他",
+    "n": "/update-codemaps",
+    "brief": "生成精简的架构代码地图",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">扫描项目结构并生成 token 精简的架构代码地图，优化 AI 上下文消费。每个代码地图控制在 1000 token 以内。</p>",
+    "en": "Scan project structure and generate token-lean architecture codemaps."
+  },
+  {
+    "t": "cmd",
+    "cat": "其他",
+    "n": "/update-docs",
+    "brief": "从源真相同步文档",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">从源真相文件（脚本、模式、路由、导出）同步文档。自动生成脚本参考、环境变量文档、贡献指南等。</p>",
+    "en": "Sync documentation from source-of-truth files."
+  },
+  {
+    "t": "cmd",
+    "cat": "其他",
+    "n": "/jira",
+    "brief": "Jira 工单集成",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">检索 Jira 工单、分析需求、更新状态或添加评论。使用 jira-integration 技能和 MCP 或 REST API。</p>",
+    "en": "Retrieve a Jira ticket, analyze requirements, update status, or add comments."
+  },
+  {
+    "t": "skill",
+    "cat": "开发方法论",
+    "n": "spec-driven-development",
+    "brief": "规格驱动开发：先写规格再编码",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">门控工作流：SPECIFY → PLAN → TASKS → IMPLEMENT。每个阶段必须经人工验证后才能推进。</p>\n<h3>规格六要素</h3>\n<ol>\n<li>目标（做什么、为什么、给谁、成功标准）</li>\n<li>命令（完整可执行命令及参数）</li>\n<li>项目结构（目录布局）</li>\n<li>代码风格（一个真实代码片段胜过三段描述）</li>\n<li>测试策略（框架、位置、覆盖率）</li>\n<li>边界（必须做 / 先问再做 / 绝不做）</li>\n</ol>",
+    "en": "Creates specs before coding. Gated workflow: SPECIFY → PLAN → TASKS → IMPLEMENT."
+  },
+  {
+    "t": "skill",
+    "cat": "开发方法论",
+    "n": "test-driven-development",
+    "brief": "测试驱动开发：RED→GREEN→REFACTOR",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">TDD 循环：RED（写失败测试）→ GREEN（最小代码通过）→ REFACTOR（保持绿色重构）。</p>\n<h3>关键规则</h3>\n<ul>\n<li>测试状态，不测试交互</li>\n<li>DAMP 优于 DRY（测试中描述性和有意义的短语）</li>\n<li>优先真实实现：real > fake > stub > mock</li>\n<li>Arrange-Act-Assert 模式</li>\n<li>每个概念一个断言</li>\n</ul>",
+    "en": "Drives development with tests. TDD Cycle: RED → GREEN → REFACTOR."
+  },
+  {
+    "t": "skill",
+    "cat": "开发方法论",
+    "n": "incremental-implementation",
+    "brief": "增量实现：实现→测试→验证→提交",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">增量循环：Implement → Test → Verify → Commit → Next slice。</p>\n<h3>切片策略</h3>\n<ul>\n<li><strong>垂直切片（推荐）</strong>：每个切片一条贯穿技术栈的完整路径</li>\n<li><strong>契约优先</strong>：先定义 API 契约，后端和前端并行</li>\n<li><strong>风险优先</strong>：先攻克最危险的部分</li>\n</ul>\n<h3>六条规则</h3>\n<ol>\n<li>Rule 0: 简单优先 — \"能工作的最简单方案是什么？\"</li>\n<li>Rule 0.5: 范围纪律 — 只碰任务需要的</li>\n<li>Rule 1: 一次一件事</li>\n<li>Rule 2: 保持可编译</li>\n<li>Rule 3: 未完成功能用 Feature Flag</li>\n<li>Rule 4: 安全默认值</li>\n<li>Rule 5: 可回滚</li>\n</ol>",
+    "en": "Delivers changes incrementally. The Increment Cycle: Implement → Test → Verify → Commit."
+  },
+  {
+    "t": "skill",
+    "cat": "开发方法论",
+    "n": "code-review-and-quality",
+    "brief": "多轴代码审查：五维度评估",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">在合并任何变更前进行五个维度的评估。</p>\n<h3>变更规模</h3>\n<table><tr><th>行数</th><th>评价</th></tr>\n<tr><td>~100 行</td><td>良好</td></tr>\n<tr><td>~300 行</td><td>可接受</td></tr>\n<tr><td>~1000 行</td><td>过大，需拆分</td></tr></table>",
+    "en": "Conducts multi-axis code review across five dimensions."
+  },
+  {
+    "t": "skill",
+    "cat": "开发方法论",
+    "n": "planning-and-task-breakdown",
+    "brief": "工作拆分：依赖图→垂直切片→任务",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">规划流程：进入计划模式 → 识别依赖图 → 垂直切片 → 编写任务 → 排序和检查点。</p>",
+    "en": "Breaks work into ordered tasks with dependency graph analysis."
+  },
+  {
+    "t": "skill",
+    "cat": "安全与调试",
+    "n": "debugging-and-error-recovery",
+    "brief": "系统化根因调试",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">停车线规则：停止添加功能 → 保留证据 → 诊断 → 修复 → 防护 → 恢复。</p>\n<h3>分诊清单</h3>\n<ol>\n<li>复现 — 让失败可靠发生</li>\n<li>定位 — 缩小范围（UI/API/DB/构建/外部服务/测试本身）</li>\n<li>精简 — 创建最小失败用例</li>\n<li>修复根因 — 修复底层问题，而非症状</li>\n<li>防护复发 — 编写捕获此特定失败的测试</li>\n<li>端到端验证</li>\n</ol>",
+    "en": "Guides systematic root-cause debugging. Stop-the-Line Rule."
+  },
+  {
+    "t": "skill",
+    "cat": "安全与调试",
+    "n": "security-and-hardening",
+    "brief": "安全加固：三层边界系统",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">三层边界系统：</p>\n<h3>必须做</h3>\n<ul>\n<li>验证所有外部输入</li>\n<li>参数化 SQL</li>\n<li>对 XSS 输出编码</li>\n<li>HTTPS</li>\n<li>密码哈希（bcrypt/scrypt/argon2）</li>\n<li>安全头（CSP, HSTS）</li>\n<li>发布前 npm audit</li>\n</ul>\n<h3>先问再做</h3>\n<ul>\n<li>新的认证流程</li>\n<li>存储新的敏感数据</li>\n<li>新的外部集成</li>\n<li>CORS 变更</li>\n<li>文件上传</li>\n</ul>\n<h3>绝不做</h3>\n<ul>\n<li>提交密钥</li>\n<li>记录敏感数据</li>\n<li>信任客户端验证</li>\n<li>eval()/innerHTML + 用户数据</li>\n<li>localStorage 存储认证 token</li>\n</ul>",
+    "en": "Hardens code against vulnerabilities. Three-Tier Boundary System."
+  },
+  {
+    "t": "skill",
+    "cat": "安全与调试",
+    "n": "shipping-and-launch",
+    "brief": "发布准备：检查清单+灰度发布+回滚",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">发布前检查清单：代码质量、安全、性能、无障碍、基础设施、文档。</p>\n<h3>灰度发布序列</h3>\n<p>staging → production (flag OFF) → 团队 → 金丝雀 (5%) → 逐步 → 全量</p>\n<h3>回滚时间</h3>\n<table><tr><th>方式</th><th>时间</th></tr>\n<tr><td>Feature Flag</td><td>< 1 分钟</td></tr>\n<tr><td>重新部署</td><td>< 5 分钟</td></tr>\n<tr><td>数据库</td><td>< 15 分钟</td></tr></table>",
+    "en": "Prepares production launches with checklist, staged rollout, and rollback strategy."
+  },
+  {
+    "t": "skill",
+    "cat": "安全与调试",
+    "n": "safety-guard",
+    "brief": "防止破坏性操作",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">在处理生产系统或自主运行 agent 时防止破坏性操作。</p>",
+    "en": "Prevent destructive operations when working on production systems."
+  },
+  {
+    "t": "skill",
+    "cat": "代码质量",
+    "n": "code-simplification",
+    "brief": "简化代码：五项原则+逐步应用",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">五项原则：精确保留行为、遵循项目约定、清晰优于巧妙、保持平衡、聚焦变更范围。</p>\n<h3>500 行规则</h3>\n<p>如果重构涉及 500+ 行，使用自动化工具（codemods、AST 转换）。</p>",
+    "en": "Simplifies code for clarity. Five principles, incremental application."
+  },
+  {
+    "t": "skill",
+    "cat": "代码质量",
+    "n": "api-and-interface-design",
+    "brief": "稳定的 API 和接口设计",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">设计稳定、文档完善的接口，难以被误用。</p>\n<h3>核心原则</h3>\n<ul>\n<li>Hyrum 定律：所有可观察行为都会被某些人依赖</li>\n<li>单版本规则：避免强迫消费者在多个版本间选择</li>\n<li>契约优先：先定义接口再实现</li>\n<li>一致的错误语义</li>\n<li>在边界验证</li>\n<li>优先扩展而非修改</li>\n</ul>",
+    "en": "Guides stable API and interface design. Core principles including Hyrum's Law."
+  },
+  {
+    "t": "skill",
+    "cat": "代码质量",
+    "n": "performance-optimization",
+    "brief": "性能优化：Core Web Vitals 目标",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">Core Web Vitals 目标：LCP ≤ 2.5s, INP ≤ 200ms, CLS ≤ 0.1。</p>\n<h3>性能预算</h3>\n<table><tr><th>指标</th><th>目标</th></tr>\n<tr><td>JS 大小</td><td>< 200KB gzipped</td></tr>\n<tr><td>CSS 大小</td><td>< 50KB</td></tr>\n<tr><td>图片大小</td><td>< 200KB</td></tr>\n<tr><td>API p95</td><td>< 200ms</td></tr>\n<tr><td>TTI (4G)</td><td>< 3.5s</td></tr>\n<tr><td>Lighthouse</td><td>≥ 90</td></tr></table>",
+    "en": "Optimizes application performance. Core Web Vitals targets and performance budgets."
+  },
+  {
+    "t": "skill",
+    "cat": "代码质量",
+    "n": "deprecation-and-migration",
+    "brief": "弃用和迁移管理",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">代码是负债而非资产 — 每一行都有持续的维护成本。</p>\n<h3>迁移模式</h3>\n<ul>\n<li><strong>绞杀者模式</strong>：新旧并行，逐步转移流量</li>\n<li><strong>适配器模式</strong>：旧接口，新实现</li>\n<li><strong>Feature Flag 迁移</strong></li>\n</ul>",
+    "en": "Manages deprecation and migration. Strangler, Adapter, Feature Flag patterns."
+  },
+  {
+    "t": "skill",
+    "cat": "Agent 与自动化",
+    "n": "autonomous-agent-harness",
+    "brief": "完全自主的 agent 系统",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">将 Claude Code 转变为完全自主的 agent 系统，具有持久内存、计划操作、计算机使用和任务队列。</p>",
+    "en": "Transform Claude Code into a fully autonomous agent system."
+  },
+  {
+    "t": "skill",
+    "cat": "Agent 与自动化",
+    "n": "continuous-learning-v2",
+    "brief": "基于直觉的持续学习系统",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">通过钩子观察会话，创建带置信度评分的原子直觉，并进化为技能/命令/agent。</p>",
+    "en": "Instinct-based learning system with confidence scoring and evolution."
+  },
+  {
+    "t": "skill",
+    "cat": "Agent 与自动化",
+    "n": "gan-style-harness",
+    "brief": "GAN 风格 Generator-Evaluator harness",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">基于 Anthropic 2026 年 3 月 harness 设计论文的 GAN 风格 agent harness。</p>",
+    "en": "GAN-inspired Generator-Evaluator agent harness."
+  },
+  {
+    "t": "skill",
+    "cat": "Agent 与自动化",
+    "n": "claude-devfleet",
+    "brief": "多 agent 编排：并行 worktree",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">通过 Claude DevFleet 编排多 agent 编码任务 — 规划项目、在隔离 worktree 中派遣并行 agent。</p>",
+    "en": "Orchestrate multi-agent coding tasks via Claude DevFleet."
+  },
+  {
+    "t": "skill",
+    "cat": "Agent 与自动化",
+    "n": "team-builder",
+    "brief": "交互式 agent 团队选择器",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">交互式 agent 选择器，用于组合和派遣并行团队。</p>",
+    "en": "Interactive agent picker for composing and dispatching parallel teams."
+  },
+  {
+    "t": "skill",
+    "cat": "Agent 与自动化",
+    "n": "gateguard",
+    "brief": "事实强制门控：+2.25 分质量提升",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">阻止 Edit/Write/Bash 并要求具体调查后才允许操作 — 可测量地将输出质量提高 +2.25 分。</p>",
+    "en": "Fact-forcing gate that blocks actions until concrete investigation is provided."
+  },
+  {
+    "t": "skill",
+    "cat": "上下文与内存",
+    "n": "context-engineering",
+    "brief": "优化 agent 上下文设置",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">上下文层级（持久性从高到低）：规则文件 → 规格/架构文档 → 相关源文件 → 错误输出/测试结果 → 对话历史。</p>\n<h3>反模式</h3>\n<ul>\n<li>上下文饥饿</li>\n<li>上下文洪水（>5000 行）</li>\n<li>过时上下文</li>\n<li>缺失示例</li>\n<li>隐式知识</li>\n<li>静默困惑</li>\n</ul>",
+    "en": "Optimizes agent context setup. Context hierarchy and anti-patterns."
+  },
+  {
+    "t": "skill",
+    "cat": "上下文与内存",
+    "n": "ck",
+    "brief": "持久化项目级内存",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">Claude Code 的持久化项目级内存 — 会话开始时自动加载项目上下文，跟踪有 git 活动的会话。</p>",
+    "en": "Persistent per-project memory for Claude Code."
+  },
+  {
+    "t": "skill",
+    "cat": "上下文与内存",
+    "n": "strategic-compact",
+    "brief": "逻辑间隔手动上下文压缩",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">在逻辑间隔建议手动上下文压缩，通过任务阶段保留上下文而非任意自动压缩。</p>",
+    "en": "Suggests manual context compaction at logical intervals."
+  },
+  {
+    "t": "skill",
+    "cat": "Git 与文档",
+    "n": "git-workflow-and-versioning",
+    "brief": "Git 工作流：Trunk-based 开发",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">推荐 Trunk-based 开发：保持 main 始终可部署，短生命周期的功能分支（1-3 天）。</p>\n<h3>存档点模式</h3>\n<p>实现 → 测试 → 提交（或回滚）。永远不要丢失超过一个增量。</p>",
+    "en": "Structures git workflow practices. Trunk-based development recommended."
+  },
+  {
+    "t": "skill",
+    "cat": "Git 与文档",
+    "n": "documentation-and-adrs",
+    "brief": "架构决策记录 (ADR)",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">捕获重要技术决策背后的推理。存储在 <code>docs/decisions/</code> 中，顺序编号。</p>\n<h3>ADR 模板</h3>\n<ul>\n<li>状态（PROPOSED → ACCEPTED → SUPERSEDED/DEPRECATED）</li>\n<li>日期</li>\n<li>上下文</li>\n<li>决策</li>\n<li>考虑的替代方案</li>\n<li>后果</li>\n</ul>",
+    "en": "Records architectural decisions as ADRs with context, alternatives, and rationale."
+  },
+  {
+    "t": "skill",
+    "cat": "前端与 UI",
+    "n": "frontend-ui-engineering",
+    "brief": "生产级 UI：避免 AI 美学",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">避免 AI 美学：不要全部紫色/靛蓝、过多渐变、到处 rounded-2xl、通用 hero 区域、lorem ipsum。</p>\n<h3>状态管理层级</h3>\n<p>本地状态 (useState) → 提升状态 → Context → URL 状态 → 服务器状态 (React Query) → 全局 store (Zustand/Redux)</p>",
+    "en": "Builds production-quality UIs. Avoid the AI aesthetic."
+  },
+  {
+    "t": "skill",
+    "cat": "前端与 UI",
+    "n": "frontend-patterns",
+    "brief": "React/Next.js 前端模式",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">React、Next.js 前端开发模式：状态管理、性能优化和 UI 最佳实践。</p>",
+    "en": "Frontend development patterns for React, Next.js."
+  },
+  {
+    "t": "skill",
+    "cat": "前端与 UI",
+    "n": "design-system",
+    "brief": "设计系统生成与审计",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">生成或审计设计系统，检查视觉一致性，审查涉及样式的 PR。</p>",
+    "en": "Generate or audit design systems, check visual consistency."
+  },
+  {
+    "t": "skill",
+    "cat": "CI/CD 与部署",
+    "n": "ci-cd-and-automation",
+    "brief": "CI/CD 管道自动化",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">质量门控管道：Lint → 类型检查 → 单元测试 → 构建 → 集成 → E2E → 安全审计 → 包大小。不可跳过任何门控。</p>\n<h3>CI 优化（管道超 10 分钟时）</h3>\n<ul>\n<li>缓存依赖</li>\n<li>并行运行任务</li>\n<li>仅运行变更涉及的部分</li>\n<li>使用矩阵构建分片测试套件</li>\n</ul>",
+    "en": "Automates CI/CD pipeline setup with quality gates."
+  },
+  {
+    "t": "skill",
+    "cat": "CI/CD 与部署",
+    "n": "deployment-patterns",
+    "brief": "部署模式：Docker、健康检查、回滚",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">部署工作流、CI/CD 管道模式、Docker 容器化、健康检查、回滚策略和生产就绪清单。</p>",
+    "en": "Deployment workflows, Docker containerization, health checks, rollback strategies."
+  },
+  {
+    "t": "skill",
+    "cat": "数据库",
+    "n": "database-migrations",
+    "brief": "数据库迁移：零停机部署",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">数据库迁移最佳实践：模式变更、数据迁移、回滚和零停机部署。</p>",
+    "en": "Database migration best practices for zero-downtime deployments."
+  },
+  {
+    "t": "skill",
+    "cat": "数据库",
+    "n": "postgres-patterns",
+    "brief": "PostgreSQL 模式：查询优化、索引",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">基于 Supabase 最佳实践的 PostgreSQL 数据库模式：查询优化、模式设计、索引和安全。</p>",
+    "en": "PostgreSQL database patterns based on Supabase best practices."
+  },
+  {
+    "t": "skill",
+    "cat": "语言模式",
+    "n": "python-patterns",
+    "brief": "Pythonic 惯用法和最佳实践",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">Pythonic 惯用法、PEP 8 标准、类型提示和最佳实践。</p>",
+    "en": "Pythonic idioms, PEP 8 standards, type hints, and best practices."
+  },
+  {
+    "t": "skill",
+    "cat": "语言模式",
+    "n": "golang-patterns",
+    "brief": "惯用 Go 模式和最佳实践",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">惯用 Go 模式、最佳实践和约定。</p>",
+    "en": "Idiomatic Go patterns, best practices, and conventions."
+  },
+  {
+    "t": "skill",
+    "cat": "语言模式",
+    "n": "rust-patterns",
+    "brief": "Rust 模式：所有权、错误处理、trait",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">惯用 Rust 模式、所有权、错误处理、trait、并发和最佳实践。</p>",
+    "en": "Idiomatic Rust patterns, ownership, error handling, traits, concurrency."
+  },
+  {
+    "t": "skill",
+    "cat": "语言模式",
+    "n": "kotlin-patterns",
+    "brief": "Kotlin 模式：协程、空安全",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">惯用 Kotlin 模式、最佳实践和约定，含协程和空安全。</p>",
+    "en": "Idiomatic Kotlin patterns with coroutines and null safety."
+  },
+  {
+    "t": "skill",
+    "cat": "语言模式",
+    "n": "typescript-reviewer",
+    "brief": "TypeScript 代码审查：类型安全",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">专家 TypeScript/JavaScript 代码审查，专注于类型安全、异步正确性和 Node/Web 安全。</p>",
+    "en": "Expert TypeScript/JavaScript code review."
+  },
+  {
+    "t": "skill",
+    "cat": "框架模式",
+    "n": "springboot-patterns",
+    "brief": "Spring Boot 架构模式",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">Spring Boot 架构模式、REST API 设计、分层服务、数据访问、缓存、异步处理和日志。</p>",
+    "en": "Spring Boot architecture patterns, REST API design, layered services."
+  },
+  {
+    "t": "skill",
+    "cat": "框架模式",
+    "n": "django-patterns",
+    "brief": "Django 架构和 DRF 模式",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">Django 架构模式、DRF REST API 设计、ORM 最佳实践、缓存、信号、中间件。</p>",
+    "en": "Django architecture patterns, REST API design with DRF."
+  },
+  {
+    "t": "skill",
+    "cat": "框架模式",
+    "n": "laravel-patterns",
+    "brief": "Laravel 架构和 Eloquent 模式",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">Laravel 架构模式、路由/控制器、Eloquent ORM、服务层、队列、事件、缓存。</p>",
+    "en": "Laravel architecture patterns, routing/controllers, Eloquent ORM."
+  },
+  {
+    "t": "skill",
+    "cat": "框架模式",
+    "n": "nestjs-patterns",
+    "brief": "NestJS 模块化架构模式",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">NestJS 架构模式：模块、控制器、提供者、DTO 验证、守卫、拦截器、配置。</p>",
+    "en": "NestJS architecture patterns for modules, controllers, providers."
+  },
+  {
+    "t": "skill",
+    "cat": "框架模式",
+    "n": "docker-patterns",
+    "brief": "Docker 和 Docker Compose 模式",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">Docker 和 Docker Compose 模式：本地开发、容器安全、网络、卷策略和多服务编排。</p>",
+    "en": "Docker and Docker Compose patterns."
+  },
+  {
+    "t": "skill",
+    "cat": "集成与工具",
+    "n": "mcp-server-patterns",
+    "brief": "构建 MCP 服务器",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">使用 Node/TypeScript SDK 构建 MCP 服务器 — 工具、资源、提示、Zod 验证、stdio vs Streamable HTTP。</p>",
+    "en": "Build MCP servers with Node/TypeScript SDK."
+  },
+  {
+    "t": "skill",
+    "cat": "集成与工具",
+    "n": "jira-integration",
+    "brief": "Jira 工单集成",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">通过 MCP 或直接 REST 调用检索 Jira 工单、分析需求、更新状态、添加评论或转换问题。</p>",
+    "en": "Retrieve Jira tickets via MCP or REST."
+  },
+  {
+    "t": "skill",
+    "cat": "集成与工具",
+    "n": "github-ops",
+    "brief": "GitHub 仓库操作自动化",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">GitHub 仓库操作、自动化和管理 — issue 分诊、PR 管理、CI/CD 操作、发布管理和安全监控。</p>",
+    "en": "GitHub repository operations, automation, and management."
+  },
+  {
+    "t": "skill",
+    "cat": "集成与工具",
+    "n": "deep-research",
+    "brief": "多源深度研究",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">使用 firecrawl 和 exa MCP 进行多源深度研究 — 搜索网络、综合发现并交付有引用的报告。</p>",
+    "en": "Multi-source deep research using firecrawl and exa MCPs."
+  },
+  {
+    "t": "skill",
+    "cat": "集成与工具",
+    "n": "knowledge-ops",
+    "brief": "知识库管理：多存储层",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">跨多个存储层的知识库管理、摄取、同步和检索 — 本地文件、MCP 内存、向量存储、Git 仓库。</p>",
+    "en": "Knowledge base management across multiple storage layers."
+  },
+  {
+    "t": "skill",
+    "cat": "集成与工具",
+    "n": "data-scraper-agent",
+    "brief": "AI 驱动的数据采集 agent",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">为任何公共源构建完全自动化的 AI 驱动数据采集 agent — 定时抓取、LLM 增强、存储到 Notion/Sheets/Supabase。</p>",
+    "en": "Build a fully automated AI-powered data collection agent."
+  },
+  {
+    "t": "agent",
+    "cat": "架构与规划",
+    "n": "architect",
+    "brief": "软件架构：系统设计、可扩展性",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">软件架构专家，负责系统设计、可扩展性和技术决策。</p>",
+    "en": "Software architecture specialist for system design, scalability, and technical decision-making."
+  },
+  {
+    "t": "agent",
+    "cat": "架构与规划",
+    "n": "planner",
+    "brief": "复杂功能的详细实施计划",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">复杂功能和重构的专家规划员；创建详细的实施计划。</p>",
+    "en": "Expert planning specialist for complex features and refactoring."
+  },
+  {
+    "t": "agent",
+    "cat": "架构与规划",
+    "n": "code-architect",
+    "brief": "基于现有模式设计功能架构",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">通过分析现有代码库模式和约定来设计功能架构。</p>",
+    "en": "Designs feature architectures by analyzing existing codebase patterns."
+  },
+  {
+    "t": "agent",
+    "cat": "架构与规划",
+    "n": "code-explorer",
+    "brief": "深度分析代码库执行路径",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">通过跟踪执行路径和映射架构层来深入分析现有代码库功能。</p>",
+    "en": "Deeply analyzes existing codebase features by tracing execution paths."
+  },
+  {
+    "t": "agent",
+    "cat": "代码审查",
+    "n": "code-reviewer",
+    "brief": "专家代码审查：质量、安全、可维护性",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">专家代码审查员；审查代码的质量、安全性和可维护性。</p>",
+    "en": "Expert code review specialist."
+  },
+  {
+    "t": "agent",
+    "cat": "代码审查",
+    "n": "code-simplifier",
+    "brief": "简化代码：清晰度、一致性",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">简化和精炼代码，提高清晰度、一致性和可维护性，同时保留行为。</p>",
+    "en": "Simplifies and refines code for clarity, consistency, and maintainability."
+  },
+  {
+    "t": "agent",
+    "cat": "代码审查",
+    "n": "silent-failure-hunter",
+    "brief": "猎取静默失败和吞没的错误",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">审查代码中的静默失败、吞没的错误、不良回退和缺失的错误传播。</p>",
+    "en": "Reviews code for silent failures, swallowed errors, bad fallbacks."
+  },
+  {
+    "t": "agent",
+    "cat": "代码审查",
+    "n": "type-design-analyzer",
+    "brief": "分析类型设计的封装和不变量",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">分析类型设计的封装性、不变量表达、有用性和强制性。</p>",
+    "en": "Analyzes type design for encapsulation, invariant expression, usefulness."
+  },
+  {
+    "t": "agent",
+    "cat": "构建修复",
+    "n": "build-error-resolver",
+    "brief": "构建和 TypeScript 错误修复",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">构建和 TypeScript 错误解决专家；以最小差异修复构建/类型错误。</p>",
+    "en": "Build and TypeScript error resolution specialist."
+  },
+  {
+    "t": "agent",
+    "cat": "安全",
+    "n": "security-reviewer",
+    "brief": "安全漏洞检测：OWASP Top 10",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">安全漏洞检测和修复专家；标记密钥泄露、SSRF、注入和 OWASP Top 10。</p>",
+    "en": "Security vulnerability detection and remediation specialist."
+  },
+  {
+    "t": "agent",
+    "cat": "性能",
+    "n": "performance-optimizer",
+    "brief": "性能分析：瓶颈、包大小、运行时",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">性能分析和优化专家，处理瓶颈、包大小和运行时性能。</p>",
+    "en": "Performance analysis and optimization specialist."
+  },
+  {
+    "t": "agent",
+    "cat": "测试",
+    "n": "tdd-guide",
+    "brief": "TDD 专家：80%+ 覆盖率",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">测试驱动开发专家，强制执行先写测试方法论，目标 80%+ 测试覆盖率。</p>",
+    "en": "Test-Driven Development specialist with 80%+ coverage target."
+  },
+  {
+    "t": "agent",
+    "cat": "测试",
+    "n": "e2e-runner",
+    "brief": "E2E 测试：Playwright",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">端到端测试专家，优先使用 Vercel Agent Browser，备选 Playwright。</p>",
+    "en": "End-to-end testing specialist."
+  },
+  {
+    "t": "agent",
+    "cat": "测试",
+    "n": "pr-test-analyzer",
+    "brief": "PR 测试覆盖率质量审查",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">审查 PR 测试覆盖率质量和完整性，重点关注行为覆盖。</p>",
+    "en": "Reviews PR test coverage quality and completeness."
+  },
+  {
+    "t": "agent",
+    "cat": "数据库",
+    "n": "database-reviewer",
+    "brief": "PostgreSQL 专家：查询优化、模式",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">PostgreSQL 数据库专家，负责查询优化、模式设计、安全和性能。</p>",
+    "en": "PostgreSQL database specialist."
+  },
+  {
+    "t": "agent",
+    "cat": "文档",
+    "n": "doc-updater",
+    "brief": "文档和代码地图维护",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">文档和代码地图专家；维护代码地图和文档与代码库保持同步。</p>",
+    "en": "Documentation and codemap specialist."
+  },
+  {
+    "t": "agent",
+    "cat": "文档",
+    "n": "docs-lookup",
+    "brief": "通过 Context7 获取最新文档",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">文档专家，通过 Context7 MCP 获取当前库/框架/API 文档。</p>",
+    "en": "Documentation specialist that fetches current docs via Context7 MCP."
+  },
+  {
+    "t": "agent",
+    "cat": "GAN",
+    "n": "gan-planner",
+    "brief": "GAN 规划器：一行提示→完整规格",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">GAN Harness 规划器智能体；将一行提示扩展为完整的产品规格。</p>",
+    "en": "GAN Harness Planner agent; expands a one-line prompt into a full product specification."
+  },
+  {
+    "t": "agent",
+    "cat": "GAN",
+    "n": "gan-generator",
+    "brief": "GAN 生成器：按规格实现功能",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">GAN Harness 生成器智能体；根据规格实现功能并根据评估器反馈迭代。</p>",
+    "en": "GAN Harness Generator agent; implements features and iterates on feedback."
+  },
+  {
+    "t": "agent",
+    "cat": "GAN",
+    "n": "gan-evaluator",
+    "brief": "GAN 评估器：Playwright 测试评分",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">GAN Harness 评估器智能体；通过 Playwright 测试实际应用，按评分标准打分。</p>",
+    "en": "GAN Harness Evaluator agent; tests via Playwright, scores against a rubric."
+  },
+  {
+    "t": "agent",
+    "cat": "开源",
+    "n": "opensource-forker",
+    "brief": "Fork 项目：剥离密钥、替换引用",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">将任何项目 fork 为开源版本；剥离密钥、替换内部引用、生成 .env.example。</p>",
+    "en": "Forks any project for open-sourcing; strips secrets."
+  },
+  {
+    "t": "agent",
+    "cat": "开源",
+    "n": "opensource-sanitizer",
+    "brief": "验证开源 fork 已完全消毒",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">验证开源 fork 在发布前是否完全消毒；扫描泄露的密钥和 PII。</p>",
+    "en": "Verifies an open-source fork is fully sanitized."
+  },
+  {
+    "t": "agent",
+    "cat": "开源",
+    "n": "opensource-packager",
+    "brief": "生成完整的开源包装",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">生成完整的开源包装（CLAUDE.md、setup.sh、README、LICENSE、CONTRIBUTING.md）。</p>",
+    "en": "Generates complete open-source packaging."
+  },
+  {
+    "t": "agent",
+    "cat": "自动化",
+    "n": "loop-operator",
+    "brief": "操作自主循环，监控进度",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">操作自主 agent 循环，监控进度，并在循环停滞时安全干预。</p>",
+    "en": "Operates autonomous agent loops, monitors progress."
+  },
+  {
+    "t": "agent",
+    "cat": "自动化",
+    "n": "harness-optimizer",
+    "brief": "优化 agent harness 配置",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">分析并改进本地 agent harness 配置，提升可靠性、降低成本和提高吞吐量。</p>",
+    "en": "Analyzes and improves the local agent harness configuration."
+  },
+  {
+    "t": "agent",
+    "cat": "无障碍",
+    "n": "a11y-architect",
+    "brief": "WCAG 2.2 无障碍架构师",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">无障碍架构师，专注于 WCAG 2.2 合规，适用于 Web 和原生平台。</p>",
+    "en": "Accessibility Architect specializing in WCAG 2.2 compliance."
+  },
+  {
+    "t": "agent",
+    "cat": "SEO",
+    "n": "seo-specialist",
+    "brief": "技术 SEO 审计和优化",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">SEO 专家，负责技术 SEO 审计、页面优化、结构化数据和 Core Web Vitals。</p>",
+    "en": "SEO specialist for technical SEO audits, on-page optimization."
+  },
+  {
+    "t": "agent",
+    "cat": "通信",
+    "n": "chief-of-staff",
+    "brief": "通信幕僚长：邮件/Slack 分诊",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">个人通信幕僚长，跨 4 个层级分诊邮件、Slack、LINE 和 Messenger。</p>",
+    "en": "Personal communication chief of staff."
+  },
+  {
+    "t": "agent",
+    "cat": "医疗",
+    "n": "healthcare-reviewer",
+    "brief": "医疗应用代码审查：PHI 合规",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">审查医疗应用代码的临床安全、CDSS 准确性、PHI 合规和医疗数据完整性。</p>",
+    "en": "Reviews healthcare application code for clinical safety, PHI compliance."
+  },
+  {
+    "t": "agent",
+    "cat": "重构",
+    "n": "refactor-cleaner",
+    "brief": "死代码清理和合并",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">死代码清理和合并专家；安全地移除未使用代码、重复项并重构。</p>",
+    "en": "Dead code cleanup and consolidation specialist."
+  },
+  {
+    "t": "agent",
+    "cat": "学习",
+    "n": "conversation-analyzer",
+    "brief": "分析对话发现可预防行为",
+    "zh": "<h3>功能说明</h3>\n<p class=\"zh-detail\">分析对话记录，发现值得用钩子预防的行为。</p>",
+    "en": "Analyzes conversation transcripts to find behaviors worth preventing."
+  }
+]
