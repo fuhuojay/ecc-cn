@@ -1328,6 +1328,9 @@ async function checkUpdate(){
     let newFiles=[];
     for(const[cat,dir]of Object.entries(REPO_DIRS)){
       const resp=await fetch(`https://api.github.com/repos/affaan-m/everything-claude-code/contents/${dir}`);
+      if(resp.status===403){
+        throw new Error('GitHub 匿名 API 被限流或拒绝。线上数据会通过 GitHub Actions 自动同步，也可以稍后再试。');
+      }
       if(!resp.ok)throw new Error('GitHub API 请求失败: '+resp.status);
       const files=await resp.json();
       for(const f of files){
@@ -1345,7 +1348,7 @@ async function checkUpdate(){
       showToast('已是最新，没有发现新条目','ok');
     }
   } catch(e) {
-    showToast('检查失败: '+e.message,'info');
+    showToast(e.message,'info');
   } finally {
     btn.disabled=false;btn.textContent='检查更新';
   }
