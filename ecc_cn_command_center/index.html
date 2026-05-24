@@ -15,6 +15,7 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 .hero p{max-width:560px;font-size:15px;line-height:1.8;color:#3b4b5f}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .hero-chip{border:1px solid rgba(14,116,132,.22);background:rgba(255,255,255,.76);border-radius:999px;padding:7px 12px;color:#244154;font-size:12px}
+.hero-chip a{color:inherit;text-decoration:none}
 .toolbar{background:rgba(255,255,255,.95);backdrop-filter:blur(14px);padding:16px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 12px 28px rgba(23,32,51,.08)}
 .toolbar-inner{max-width:1180px;margin:0 auto}
 .toolbar-top{display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:14px;align-items:center}
@@ -40,6 +41,17 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 .workflow-name{font-weight:700;font-size:14px;color:#173b31}
 .workflow-steps{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .step-pill{font-size:12px;color:#275343;background:#fff;border:1px solid #d8eadf;border-radius:999px;padding:4px 8px}
+.install-panel{display:grid;grid-template-columns:1fr minmax(320px,1.15fr);gap:14px;align-items:stretch;background:linear-gradient(135deg,#ffffff,#f2faf8);border-color:#cfe5dc}
+.install-lead{display:flex;flex-direction:column;justify-content:center}
+.install-lead h2{font-size:20px;margin-bottom:8px}
+.install-lead p{font-size:13px;color:#526276;line-height:1.7}
+.install-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.link-btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #cbd6df;background:#fff;border-radius:8px;padding:8px 11px;color:#173b31;font-weight:700;font-size:13px}
+.link-btn:hover{border-color:var(--teal);color:var(--teal);background:#f4fbfc}
+.install-code{background:#172033;color:#edf7f8;border-radius:8px;padding:12px;border:1px solid #0f1728;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.install-code-label{font-size:12px;color:#9fb3c8;margin-bottom:8px;font-weight:700}
+.install-code pre{white-space:pre-wrap;word-break:break-word;font-size:13px;line-height:1.65;font-family:"Cascadia Code","Fira Code",monospace}
+.install-code .copy-btn{margin-top:10px;background:#2e8b68;border-color:#2e8b68}
 .scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:12px}
 .scenario-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;box-shadow:0 8px 20px rgba(23,32,51,.04)}
 .scenario-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:8px}
@@ -99,7 +111,7 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 .last-updated{font-size:11px;color:#64748b}
 .toast{position:fixed;top:20px;right:20px;padding:12px 20px;border-radius:8px;color:#fff;font-size:14px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}.toast.ok{background:var(--green)}.toast.warn{background:var(--amber)}.toast.info{background:var(--teal)}
-@media(max-width:760px){.hero{min-height:300px;background-position:62% center}.hero-inner{padding:38px 18px 30px}.hero h1{font-size:31px}.stats{margin:0 0 14px}.toolbar{position:static}.toolbar-top{grid-template-columns:1fr}.update-bar{justify-content:flex-start}.nav-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.hero{min-height:300px;background-position:62% center}.hero-inner{padding:38px 18px 30px}.hero h1{font-size:31px}.stats{margin:0 0 14px}.toolbar{position:static}.toolbar-top{grid-template-columns:1fr}.update-bar{justify-content:flex-start}.nav-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.install-panel{grid-template-columns:1fr}}
 @media(max-width:640px){.card-head{display:block}.tags{justify-content:flex-start;margin-top:8px}.card-cmd{align-items:stretch;flex-direction:column}.update-bar{margin-left:0}.hero-actions{gap:8px}}
 </style>
 </head>
@@ -114,6 +126,7 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
       <span class="hero-chip">推荐工作流</span>
       <span class="hero-chip">中文场景搜索</span>
       <span class="hero-chip">一键复制用法</span>
+      <span class="hero-chip"><a href="https://github.com/affaan-m/everything-claude-code" target="_blank" rel="noopener noreferrer">原项目 GitHub</a></span>
     </div>
   </div>
 </header>
@@ -160,6 +173,8 @@ const WORKFLOWS=[
   {name:'开源发布准备',steps:['opensource-forker','opensource-sanitizer','opensource-packager']},
   {name:'文档同步',steps:['update-codemaps','update-docs','docs-lookup']}
 ];
+const INSTALL_COMMAND=`/plugin marketplace add affaan-m/everything-claude-code
+/plugin install everything-claude-code@everything-claude-code`;
 const SCENARIOS=[
   {
     kind:'从 0 到 1',
@@ -377,6 +392,23 @@ function renderReferenceLibrary(q=''){
   const more=!q&&list.length>shown.length?`<div class="empty">原网页参考库共 ${list.length} 条，当前展示前 ${shown.length} 条。搜索关键词或点击“原参考”可查看全部。</div>`:'';
   return `<section class="panel"><h2>原网页参考库</h2><div class="ref-library">${cards}</div>${more}</section>`;
 }
+function renderInstallPanel(){
+  return `<section class="panel install-panel">
+    <div class="install-lead">
+      <h2>原项目与安装命令</h2>
+      <p>本导航站基于 Everything Claude Code 的命令、Agent 和 Skill 内容整理，建议先按官方插件方式安装原项目，再用本页面按中文场景查找用法。</p>
+      <div class="install-links">
+        <a class="link-btn" href="https://github.com/affaan-m/everything-claude-code" target="_blank" rel="noopener noreferrer">打开原项目</a>
+        <a class="link-btn" href="https://github.com/affaan-m/everything-claude-code#readme" target="_blank" rel="noopener noreferrer">查看官方 README</a>
+      </div>
+    </div>
+    <div class="install-code">
+      <div class="install-code-label">Claude Code 插件安装</div>
+      <pre>${escapeHtml(INSTALL_COMMAND)}</pre>
+      <button class="copy-btn" onclick="copyCommand(INSTALL_COMMAND)">复制安装命令</button>
+    </div>
+  </section>`;
+}
 function renderHome(){
   const taskHtml=TASKS.map(t=>`<div class="task-card" onclick="setTaskFilter('${t.name}')"><div class="task-title">${t.name}</div><div class="task-desc">${t.desc}</div></div>`).join('');
   const byOriginal=new Map(entries.map(e=>[String(e.original).toLowerCase(),e]));
@@ -384,7 +416,7 @@ function renderHome(){
     const steps=w.steps.map(s=>`<span class="step-pill">${escapeHtml(byOriginal.get(s.toLowerCase())?.name||s)}</span>`).join('');
     return `<div class="workflow"><div class="workflow-name">${w.name}</div><div class="workflow-steps">${steps}</div></div>`;
   }).join('');
-  return `${renderScenarios()}<section class="panel"><h2>按任务找 Skill</h2><div class="task-grid">${taskHtml}</div></section><section class="panel"><h2>推荐工作流</h2><div class="workflow-grid">${workflowHtml}</div></section><section class="panel"><h2>原网页参考库</h2><div class="empty">旧版网页的详细说明已整合进命令卡片，也可以点击上方“原参考库”单独浏览。</div></section>`;
+  return `${renderInstallPanel()}${renderScenarios()}<section class="panel"><h2>按任务找 Skill</h2><div class="task-grid">${taskHtml}</div></section><section class="panel"><h2>推荐工作流</h2><div class="workflow-grid">${workflowHtml}</div></section><section class="panel"><h2>原网页参考库</h2><div class="empty">旧版网页的详细说明已整合进命令卡片，也可以点击上方“原参考库”单独浏览。</div></section>`;
 }
 function render(){
   const q=document.getElementById('search').value.toLowerCase();
