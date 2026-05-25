@@ -1,0 +1,20 @@
+[
+  {
+    "id": "skill-curation",
+    "name": "收录一个新 Skill",
+    "kind": "个人仓库维护",
+    "problem": "发现一个外部 Skill 很好用，想保留来源，同时改写成适合自己使用的中文说明和调用场景。",
+    "steps": ["my-skill-curator", "docs-lookup", "planner", "update-docs"],
+    "prompt": "请读取这个 Skill 的 SKILL.md 或仓库说明，按我的偏好生成候选收录内容，并说明是否需要新增应用场景。",
+    "output": "候选中文卡片、适用场景、推荐组合、Codex 问法、来源引用和审核建议。"
+  },
+  {
+    "id": "personal-workbench",
+    "name": "优化成我的工作流",
+    "kind": "个人增强",
+    "problem": "某个 Skill 已经经常使用，想在原作者能力基础上沉淀自己的调用习惯和改良版草案。",
+    "steps": ["my-skill-curator", "code-reviewer", "quality-gate", "update-codemaps"],
+    "prompt": "请基于这个常用 Skill，总结我的使用习惯，设计个人增强说明和改良版 Skill 草案，保留原始来源。",
+    "output": "个人增强条目、改良版草案、风险提示、验证方式和网页展示建议。"
+  }
+]

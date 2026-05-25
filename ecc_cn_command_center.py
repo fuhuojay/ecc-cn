@@ -14,6 +14,10 @@ except ImportError:
 OUTPUT_DIR = Path("./ecc_cn_command_center")
 DATA_FILE = OUTPUT_DIR / "data.json"
 REFERENCE_DATA_FILE = OUTPUT_DIR / "reference-data.json"
+PREFERENCES_FILE = OUTPUT_DIR / "my-skill-preferences.json"
+CURATED_SOURCES_FILE = OUTPUT_DIR / "curated-sources.json"
+CURATED_SKILLS_FILE = OUTPUT_DIR / "curated-skills.json"
+PERSONAL_WORKFLOWS_FILE = OUTPUT_DIR / "personal-workflows.json"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 SOURCE_REPO = {
@@ -954,10 +958,96 @@ def source_meta(meta=None):
         "plugin_id": "ecc@ecc",
         "marketplace": "https://github.com/affaan-m/ECC",
     }
+    merged["curated_sources"] = curated_sources()
+    merged["personal_preferences"] = personal_preferences()
+    merged["personal_workflows"] = personal_workflows()
+    return merged
+
+def load_json_file(path, default):
+    if not path.exists():
+        return default
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def personal_preferences():
+    return load_json_file(PREFERENCES_FILE, {})
+
+def curated_sources():
+    return load_json_file(CURATED_SOURCES_FILE, [])
+
+def curated_skills():
+    return load_json_file(CURATED_SKILLS_FILE, [])
+
+def personal_workflows():
+    return load_json_file(PERSONAL_WORKFLOWS_FILE, [])
+
+def source_lookup():
+    return {s.get("id"): s for s in curated_sources()}
+
+def attach_ecc_source(entry):
+    entry["source_id"] = "ecc"
+    entry["source_name"] = "ECC / Everything Claude Code"
+    entry["source_type"] = "github"
+    entry["source_url"] = SOURCE_REPO["html_url"]
+    entry["install_command"] = INSTALL_COMMAND
+    entry["trust_status"] = "approved"
+    entry["personal_layer"] = "原始来源层"
+    return entry
+
+def build_curated_entry(raw, sources):
+    source = sources.get(raw.get("source_id"), {})
+    original = raw.get("original") or raw.get("id") or raw.get("name")
+    entry = {
+        "category": raw.get("category", "我的精选 Skill"),
+        "sub": raw.get("sub", "个人增强"),
+        "name": raw.get("name", original),
+        "original": original,
+        "description": raw.get("description", ""),
+        "simple": raw.get("simple", raw.get("description", "")),
+        "slash_command": raw.get("claude_prompt") or raw.get("recommended_prompt") or f'请使用 {original} 的能力帮助我完成当前任务。',
+        "task_groups": raw.get("task_groups", []),
+        "keywords": raw.get("keywords", []),
+        "tags": raw.get("tags", []),
+        "use_case": raw.get("use_case", ""),
+        "avoid_case": raw.get("avoid_case", ""),
+        "recommended_prompt": raw.get("recommended_prompt") or raw.get("claude_prompt") or f'请按我的偏好使用 {original}，先规划、再给出可验证步骤。',
+        "claude_prompt": raw.get("claude_prompt") or raw.get("recommended_prompt") or f'请按我的偏好使用 {original}。',
+        "codex_prompt": raw.get("codex_prompt") or f'请参考 {original} 的能力，结合我的工作习惯给出场景化方案、风险点和验证步骤。',
+        "environments": raw.get("environments", ["Claude Code", "Codex 可参考"]),
+        "environment_note": raw.get("environment_note", "这是个人精选条目，建议按卡片里的场景和问法调用。"),
+        "ref_key": raw.get("ref_key"),
+        "reference_ids": raw.get("reference_ids", []),
+        "source_id": raw.get("source_id"),
+        "source_name": source.get("name", raw.get("source_name", "未命名来源")),
+        "source_type": source.get("type", raw.get("source_type", "curated")),
+        "source_url": raw.get("source_url") or source.get("homepage") or source.get("repo"),
+        "install_command": raw.get("install_command") or source.get("install_command", ""),
+        "trust_status": raw.get("review_status", "pending"),
+        "personal_layer": raw.get("personal_layer", "个人增强层"),
+        "personal_enhancement": raw.get("personal_enhancement", ""),
+        "optimized_version": raw.get("optimized_version"),
+        "local_path": raw.get("local_path") or source.get("local_path", ""),
+        "scenario_ids": raw.get("scenario_ids", []),
+    }
+    return entry
+
+def merge_curated_entries(entries):
+    sources = source_lookup()
+    existing = {(e.get("source_id", "ecc"), norm_key(e.get("original"))) for e in entries}
+    merged = list(entries)
+    for raw in curated_skills():
+        entry = build_curated_entry(raw, sources)
+        key = (entry.get("source_id"), norm_key(entry.get("original")))
+        if key in existing:
+            continue
+        merged.append(entry)
+        existing.add(key)
     return merged
 
 def enrich_entry(entry, reference_index=None):
     """补充中文开发者更容易使用的场景化字段"""
+    if entry.get("personal_layer") == "个人增强层":
+        return entry
     reference_index = reference_index or {}
     key = entry.get("original", "")
     key_lower = key.lower()
@@ -1013,6 +1103,7 @@ def enrich_entry(entry, reference_index=None):
     entry["environment_note"] = "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。"
     entry["ref_key"] = reference_ids[0] if reference_ids else None
     entry["reference_ids"] = reference_ids
+    attach_ecc_source(entry)
     return entry
 
 def build_entry(name, description, category, file_key):
@@ -1167,6 +1258,7 @@ reference_entries = load_reference_entries()
 reference_index = build_reference_index(reference_entries)
 meta = source_meta(meta)
 all_entries = [enrich_entry(e, reference_index) for e in all_entries]
+all_entries = merge_curated_entries(all_entries)
 all_entries.sort(key=sort_key)
 save_data(all_entries, meta)
 print(f"已生成数据，共 {len(all_entries)} 条记录 -> {DATA_FILE}")
@@ -1257,6 +1349,15 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 .mini-btn:hover{border-color:var(--teal);color:var(--teal);background:#f4fbfc}
 .mini-btn.primary:hover{background:#0b5d69;color:#fff}
 .match-reasons{margin-top:8px;font-size:11px;color:#0b6672;background:#edf8fa;border:1px solid #d4ebef;border-radius:999px;padding:4px 9px;display:inline-flex}
+.source-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.source-card{border:1px solid var(--line);border-radius:10px;background:#fff;padding:14px}
+.source-title{font-size:15px;font-weight:800;color:#172033}
+.source-desc{font-size:12px;color:var(--muted);line-height:1.65;margin-top:6px}
+.source-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.source-section{margin-top:14px}
+.personal-note{background:#f8fafc;border:1px solid #e1e8ee;border-radius:8px;padding:10px;margin-top:10px;font-size:13px;color:#405064;line-height:1.65}
+.workflow-callout{border:1px solid #d7e6df;background:#fbfefc;border-radius:10px;padding:13px}
+.workflow-callout .scenario-prompt{margin-top:8px}
 .stats{display:flex;gap:10px;margin:0 0 14px;flex-wrap:wrap;position:relative;z-index:2}
 .stat{background:#fff;border-radius:8px;padding:10px 15px;border:1px solid var(--line);text-align:center;min-width:88px;box-shadow:none}
 .stat-num{font-size:24px;font-weight:700;color:var(--teal)}
@@ -1350,6 +1451,7 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
       <div class="nav-grid primary-nav">
         <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">首页</button>
         <button class="filter-btn" data-filter="scenarios" onclick="setFilter('scenarios',this)">场景案例</button>
+        <button class="filter-btn" data-filter="personal" onclick="setFilter('personal',this)">我的精选 Skill</button>
         <button class="filter-btn" data-filter="高频" onclick="setFilter('tag:高频',this)">高频命令</button>
         <button class="filter-btn" data-filter="catalog" onclick="setFilter('catalog',this)">全部条目</button>
         <button class="filter-btn" data-filter="reference" onclick="setFilter('reference',this)">原参考库</button>
@@ -1587,6 +1689,7 @@ function findReference(e){
 function matchesFilter(e){
   if(currentFilter==='reference')return false;
   if(currentFilter==='scenarios')return false;
+  if(currentFilter==='personal')return false;
   if(currentFilter==='all')return true;
   if(currentFilter==='catalog')return true;
   if(currentFilter.startsWith('tag:'))return (e.tags||[]).includes(currentFilter.slice(4));
@@ -1596,7 +1699,7 @@ function matchesFilter(e){
 function matchesSearch(e,q){
   if(!q)return true;
   const ref=findReference(e);
-  const hay=[e.name,e.original,e.description,e.simple,e.use_case,e.avoid_case,e.recommended_prompt,e.codex_prompt,ref?.n,ref?.brief,ref?.zh,ref?.en,...(e.keywords||[]),...(e.tags||[]),...(e.task_groups||[])].join(' ').toLowerCase();
+  const hay=[e.name,e.original,e.description,e.simple,e.use_case,e.avoid_case,e.recommended_prompt,e.codex_prompt,e.source_name,e.source_url,e.personal_enhancement,ref?.n,ref?.brief,ref?.zh,ref?.en,...(e.keywords||[]),...(e.tags||[]),...(e.task_groups||[])].join(' ').toLowerCase();
   return expandQuery(q).some(term=>hay.includes(term));
 }
 const SEARCH_SYNONYMS={
@@ -1655,7 +1758,7 @@ function matchReasons(e,q){
 function tagClass(t){
   if(t==='高频')return 'hot';
   if(t==='入门推荐')return 'beginner';
-  if(t==='可能改代码'||t==='需要谨慎')return 'caution';
+  if(t==='可能改代码'||t==='需要谨慎'||t==='个人增强')return 'caution';
   if(t==='只读分析')return 'readonly';
   return '';
 }
@@ -1701,6 +1804,55 @@ function renderReferenceLibrary(q=''){
   const more=!q&&list.length>shown.length?`<div class="empty">原网页参考库共 ${list.length} 条，当前展示前 ${shown.length} 条。搜索关键词或点击“原参考”可查看全部。</div>`:'';
   return `<section class="panel"><h2>原网页参考库</h2><div class="ref-library">${cards}</div>${more}</section>`;
 }
+function renderPersonalWorkflows(q=''){
+  const workflows=(meta.personal_workflows||[]).filter(w=>!q||matchesScenarioSearch({kind:w.kind,title:w.name,problem:w.problem,prompt:w.prompt,output:w.output,steps:w.steps||[]},q));
+  if(!workflows.length)return '';
+  const cards=workflows.map(w=>{
+    const steps=(w.steps||[]).map(step=>`<span class="step-pill">${escapeHtml(step)}</span>`).join('');
+    return `<div class="workflow-callout">
+      <div class="scenario-top"><div class="scenario-title">${escapeHtml(w.name)}</div><span class="scenario-kind">${escapeHtml(w.kind)}</span></div>
+      <div class="scenario-problem">${escapeHtml(w.problem)}</div>
+      <div class="workflow-steps">${steps}</div>
+      <div class="scenario-prompt">${escapeHtml(w.prompt)}</div>
+      <div class="scenario-actions"><button class="mini-btn primary" onclick="copyCommand(this.closest('.workflow-callout').querySelector('.scenario-prompt').textContent)">复制工作流问法</button></div>
+      <div class="scenario-row"><strong>预期产出：</strong>${escapeHtml(w.output)}</div>
+    </div>`;
+  }).join('');
+  return `<section class="panel"><h2>我的工作流</h2><div class="scenario-grid">${cards}</div></section>`;
+}
+function renderPersonalWorkbench(q=''){
+  const sources=meta.curated_sources||[];
+  const bySource=new Map();
+  entries.forEach(e=>{
+    if(q&&!matchesSearch(e,q))return;
+    const sid=e.source_id||'unknown';
+    if(!bySource.has(sid))bySource.set(sid,[]);
+    bySource.get(sid).push(e);
+  });
+  const sourceCards=sources.map(s=>{
+    const count=(bySource.get(s.id)||[]).length;
+    return `<div class="source-card">
+      <div class="source-title">${escapeHtml(s.name)}</div>
+      <div class="source-desc">${escapeHtml(s.description||'')}</div>
+      <div class="source-meta">
+        <span class="tag readonly">${escapeHtml(s.type||'source')}</span>
+        <span class="tag ${s.trust_status==='approved'?'beginner':'caution'}">${escapeHtml(s.trust_status||'pending')}</span>
+        <span class="tag hot">${count} 条</span>
+      </div>
+      ${s.install_command?`<details class="reference-box"><summary>安装方式</summary><div class="reference-detail"><p>${escapeHtml(s.install_command)}</p><button class="copy-btn" onclick="copyCommand(this.previousElementSibling.textContent)">复制安装方式</button></div></details>`:''}
+    </div>`;
+  }).join('');
+  const sections=sources.map(s=>{
+    const list=(bySource.get(s.id)||[]);
+    if(!list.length)return '';
+    const cards=list.slice(0, s.id==='ecc'?12:80).map(e=>renderCompactSkillCard(e)).join('');
+    const more=s.id==='ecc'&&list.length>12?`<div class="empty">ECC 来源共 ${list.length} 条，这里展示前 12 条；可在“全部条目”继续搜索。</div>`:'';
+    return `<section class="panel source-section"><h2>${escapeHtml(s.name)}</h2><div class="home-skill-grid">${cards}</div>${more}</section>`;
+  }).join('');
+  const pref=meta.personal_preferences||{};
+  const preferenceHtml=`<section class="panel"><h2>我的整理偏好</h2><div class="personal-note">${escapeHtml(pref.curation_rule||'保留原始来源，沉淀个人增强说明，必要时创建个人改良版。')}</div></section>`;
+  return `<section class="panel"><h2>我的精选 Skill 来源</h2><div class="source-grid">${sourceCards}</div></section>${preferenceHtml}${renderPersonalWorkflows(q)}${sections}`;
+}
 function renderInstallPanel(){
   const repo=repoConfig();
   const command=installCommand();
@@ -1720,6 +1872,16 @@ function renderInstallPanel(){
     </div>
   </section>`;
 }
+function renderCompactSkillCard(e){
+  const source=e.source_name?`<span class="tag readonly">${escapeHtml(e.source_name)}</span>`:'';
+  const enhanced=e.personal_layer==='个人增强层'?`<span class="tag caution">个人增强</span>`:'';
+  const tags=source+enhanced+(e.tags||[]).slice(0,2).map(t=>`<span class="tag ${tagClass(t)}">${escapeHtml(t)}</span>`).join('');
+  return `<div class="task-card" onclick="document.getElementById('search').value='${escapeHtml(e.original)}';setFilter('catalog',document.querySelector('[data-filter=catalog]'))">
+    <div class="task-title">${escapeHtml(e.name)}</div>
+    <div class="task-desc">${escapeHtml(e.simple||e.description)}</div>
+    <div class="tags" style="justify-content:flex-start;margin-top:8px">${tags}</div>
+  </div>`;
+}
 function renderHome(){
   const taskHtml=TASKS.map(t=>`<div class="task-card" onclick="setTaskFilter('${t.name}')"><div class="task-title">${t.name}</div><div class="task-desc">${t.desc}</div></div>`).join('');
   const byOriginal=new Map(entries.map(e=>[String(e.original).toLowerCase(),e]));
@@ -1729,13 +1891,17 @@ function renderHome(){
   }).join('');
   const starter=entries.filter(e=>(e.tags||[]).includes('入门推荐')).slice(0,6);
   const frequent=entries.filter(e=>(e.tags||[]).includes('高频')).slice(0,6);
-  const compactCards=list=>list.map(e=>`<div class="task-card" onclick="document.getElementById('search').value='${escapeHtml(e.original)}';setFilter('catalog',document.querySelector('[data-filter=catalog]'))"><div class="task-title">${escapeHtml(e.name)}</div><div class="task-desc">${escapeHtml(e.simple)}</div><div class="tags" style="justify-content:flex-start;margin-top:8px">${(e.tags||[]).slice(0,3).map(t=>`<span class="tag ${tagClass(t)}">${escapeHtml(t)}</span>`).join('')}</div></div>`).join('');
-  return `${renderInstallPanel()}<section class="panel"><h2>新手从这里开始</h2><div class="home-skill-grid">${compactCards(starter)}</div></section><section class="panel"><h2>推荐工作流</h2><div class="workflow-grid">${workflowHtml}</div></section><section class="panel"><h2>高频 Skill</h2><div class="home-skill-grid">${compactCards(frequent)}</div></section>${renderScenarios()}<section class="panel"><h2>任务筛选</h2><div class="task-grid">${taskHtml}</div></section>`;
+  const compactCards=list=>list.map(renderCompactSkillCard).join('');
+  return `${renderInstallPanel()}<section class="panel"><h2>新手从这里开始</h2><div class="home-skill-grid">${compactCards(starter)}</div></section>${renderPersonalWorkflows()}<section class="panel"><h2>推荐工作流</h2><div class="workflow-grid">${workflowHtml}</div></section><section class="panel"><h2>高频 Skill</h2><div class="home-skill-grid">${compactCards(frequent)}</div></section>${renderScenarios()}<section class="panel"><h2>任务筛选</h2><div class="task-grid">${taskHtml}</div></section>`;
 }
 function render(){
   const q=document.getElementById('search').value.toLowerCase();
   if(currentFilter==='scenarios'){
     document.getElementById('app').innerHTML=renderScenarios(q);
+    return;
+  }
+  if(currentFilter==='personal'){
+    document.getElementById('app').innerHTML=renderPersonalWorkbench(q);
     return;
   }
   if(currentFilter==='reference'){
@@ -1760,7 +1926,10 @@ function render(){
     if(e.sub!==curSub){curSub=e.sub;html+=`<div class="sub-header">${curSub}</div>`}
     const prompt=escapeHtml(e.recommended_prompt||e.slash_command);
     const typeTag=e.category?`<span class="tag readonly">${escapeHtml(e.category)}</span>`:'';
-    const tags=typeTag+(e.tags||[]).slice(0,4).map(t=>`<span class="tag ${tagClass(t)}">${escapeHtml(t)}</span>`).join('');
+    const sourceTag=e.source_name?`<span class="tag readonly">${escapeHtml(e.source_name)}</span>`:'';
+    const trustTag=e.trust_status?`<span class="tag ${e.trust_status==='approved'?'beginner':'caution'}">${escapeHtml(e.trust_status)}</span>`:'';
+    const layerTag=e.personal_layer==='个人增强层'?`<span class="tag caution">个人增强</span>`:'';
+    const tags=typeTag+sourceTag+trustTag+layerTag+(e.tags||[]).slice(0,4).map(t=>`<span class="tag ${tagClass(t)}">${escapeHtml(t)}</span>`).join('');
     const ref=findReference(e);
     const refHtml=ref?`<details class="reference-box"><summary>原网页详细说明：${escapeHtml(ref.brief)}</summary><div class="reference-detail">${sanitizeReferenceHtml(ref.zh)}${ref.en?`<div class="reference-en">${escapeHtml(ref.en)}</div>`:''}</div></details>`:'';
     const codexPrompt=escapeHtml(e.codex_prompt||`请参考 ECC 的 ${e.original} 能力，结合当前项目给出执行方案。`);
@@ -1773,6 +1942,9 @@ function render(){
         <div class="guide"><strong>什么时候用：</strong>${escapeHtml(e.use_case)}</div>
         <div class="guide"><strong>不适合：</strong>${escapeHtml(e.avoid_case)}</div>
         <div class="guide environment"><strong>适用环境：</strong>${escapeHtml((e.environments||[]).join(' / ')||'Claude Code / Codex 可参考')}。${escapeHtml(e.environment_note||'')}</div>
+        ${e.source_name?`<div class="guide environment"><strong>原始来源：</strong>${escapeHtml(e.source_name)}${e.source_url?` ｜ ${escapeHtml(e.source_url)}`:''}${e.install_command?`<br><strong>安装方式：</strong>${escapeHtml(e.install_command)}`:''}</div>`:''}
+        ${e.personal_enhancement?`<div class="guide environment"><strong>我的增强：</strong>${escapeHtml(e.personal_enhancement)}</div>`:''}
+        ${e.optimized_version?`<div class="guide environment"><strong>个人改良版：</strong>${escapeHtml(e.optimized_version.name||'未命名')}（${escapeHtml(e.optimized_version.status||'draft')}）｜${escapeHtml(e.optimized_version.purpose||'')}</div>`:''}
       </div>
       <div class="card-cmd"><code>${prompt}</code><button class="copy-btn" onclick="copyCommand(this.previousElementSibling.textContent)">复制推荐用法</button></div>
       <details class="reference-box"><summary>Codex 版示范问法</summary><div class="reference-detail"><p>${codexPrompt}</p><button class="copy-btn" onclick="copyCommand(this.previousElementSibling.textContent)">复制 Codex 问法</button></div></details>

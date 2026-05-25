@@ -169,7 +169,77 @@
         "plugin_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
         "plugin_id": "ecc@ecc",
         "marketplace": "https://github.com/affaan-m/ECC"
-      }
+      },
+      "curated_sources": [
+        {
+          "id": "ecc",
+          "name": "ECC / Everything Claude Code",
+          "type": "github",
+          "repo": "https://github.com/affaan-m/ECC",
+          "homepage": "https://github.com/affaan-m/ECC",
+          "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+          "trust_status": "approved",
+          "description": "当前命令中心的主来源，提供 Claude Code 命令、Agent 和 Skill 工作流。"
+        },
+        {
+          "id": "personal-local",
+          "name": "我的本地 Skill",
+          "type": "local",
+          "local_path": "~/.codex/skills",
+          "install_command": "把确认收录的 Skill 安装到 ~/.codex/skills 后，再由 Codex 整理进命令中心。",
+          "trust_status": "curated",
+          "description": "经过 Codex 辅助整理，并按个人习惯沉淀的本地 Skill。"
+        }
+      ],
+      "personal_preferences": {
+        "profile": "fuhuojay 的个人 Skill 仓库偏好",
+        "language": "中文优先",
+        "style": [
+          "场景化说明",
+          "先规划后执行",
+          "输出可复制命令",
+          "保留风险提醒",
+          "默认给 Codex 版自然语言问法"
+        ],
+        "common_workflows": [
+          "GitHub Pages 静态站发布",
+          "中文开发者命令面板维护",
+          "Skill 收录、比较和改写",
+          "本地安装后按场景调用"
+        ],
+        "risk_preference": "新 Skill 默认待审核，不自动进入首页高频推荐。",
+        "curation_rule": "保留原始来源，单独沉淀个人增强说明；只有长期高频使用时才创建个人改良版。"
+      },
+      "personal_workflows": [
+        {
+          "id": "skill-curation",
+          "name": "收录一个新 Skill",
+          "kind": "个人仓库维护",
+          "problem": "发现一个外部 Skill 很好用，想保留来源，同时改写成适合自己使用的中文说明和调用场景。",
+          "steps": [
+            "my-skill-curator",
+            "docs-lookup",
+            "planner",
+            "update-docs"
+          ],
+          "prompt": "请读取这个 Skill 的 SKILL.md 或仓库说明，按我的偏好生成候选收录内容，并说明是否需要新增应用场景。",
+          "output": "候选中文卡片、适用场景、推荐组合、Codex 问法、来源引用和审核建议。"
+        },
+        {
+          "id": "personal-workbench",
+          "name": "优化成我的工作流",
+          "kind": "个人增强",
+          "problem": "某个 Skill 已经经常使用，想在原作者能力基础上沉淀自己的调用习惯和改良版草案。",
+          "steps": [
+            "my-skill-curator",
+            "code-reviewer",
+            "quality-gate",
+            "update-codemaps"
+          ],
+          "prompt": "请基于这个常用 Skill，总结我的使用习惯，设计个人增强说明和改良版 Skill 草案，保留原始来源。",
+          "output": "个人增强条目、改良版草案、风险提示、验证方式和网页展示建议。"
+        }
+      ]
     }
   },
   {
@@ -206,7 +276,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -242,7 +319,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -278,7 +362,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -314,7 +405,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -350,7 +448,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -386,7 +491,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -422,7 +534,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -458,7 +577,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -496,7 +622,14 @@
     "ref_key": "typescript-reviewer",
     "reference_ids": [
       "typescript-reviewer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -543,7 +676,14 @@
     "ref_key": "healthcare-reviewer",
     "reference_ids": [
       "healthcare-reviewer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -581,7 +721,14 @@
     "ref_key": "database-reviewer",
     "reference_ids": [
       "database-reviewer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -627,7 +774,14 @@
     "ref_key": "a11y-architect",
     "reference_ids": [
       "a11y-architect"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -666,7 +820,14 @@
     "ref_key": "code-reviewer",
     "reference_ids": [
       "code-reviewer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -703,7 +864,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -740,7 +908,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -777,7 +952,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -814,7 +996,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -851,7 +1040,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -888,7 +1084,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -925,7 +1128,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -965,7 +1175,14 @@
     "ref_key": "build-error-resolver",
     "reference_ids": [
       "build-error-resolver"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1003,7 +1220,14 @@
     "ref_key": "code-architect",
     "reference_ids": [
       "code-architect"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1042,7 +1266,14 @@
     "ref_key": "planner",
     "reference_ids": [
       "planner"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1080,7 +1311,14 @@
     "ref_key": "architect",
     "reference_ids": [
       "architect"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1117,7 +1355,14 @@
     "ref_key": "pr-test-analyzer",
     "reference_ids": [
       "pr-test-analyzer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1154,7 +1399,14 @@
     "ref_key": "tdd-guide",
     "reference_ids": [
       "tdd-guide"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1191,7 +1443,14 @@
     "ref_key": "e2e-runner",
     "reference_ids": [
       "e2e-runner"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1239,7 +1498,14 @@
     "ref_key": "security-reviewer",
     "reference_ids": [
       "security-reviewer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1278,7 +1544,14 @@
     "ref_key": "opensource-forker",
     "reference_ids": [
       "opensource-forker"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1317,7 +1590,14 @@
     "ref_key": "opensource-packager",
     "reference_ids": [
       "opensource-packager"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1356,7 +1636,14 @@
     "ref_key": "opensource-sanitizer",
     "reference_ids": [
       "opensource-sanitizer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1395,7 +1682,14 @@
     "ref_key": "doc-updater",
     "reference_ids": [
       "doc-updater"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1434,7 +1728,14 @@
     "ref_key": "docs-lookup",
     "reference_ids": [
       "docs-lookup"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1465,7 +1766,14 @@
     "ref_key": "performance-optimizer",
     "reference_ids": [
       "performance-optimizer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1496,7 +1804,14 @@
     "ref_key": "harness-optimizer",
     "reference_ids": [
       "harness-optimizer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1527,7 +1842,14 @@
     "ref_key": "code-simplifier",
     "reference_ids": [
       "code-simplifier"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1556,7 +1878,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1587,7 +1916,14 @@
     "ref_key": "type-design-analyzer",
     "reference_ids": [
       "type-design-analyzer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1622,7 +1958,14 @@
     "ref_key": "refactor-cleaner",
     "reference_ids": [
       "refactor-cleaner"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1653,7 +1996,14 @@
     "ref_key": "silent-failure-hunter",
     "reference_ids": [
       "silent-failure-hunter"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1689,7 +2039,14 @@
     "ref_key": "gan-generator",
     "reference_ids": [
       "gan-generator"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1734,7 +2091,14 @@
     "ref_key": "gan-planner",
     "reference_ids": [
       "gan-planner"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1770,7 +2134,14 @@
     "ref_key": "gan-evaluator",
     "reference_ids": [
       "gan-evaluator"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1803,7 +2174,14 @@
     "ref_key": "seo-specialist",
     "reference_ids": [
       "seo-specialist"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1834,7 +2212,14 @@
     "ref_key": "code-explorer",
     "reference_ids": [
       "code-explorer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1865,7 +2250,14 @@
     "ref_key": "chief-of-staff",
     "reference_ids": [
       "chief-of-staff"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1896,7 +2288,14 @@
     "ref_key": "conversation-analyzer",
     "reference_ids": [
       "conversation-analyzer"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1927,7 +2326,14 @@
     "ref_key": "loop-operator",
     "reference_ids": [
       "loop-operator"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -1964,7 +2370,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2000,7 +2413,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2036,7 +2456,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2072,7 +2499,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2109,7 +2543,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2145,7 +2586,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2181,7 +2629,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2217,7 +2672,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2253,7 +2715,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2282,7 +2751,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2319,7 +2795,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Agents",
@@ -2355,7 +2838,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2393,7 +2883,14 @@
     "ref_key": "/cpp-review",
     "reference_ids": [
       "/cpp-review"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2431,7 +2928,14 @@
     "ref_key": "/flutter-review",
     "reference_ids": [
       "/flutter-review"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2469,7 +2973,14 @@
     "ref_key": "/go-review",
     "reference_ids": [
       "/go-review"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2507,7 +3018,14 @@
     "ref_key": "/kotlin-review",
     "reference_ids": [
       "/kotlin-review"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2545,7 +3063,14 @@
     "ref_key": "/review-pr",
     "reference_ids": [
       "/review-pr"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2583,7 +3108,14 @@
     "ref_key": "/python-review",
     "reference_ids": [
       "/python-review"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2621,7 +3153,14 @@
     "ref_key": "/rust-review",
     "reference_ids": [
       "/rust-review"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2659,7 +3198,14 @@
     "ref_key": "/code-review",
     "reference_ids": [
       "/code-review"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2698,7 +3244,14 @@
     "ref_key": "/cpp-build",
     "reference_ids": [
       "/cpp-build"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2737,7 +3290,14 @@
     "ref_key": "/flutter-build",
     "reference_ids": [
       "/flutter-build"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2776,7 +3336,14 @@
     "ref_key": "/go-build",
     "reference_ids": [
       "/go-build"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2815,7 +3382,14 @@
     "ref_key": "/gradle-build",
     "reference_ids": [
       "/gradle-build"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2854,7 +3428,14 @@
     "ref_key": "/kotlin-build",
     "reference_ids": [
       "/kotlin-build"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2893,7 +3474,14 @@
     "ref_key": "/rust-build",
     "reference_ids": [
       "/rust-build"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2924,7 +3512,14 @@
     "ref_key": "/setup-pm",
     "reference_ids": [
       "/setup-pm"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -2963,7 +3558,14 @@
     "ref_key": "/build-fix",
     "reference_ids": [
       "/build-fix"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3000,7 +3602,14 @@
     "ref_key": "/cpp-test",
     "reference_ids": [
       "/cpp-test"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3037,7 +3646,14 @@
     "ref_key": "/flutter-test",
     "reference_ids": [
       "/flutter-test"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3074,7 +3690,14 @@
     "ref_key": "/go-test",
     "reference_ids": [
       "/go-test"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3111,7 +3734,14 @@
     "ref_key": "/kotlin-test",
     "reference_ids": [
       "/kotlin-test"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3148,7 +3778,14 @@
     "ref_key": "/rust-test",
     "reference_ids": [
       "/rust-test"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3186,7 +3823,14 @@
     "ref_key": "/test-coverage",
     "reference_ids": [
       "/test-coverage"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3223,7 +3867,14 @@
     "ref_key": "/prp-prd",
     "reference_ids": [
       "/prp-prd"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3256,7 +3907,14 @@
     "ref_key": "/prp-implement",
     "reference_ids": [
       "/prp-implement"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3294,7 +3952,14 @@
     "ref_key": "/prp-plan",
     "reference_ids": [
       "/prp-plan"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3332,7 +3997,14 @@
     "ref_key": "/plan",
     "reference_ids": [
       "/plan"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3361,7 +4033,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3392,7 +4071,14 @@
     "ref_key": "/prp-pr",
     "reference_ids": [
       "/prp-pr"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3423,7 +4109,14 @@
     "ref_key": "/prp-commit",
     "reference_ids": [
       "/prp-commit"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3460,7 +4153,14 @@
     "ref_key": "/checkpoint",
     "reference_ids": [
       "/checkpoint"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3491,7 +4191,14 @@
     "ref_key": "/quality-gate",
     "reference_ids": [
       "/quality-gate"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3524,7 +4231,14 @@
     "ref_key": "/refactor-clean",
     "reference_ids": [
       "/refactor-clean"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3562,7 +4276,14 @@
     "ref_key": "/update-codemaps",
     "reference_ids": [
       "/update-codemaps"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3600,7 +4321,14 @@
     "ref_key": "/update-docs",
     "reference_ids": [
       "/update-docs"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3646,7 +4374,14 @@
     "ref_key": "/gan-build",
     "reference_ids": [
       "/gan-build"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3682,7 +4417,14 @@
     "ref_key": "/gan-design",
     "reference_ids": [
       "/gan-design"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3718,7 +4460,14 @@
     "ref_key": "/multi-frontend",
     "reference_ids": [
       "/multi-frontend"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3754,7 +4503,14 @@
     "ref_key": "/multi-backend",
     "reference_ids": [
       "/multi-backend"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3790,7 +4546,14 @@
     "ref_key": "/multi-workflow",
     "reference_ids": [
       "/multi-workflow"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3826,7 +4589,14 @@
     "ref_key": "/multi-execute",
     "reference_ids": [
       "/multi-execute"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3871,7 +4641,14 @@
     "ref_key": "/multi-plan",
     "reference_ids": [
       "/multi-plan"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3907,7 +4684,14 @@
     "ref_key": "/santa-loop",
     "reference_ids": [
       "/santa-loop"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3938,7 +4722,14 @@
     "ref_key": "/loop-start",
     "reference_ids": [
       "/loop-start"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -3971,7 +4762,14 @@
     "ref_key": "/loop-status",
     "reference_ids": [
       "/loop-status"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4002,7 +4800,14 @@
     "ref_key": "/model-route",
     "reference_ids": [
       "/model-route"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4039,7 +4844,14 @@
     "ref_key": "/sessions",
     "reference_ids": [
       "/sessions"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4076,7 +4888,14 @@
     "ref_key": "/save-session",
     "reference_ids": [
       "/save-session"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4113,7 +4932,14 @@
     "ref_key": "/resume-session",
     "reference_ids": [
       "/resume-session"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4148,7 +4974,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4183,7 +5016,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4220,7 +5060,14 @@
     "ref_key": "/evolve",
     "reference_ids": [
       "/evolve"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4251,7 +5098,14 @@
     "ref_key": "/prune",
     "reference_ids": [
       "/prune"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4288,7 +5142,14 @@
     "ref_key": "/instinct-import",
     "reference_ids": [
       "/instinct-import"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4325,7 +5186,14 @@
     "ref_key": "/instinct-export",
     "reference_ids": [
       "/instinct-export"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4356,7 +5224,14 @@
     "ref_key": "/promote",
     "reference_ids": [
       "/promote"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4394,7 +5269,14 @@
     "ref_key": "/instinct-status",
     "reference_ids": [
       "/instinct-status"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4425,7 +5307,14 @@
     "ref_key": "/projects",
     "reference_ids": [
       "/projects"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4458,7 +5347,14 @@
     "ref_key": "/harness-audit",
     "reference_ids": [
       "/harness-audit"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4491,7 +5387,14 @@
     "ref_key": "/hookify-list",
     "reference_ids": [
       "/hookify-list"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4522,7 +5425,14 @@
     "ref_key": "/hookify",
     "reference_ids": [
       "/hookify"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4551,7 +5461,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4582,7 +5499,14 @@
     "ref_key": "/hookify-configure",
     "reference_ids": [
       "/hookify-configure"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4613,7 +5537,14 @@
     "ref_key": "/jira",
     "reference_ids": [
       "/jira"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4644,7 +5575,14 @@
     "ref_key": "/pm2",
     "reference_ids": [
       "/pm2"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4673,7 +5611,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4702,7 +5647,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4731,7 +5683,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4767,7 +5726,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4802,7 +5768,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4838,7 +5811,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4869,7 +5849,14 @@
     "ref_key": "/skill-health",
     "reference_ids": [
       "/skill-health"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4900,7 +5887,14 @@
     "ref_key": "/skill-create",
     "reference_ids": [
       "/skill-create"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4931,7 +5925,14 @@
     "ref_key": "/aside",
     "reference_ids": [
       "/aside"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Commands",
@@ -4964,7 +5965,14 @@
     "ref_key": "/auto-update",
     "reference_ids": [
       "/auto-update"
-    ]
+    ],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -4993,7 +6001,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5022,7 +6037,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5051,7 +6073,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5080,7 +6109,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5109,7 +6145,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5145,7 +6188,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5180,7 +6230,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5209,7 +6266,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5238,7 +6302,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5267,7 +6338,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5296,7 +6374,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5331,7 +6416,14 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
   },
   {
     "category": "Legacy Commands",
@@ -5360,6 +6452,70 @@
     ],
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
-    "reference_ids": []
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "我的精选 Skill",
+    "sub": "Skill 仓库维护",
+    "name": "个人 Skill 仓库整理员",
+    "original": "my-skill-curator",
+    "description": "用于收录、比较、改写和发布个人 Skill 的整理流程。它帮助把外部好用 Skill 转成适合个人工作习惯的中文卡片、应用场景和调用问法。",
+    "simple": "发现好用 Skill 后，用它帮你读懂、改写、归类，并融入自己的 Skill 工作台。",
+    "slash_command": "请把这个 Skill 收进我的个人 Skill 仓库，先生成候选说明和应用场景，不要直接覆盖原始来源。",
+    "task_groups": [
+      "文档资料",
+      "功能规划",
+      "会话与学习"
+    ],
+    "keywords": [
+      "收录 Skill",
+      "个人仓库",
+      "改写说明",
+      "应用场景",
+      "本地安装",
+      "GitHub Pages"
+    ],
+    "tags": [
+      "入门推荐",
+      "只读分析",
+      "个人增强"
+    ],
+    "use_case": "当你发现一个新的 Skill、插件或本地能力，想沉淀进自己的命令中心，并生成中文说明、Codex 问法和场景组合时使用。",
+    "avoid_case": "如果只是临时试用一个还不确定价值的 Skill，不必立刻生成个人改良版，先放入待观察清单即可。",
+    "recommended_prompt": "请读取这个 Skill 的 SKILL.md 或仓库说明，按我的偏好生成收录建议、中文卡片、适用场景、Codex 问法和是否需要个人改良版。",
+    "claude_prompt": "请把这个 Skill 收进我的个人 Skill 仓库，先生成候选说明和应用场景，不要直接覆盖原始来源。",
+    "codex_prompt": "请参考我的 Skill 偏好，读取这个 Skill 的内容，输出：中文名、一句话解释、适用场景、不适合场景、推荐组合、Codex 调用问法、是否值得创建个人优化版。",
+    "environments": [
+      "Codex",
+      "Claude Code 可参考"
+    ],
+    "environment_note": "Codex 适合做读取、比较和改写；Claude Code 适合在已安装 Skill 后按场景调用。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "personal-local",
+    "source_name": "我的本地 Skill",
+    "source_type": "local",
+    "source_url": null,
+    "install_command": "把确认收录的 Skill 安装到 ~/.codex/skills 后，再由 Codex 整理进命令中心。",
+    "trust_status": "approved",
+    "personal_layer": "个人增强层",
+    "personal_enhancement": "按中文开发者命令面板的习惯，把外部 Skill 转成可搜索、可复制、可按场景调用的结构化条目。",
+    "optimized_version": {
+      "status": "draft",
+      "name": "my-skill-curator",
+      "purpose": "未来沉淀成正式本地 Skill，一句话完成读取新 Skill、生成网页数据、更新场景和验证页面。"
+    },
+    "local_path": "~/.codex/skills/my-skill-curator",
+    "scenario_ids": [
+      "skill-curation",
+      "personal-workbench"
+    ]
   }
 ]

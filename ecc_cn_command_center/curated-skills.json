@@ -1,0 +1,32 @@
+[
+  {
+    "id": "my-skill-curator",
+    "source_id": "personal-local",
+    "category": "我的精选 Skill",
+    "sub": "Skill 仓库维护",
+    "name": "个人 Skill 仓库整理员",
+    "original": "my-skill-curator",
+    "description": "用于收录、比较、改写和发布个人 Skill 的整理流程。它帮助把外部好用 Skill 转成适合个人工作习惯的中文卡片、应用场景和调用问法。",
+    "simple": "发现好用 Skill 后，用它帮你读懂、改写、归类，并融入自己的 Skill 工作台。",
+    "task_groups": ["文档资料", "功能规划", "会话与学习"],
+    "keywords": ["收录 Skill", "个人仓库", "改写说明", "应用场景", "本地安装", "GitHub Pages"],
+    "tags": ["入门推荐", "只读分析", "个人增强"],
+    "use_case": "当你发现一个新的 Skill、插件或本地能力，想沉淀进自己的命令中心，并生成中文说明、Codex 问法和场景组合时使用。",
+    "avoid_case": "如果只是临时试用一个还不确定价值的 Skill，不必立刻生成个人改良版，先放入待观察清单即可。",
+    "recommended_prompt": "请读取这个 Skill 的 SKILL.md 或仓库说明，按我的偏好生成收录建议、中文卡片、适用场景、Codex 问法和是否需要个人改良版。",
+    "claude_prompt": "请把这个 Skill 收进我的个人 Skill 仓库，先生成候选说明和应用场景，不要直接覆盖原始来源。",
+    "codex_prompt": "请参考我的 Skill 偏好，读取这个 Skill 的内容，输出：中文名、一句话解释、适用场景、不适合场景、推荐组合、Codex 调用问法、是否值得创建个人优化版。",
+    "environments": ["Codex", "Claude Code 可参考"],
+    "environment_note": "Codex 适合做读取、比较和改写；Claude Code 适合在已安装 Skill 后按场景调用。",
+    "review_status": "approved",
+    "personal_layer": "个人增强层",
+    "personal_enhancement": "按中文开发者命令面板的习惯，把外部 Skill 转成可搜索、可复制、可按场景调用的结构化条目。",
+    "optimized_version": {
+      "status": "draft",
+      "name": "my-skill-curator",
+      "purpose": "未来沉淀成正式本地 Skill，一句话完成读取新 Skill、生成网页数据、更新场景和验证页面。"
+    },
+    "local_path": "~/.codex/skills/my-skill-curator",
+    "scenario_ids": ["skill-curation", "personal-workbench"]
+  }
+]

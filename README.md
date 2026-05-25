@@ -62,3 +62,20 @@ python3 ecc_cn_command_center.py --local
 ```bash
 python3 -m http.server 8000
 ```
+
+## 我的精选 Skill
+
+网站现在支持把你长期使用中发现的好 Skill 沉淀成个人 Skill 工作台：
+
+- `ecc_cn_command_center/curated-sources.json`：记录来源，例如 ECC、后续新增 GitHub Skill 仓库、本地 Skill 目录。
+- `ecc_cn_command_center/curated-skills.json`：记录经过 Codex 整理并确认收录的精选 Skill。
+- `ecc_cn_command_center/my-skill-preferences.json`：记录你的整理偏好，例如中文优先、场景化说明、先规划后执行、保留风险提醒。
+- `ecc_cn_command_center/personal-workflows.json`：记录你的高频工作流，用于首页和“我的精选 Skill”视图。
+
+推荐流程是：先人工发现好用 Skill，再让 Codex 读取 `SKILL.md` 或仓库说明，生成候选中文卡片、应用场景、Claude Code/Codex 问法和是否需要个人改良版。确认后写入上述 JSON，再运行：
+
+```bash
+python3 ecc_cn_command_center.py --local
+```
+
+这样可以保留原始来源，同时把 Skill 按你的使用习惯融入网页。

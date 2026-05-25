@@ -1,0 +1,21 @@
+[
+  {
+    "id": "ecc",
+    "name": "ECC / Everything Claude Code",
+    "type": "github",
+    "repo": "https://github.com/affaan-m/ECC",
+    "homepage": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "description": "当前命令中心的主来源，提供 Claude Code 命令、Agent 和 Skill 工作流。"
+  },
+  {
+    "id": "personal-local",
+    "name": "我的本地 Skill",
+    "type": "local",
+    "local_path": "~/.codex/skills",
+    "install_command": "把确认收录的 Skill 安装到 ~/.codex/skills 后，再由 Codex 整理进命令中心。",
+    "trust_status": "curated",
+    "description": "经过 Codex 辅助整理，并按个人习惯沉淀的本地 Skill。"
+  }
+]

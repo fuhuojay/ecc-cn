@@ -1,0 +1,19 @@
+{
+  "profile": "fuhuojay 的个人 Skill 仓库偏好",
+  "language": "中文优先",
+  "style": [
+    "场景化说明",
+    "先规划后执行",
+    "输出可复制命令",
+    "保留风险提醒",
+    "默认给 Codex 版自然语言问法"
+  ],
+  "common_workflows": [
+    "GitHub Pages 静态站发布",
+    "中文开发者命令面板维护",
+    "Skill 收录、比较和改写",
+    "本地安装后按场景调用"
+  ],
+  "risk_preference": "新 Skill 默认待审核，不自动进入首页高频推荐。",
+  "curation_rule": "保留原始来源，单独沉淀个人增强说明；只有长期高频使用时才创建个人改良版。"
+}
