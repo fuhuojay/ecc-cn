@@ -1,7 +1,7 @@
 [
   {
     "_meta": {
-      "last_updated": "2026-05-02T00:05:56.970423",
+      "last_updated": "2026-05-24T19:17:49.377622",
       "repo_files": {
         "agents": [
           "a11y-architect",
@@ -19,22 +19,32 @@
           "csharp-reviewer",
           "dart-build-resolver",
           "database-reviewer",
+          "django-build-resolver",
+          "django-reviewer",
           "doc-updater",
           "docs-lookup",
           "e2e-runner",
+          "fastapi-reviewer",
           "flutter-reviewer",
+          "fsharp-reviewer",
           "gan-evaluator",
           "gan-generator",
           "gan-planner",
           "go-build-resolver",
           "go-reviewer",
+          "harmonyos-app-resolver",
           "harness-optimizer",
           "healthcare-reviewer",
+          "homelab-architect",
           "java-build-resolver",
           "java-reviewer",
           "kotlin-build-resolver",
           "kotlin-reviewer",
           "loop-operator",
+          "mle-reviewer",
+          "network-architect",
+          "network-config-reviewer",
+          "network-troubleshooter",
           "opensource-forker",
           "opensource-packager",
           "opensource-sanitizer",
@@ -49,6 +59,8 @@
           "security-reviewer",
           "seo-specialist",
           "silent-failure-hunter",
+          "swift-build-resolver",
+          "swift-reviewer",
           "tdd-guide",
           "type-design-analyzer",
           "typescript-reviewer"
@@ -59,10 +71,13 @@
           "build-fix",
           "checkpoint",
           "code-review",
+          "cost-report",
           "cpp-build",
           "cpp-review",
           "cpp-test",
+          "ecc-guide",
           "evolve",
+          "fastapi-review",
           "feature-dev",
           "flutter-build",
           "flutter-review",
@@ -95,8 +110,11 @@
           "multi-frontend",
           "multi-plan",
           "multi-workflow",
+          "plan-prd",
           "plan",
           "pm2",
+          "pr",
+          "project-init",
           "projects",
           "promote",
           "prp-commit",
@@ -115,6 +133,7 @@
           "rust-test",
           "santa-loop",
           "save-session",
+          "security-scan",
           "sessions",
           "setup-pm",
           "skill-create",
@@ -123,8 +142,19 @@
           "update-codemaps",
           "update-docs"
         ],
-        "legacy-command-shims": [
-          "README"
+        "legacy-command-shims/commands": [
+          "agent-sort",
+          "claw",
+          "context-budget",
+          "devfleet",
+          "docs",
+          "e2e",
+          "eval",
+          "orchestrate",
+          "prompt-optimize",
+          "rules-distill",
+          "tdd",
+          "verify"
         ]
       },
       "repo": {
@@ -1900,6 +1930,434 @@
     ]
   },
   {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "django-build-resolver",
+    "original": "django-build-resolver",
+    "description": "Django/Python build, migration, and dependency error resolution specialist. Fixes pip/Poetry errors, migration conflicts, import errors, Django configuration issues, and collectstatic failures with mi...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"django-build-resolver\"",
+    "task_groups": [
+      "修复构建"
+    ],
+    "keywords": [
+      "依赖冲突",
+      "报错",
+      "构建失败",
+      "编译不过",
+      "跑不起来"
+    ],
+    "tags": [
+      "会修改代码",
+      "可能改代码",
+      "故障处理",
+      "高频"
+    ],
+    "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
+    "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
+    "recommended_prompt": "/ecc:plan \"django-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"django-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 django-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "django-reviewer",
+    "original": "django-reviewer",
+    "description": "Expert Django code reviewer specializing in ORM correctness, DRF patterns, migration safety, security misconfigurations, and production-grade Django practices. Use for all Django code changes. MUST BE...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"django-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"django-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"django-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 django-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "fastapi-reviewer",
+    "original": "fastapi-reviewer",
+    "description": "Reviews FastAPI applications for async correctness, dependency injection, Pydantic schemas, security, OpenAPI quality, testing, and production readiness.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"fastapi-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"fastapi-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"fastapi-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 fastapi-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "fsharp-reviewer",
+    "original": "fsharp-reviewer",
+    "description": "Expert F# code reviewer specializing in functional idioms, type safety, pattern matching, computation expressions, and performance. Use for all F# code changes. MUST BE USED for F# projects.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"fsharp-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"fsharp-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"fsharp-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 fsharp-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "harmonyos-app-resolver",
+    "original": "harmonyos-app-resolver",
+    "description": "HarmonyOS application development expert specializing in ArkTS and ArkUI. Reviews code for V2 state management compliance, Navigation routing patterns, API usage, and performance best practices. Use f...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"harmonyos-app-resolver\"",
+    "task_groups": [
+      "修复构建"
+    ],
+    "keywords": [
+      "依赖冲突",
+      "报错",
+      "构建失败",
+      "编译不过",
+      "跑不起来"
+    ],
+    "tags": [
+      "会修改代码",
+      "可能改代码",
+      "故障处理",
+      "高频"
+    ],
+    "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
+    "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
+    "recommended_prompt": "/ecc:plan \"harmonyos-app-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"harmonyos-app-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 harmonyos-app-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "homelab-architect",
+    "original": "homelab-architect",
+    "description": "Designs home and small-lab network plans from hardware inventory, goals, and operator experience level, with safe staged changes and rollback guidance.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"homelab-architect\"",
+    "task_groups": [
+      "功能规划"
+    ],
+    "keywords": [
+      "功能开发",
+      "技术方案",
+      "架构",
+      "规划",
+      "需求拆解"
+    ],
+    "tags": [
+      "偏分析",
+      "入门推荐",
+      "只读分析"
+    ],
+    "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"homelab-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"homelab-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 homelab-architect 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "mle-reviewer",
+    "original": "mle-reviewer",
+    "description": "Production machine-learning engineering reviewer for data contracts, feature pipelines, training reproducibility, offline/online evaluation, model serving, monitoring, and rollback. Use when ML, MLOps...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"mle-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"mle-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"mle-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 mle-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "network-architect",
+    "original": "network-architect",
+    "description": "Designs enterprise or multi-site network architecture from requirements, using existing network skills for focused routing, validation, automation, and troubleshooting detail.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"network-architect\"",
+    "task_groups": [
+      "功能规划"
+    ],
+    "keywords": [
+      "功能开发",
+      "技术方案",
+      "架构",
+      "规划",
+      "需求拆解"
+    ],
+    "tags": [
+      "偏分析",
+      "入门推荐",
+      "只读分析"
+    ],
+    "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"network-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"network-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 network-architect 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "network-config-reviewer",
+    "original": "network-config-reviewer",
+    "description": "Reviews router and switch configurations for security, correctness, stale references, risky change-window commands, and missing operational guardrails.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"network-config-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"network-config-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"network-config-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 network-config-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "network-troubleshooter",
+    "original": "network-troubleshooter",
+    "description": "Diagnoses network connectivity, routing, DNS, interface, and policy symptoms with a read-only OSI-layer workflow and evidence-backed root cause summary.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"network-troubleshooter\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Agents",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"network-troubleshooter\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"network-troubleshooter\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 network-troubleshooter 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "swift-build-resolver",
+    "original": "swift-build-resolver",
+    "description": "Swift/Xcode build, compilation, and dependency error resolution specialist. Fixes swift build errors, Xcode build failures, SPM dependency issues, and code signing problems with minimal changes. Use w...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"swift-build-resolver\"",
+    "task_groups": [
+      "修复构建"
+    ],
+    "keywords": [
+      "依赖冲突",
+      "报错",
+      "构建失败",
+      "编译不过",
+      "跑不起来"
+    ],
+    "tags": [
+      "会修改代码",
+      "可能改代码",
+      "故障处理",
+      "高频"
+    ],
+    "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
+    "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
+    "recommended_prompt": "/ecc:plan \"swift-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"swift-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 swift-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "swift-reviewer",
+    "original": "swift-reviewer",
+    "description": "Expert Swift code reviewer specializing in protocol-oriented design, value semantics, ARC memory management, Swift Concurrency, and idiomatic patterns. Use for all Swift code changes. MUST BE USED for...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"swift-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"swift-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"swift-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 swift-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
     "category": "Commands",
     "sub": "代码审查",
     "name": "C++ 代码审查",
@@ -2904,6 +3362,37 @@
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
     "reference_ids": []
+  },
+  {
+    "category": "Commands",
+    "sub": "版本控制",
+    "name": "创建 PR",
+    "original": "Create Pull Request",
+    "description": "从当前分支创建 GitHub Pull Request，自动生成 PR 摘要和测试计划。",
+    "simple": "一键创建 GitHub Pull Request，自动写好标题、摘要和测试计划。",
+    "slash_command": "/plan \"Create Pull Request\"",
+    "task_groups": [
+      "版本控制"
+    ],
+    "keywords": [
+      "Commands",
+      "版本控制"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Create Pull Request\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Create Pull Request\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Create Pull Request 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": "/prp-pr",
+    "reference_ids": [
+      "/prp-pr"
+    ]
   },
   {
     "category": "Commands",
@@ -4191,6 +4680,200 @@
   {
     "category": "Commands",
     "sub": "其他",
+    "name": "/ecc-guide",
+    "original": "/ecc-guide",
+    "description": "Navigate ECC's current agents, skills, commands, hooks, install profiles, and docs from the live repository surface.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/ecc-guide\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/ecc-guide\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/ecc-guide\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /ecc-guide 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "/project-init",
+    "original": "/project-init",
+    "description": "Detect a project's stack and produce a dry-run ECC onboarding plan using the repository's install manifests and stack mappings.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/project-init\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/project-init\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/project-init\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /project-init 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "Cost Report",
+    "original": "Cost Report",
+    "description": "Generate a local Claude Code cost report from a cost-tracker SQLite database.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Cost Report\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Cost Report\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Cost Report\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Cost Report 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "FastAPI Review",
+    "original": "FastAPI Review",
+    "description": "Review a FastAPI application for architecture, async correctness, dependency injection, Pydantic schemas, security, performance, and testability.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"FastAPI Review\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"FastAPI Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"FastAPI Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 FastAPI Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "PRD Command",
+    "original": "PRD Command",
+    "description": "Generate a lean, problem-first PRD and hand off to /plan for implementation planning.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"PRD Command\"",
+    "task_groups": [
+      "功能规划"
+    ],
+    "keywords": [
+      "功能开发",
+      "技术方案",
+      "架构",
+      "规划",
+      "需求拆解"
+    ],
+    "tags": [
+      "入门推荐",
+      "只读分析"
+    ],
+    "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"PRD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"PRD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 PRD Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "Security Scan Command",
+    "original": "Security Scan Command",
+    "description": "Run AgentShield against agent, hook, MCP, permission, and secret surfaces.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Security Scan Command\"",
+    "task_groups": [
+      "安全合规"
+    ],
+    "keywords": [
+      "合规",
+      "安全",
+      "密钥",
+      "开源",
+      "漏洞",
+      "隐私"
+    ],
+    "tags": [
+      "发布前",
+      "需要谨慎"
+    ],
+    "use_case": "涉及登录、权限、敏感数据、开源发布或合规检查时使用。",
+    "avoid_case": "没有安全、隐私或发布风险时，可以先用普通代码审查。",
+    "recommended_prompt": "/ecc:plan \"Security Scan Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Security Scan Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Security Scan Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
     "name": "技能健康",
     "original": "skill-health",
     "description": "显示技能组合健康仪表板，包含图表和使用统计。",
@@ -4335,6 +5018,373 @@
     "recommended_prompt": "/ecc:plan \"Legacy Command Shims\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"Legacy Command Shims\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 Legacy Command Shims 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "Agent Sort (Legacy Shim)",
+    "original": "Agent Sort (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the agent-sort skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Agent Sort (Legacy Shim)\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Legacy Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Agent Sort (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Agent Sort (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Agent Sort (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "Claw Command (Legacy Shim)",
+    "original": "Claw Command (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the nanoclaw-repl skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Claw Command (Legacy Shim)\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Legacy Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Claw Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Claw Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Claw Command (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "Context Budget Optimizer (Legacy Shim)",
+    "original": "Context Budget Optimizer (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the context-budget skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Context Budget Optimizer (Legacy Shim)\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Legacy Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Context Budget Optimizer (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Context Budget Optimizer (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Context Budget Optimizer (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "DevFleet (Legacy Shim)",
+    "original": "DevFleet (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the claude-devfleet skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"DevFleet (Legacy Shim)\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Legacy Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"DevFleet (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"DevFleet (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 DevFleet (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "Docs Command (Legacy Shim)",
+    "original": "Docs Command (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the documentation-lookup skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Docs Command (Legacy Shim)\"",
+    "task_groups": [
+      "文档资料"
+    ],
+    "keywords": [
+      "README",
+      "代码地图",
+      "同步文档",
+      "文档",
+      "查资料"
+    ],
+    "tags": [
+      "偏分析",
+      "文档",
+      "高频"
+    ],
+    "use_case": "需要查 API、同步 README、生成代码地图或解释项目结构时使用。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Docs Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Docs Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Docs Command (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "E2E Command (Legacy Shim)",
+    "original": "E2E Command (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the e2e-testing skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"E2E Command (Legacy Shim)\"",
+    "task_groups": [
+      "测试质量"
+    ],
+    "keywords": [
+      "先写测试",
+      "回归测试",
+      "测试",
+      "端到端",
+      "覆盖率"
+    ],
+    "tags": [
+      "提交前",
+      "质量保障"
+    ],
+    "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"E2E Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"E2E Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 E2E Command (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "Eval Command (Legacy Shim)",
+    "original": "Eval Command (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the eval-harness skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Eval Command (Legacy Shim)\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Legacy Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Eval Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Eval Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Eval Command (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "Orchestrate Command (Legacy Shim)",
+    "original": "Orchestrate Command (Legacy Shim)",
+    "description": "Legacy slash-entry shim for dmux-workflows and autonomous-agent-harness. Prefer the skills directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Orchestrate Command (Legacy Shim)\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Legacy Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Orchestrate Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Orchestrate Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Orchestrate Command (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "Prompt Optimize (Legacy Shim)",
+    "original": "Prompt Optimize (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the prompt-optimizer skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Prompt Optimize (Legacy Shim)\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Legacy Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Prompt Optimize (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Prompt Optimize (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Prompt Optimize (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "Rules Distill (Legacy Shim)",
+    "original": "Rules Distill (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the rules-distill skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Rules Distill (Legacy Shim)\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Legacy Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Rules Distill (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Rules Distill (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Rules Distill (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "TDD Command (Legacy Shim)",
+    "original": "TDD Command (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the tdd-workflow skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"TDD Command (Legacy Shim)\"",
+    "task_groups": [
+      "测试质量"
+    ],
+    "keywords": [
+      "先写测试",
+      "回归测试",
+      "测试",
+      "端到端",
+      "覆盖率"
+    ],
+    "tags": [
+      "提交前",
+      "质量保障"
+    ],
+    "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"TDD Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"TDD Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 TDD Command (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": []
+  },
+  {
+    "category": "Legacy Commands",
+    "sub": "其他",
+    "name": "Verification Command (Legacy Shim)",
+    "original": "Verification Command (Legacy Shim)",
+    "description": "Legacy slash-entry shim for the verification-loop skill. Prefer the skill directly.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Verification Command (Legacy Shim)\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Legacy Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Verification Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Verification Command (Legacy Shim)\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Verification Command (Legacy Shim) 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
