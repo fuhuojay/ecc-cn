@@ -1,7 +1,7 @@
 [
   {
     "_meta": {
-      "last_updated": "2026-05-25T14:54:17.999005",
+      "last_updated": "2026-05-25T19:40:26.750601",
       "repo_files": {
         "agents": [
           "a11y-architect",
@@ -41,6 +41,7 @@
           "kotlin-build-resolver",
           "kotlin-reviewer",
           "loop-operator",
+          "marketing-agent",
           "mle-reviewer",
           "network-architect",
           "network-config-reviewer",
@@ -104,6 +105,7 @@
           "learn",
           "loop-start",
           "loop-status",
+          "marketing-campaign",
           "model-route",
           "multi-backend",
           "multi-execute",
@@ -2583,6 +2585,42 @@
     "recommended_prompt": "/ecc:plan \"homelab-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"homelab-architect\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 homelab-architect 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "marketing-agent",
+    "original": "marketing-agent",
+    "description": "Marketing strategist and copywriter for campaign planning, audience research, positioning, copy creation, and content review. Covers landing pages, email sequences, social posts, ad copy, short-form v...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"marketing-agent\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Agents",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"marketing-agent\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"marketing-agent\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 marketing-agent 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
@@ -5608,6 +5646,42 @@
     "recommended_prompt": "/ecc:plan \"/ecc-guide\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"/ecc-guide\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 /ecc-guide 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "/marketing-campaign",
+    "original": "/marketing-campaign",
+    "description": "Plan and execute a full marketing campaign. Accepts a product brief and returns positioning, landing page copy, email sequence, social posts, ad variants, video scripts, and a content calendar. Can al...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/marketing-campaign\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/marketing-campaign\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/marketing-campaign\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /marketing-campaign 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
