@@ -1,7 +1,7 @@
 [
   {
     "_meta": {
-      "last_updated": "2026-05-24T19:17:49.377622",
+      "last_updated": "2026-05-25T11:54:02.923948",
       "repo_files": {
         "agents": [
           "a11y-architect",
@@ -3362,37 +3362,6 @@
     "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
     "ref_key": null,
     "reference_ids": []
-  },
-  {
-    "category": "Commands",
-    "sub": "版本控制",
-    "name": "创建 PR",
-    "original": "Create Pull Request",
-    "description": "从当前分支创建 GitHub Pull Request，自动生成 PR 摘要和测试计划。",
-    "simple": "一键创建 GitHub Pull Request，自动写好标题、摘要和测试计划。",
-    "slash_command": "/plan \"Create Pull Request\"",
-    "task_groups": [
-      "版本控制"
-    ],
-    "keywords": [
-      "Commands",
-      "版本控制"
-    ],
-    "tags": [],
-    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
-    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
-    "recommended_prompt": "/ecc:plan \"Create Pull Request\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
-    "claude_prompt": "/ecc:plan \"Create Pull Request\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
-    "codex_prompt": "请参考 ECC 的 Create Pull Request 能力，结合当前项目给出执行方案、风险点和验证步骤。",
-    "environments": [
-      "Claude Code",
-      "Codex 可参考"
-    ],
-    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
-    "ref_key": "/prp-pr",
-    "reference_ids": [
-      "/prp-pr"
-    ]
   },
   {
     "category": "Commands",

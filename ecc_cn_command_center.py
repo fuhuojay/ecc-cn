@@ -2,6 +2,7 @@ import argparse
 import json
 import re
 import sys
+import urllib.request
 from datetime import datetime
 from pathlib import Path
 
@@ -800,19 +801,12 @@ SUB_ORDER = {
 }
 
 def fetch_md_files(dir_name):
-    if requests is None:
-        raise RuntimeError("缺少 requests 依赖，请先运行 python3 -m pip install requests")
     api_url = f"{SOURCE_REPO['api_base']}/contents/{dir_name}"
-    r = requests.get(api_url)
-    r.raise_for_status()
-    return [f for f in r.json() if f['name'].endswith(".md")]
+    files = get_json(api_url)
+    return [f for f in files if f['name'].endswith(".md")]
 
 def parse_md_file(file_url):
-    if requests is None:
-        raise RuntimeError("缺少 requests 依赖，请先运行 python3 -m pip install requests")
-    r = requests.get(file_url)
-    r.raise_for_status()
-    content = r.text
+    content = get_text(file_url)
     fm_match = re.match(r'^---\s*\n(.*?)\n---\s*\n', content, re.DOTALL)
     name, description = None, ""
     body = content
@@ -842,6 +836,24 @@ def parse_md_file(file_url):
     if len(description) > 200:
         description = description[:200] + "..."
     return name, description
+
+def get_json(url):
+    if requests is not None:
+        r = requests.get(url, timeout=30)
+        r.raise_for_status()
+        return r.json()
+    req = urllib.request.Request(url, headers={"User-Agent": "ecc-cn-command-center"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+def get_text(url):
+    if requests is not None:
+        r = requests.get(url, timeout=30)
+        r.raise_for_status()
+        return r.text
+    req = urllib.request.Request(url, headers={"User-Agent": "ecc-cn-command-center"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return resp.read().decode("utf-8")
 
 DIRECTORIES = {
     "Agents": "agents",
@@ -1049,12 +1061,8 @@ def fetch_repo_file_keys():
     """从 GitHub API 获取每个目录的最新文件列表，返回 {dir_name: [file_key, ...]}"""
     repo_files = {}
     for category, dir_path in DIRECTORIES.items():
-        try:
-            md_files = fetch_md_files(dir_path)
-            repo_files[dir_path] = [f['name'].replace(".md", "") for f in md_files]
-        except Exception as e:
-            print(f"获取目录 {dir_path} 失败: {e}")
-            repo_files[dir_path] = []
+        md_files = fetch_md_files(dir_path)
+        repo_files[dir_path] = [f['name'].replace(".md", "") for f in md_files]
     return repo_files
 
 def update_entries(existing_entries, existing_meta):
@@ -1077,9 +1085,8 @@ def update_entries(existing_entries, existing_meta):
             print(f"  发现新增: {fk}")
             try:
                 api_url = f"{SOURCE_REPO['api_base']}/contents/{dir_path}/{fk}.md"
-                r = requests.get(api_url)
-                r.raise_for_status()
-                name, description = parse_md_file(r.json()['download_url'])
+                file_info = get_json(api_url)
+                name, description = parse_md_file(file_info['download_url'])
                 entry = build_entry(name, description, category, fk)
                 existing_map[fk] = entry
                 added.append(fk)
