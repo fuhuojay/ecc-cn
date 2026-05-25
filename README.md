@@ -1,6 +1,6 @@
-# Everything Claude Code 中文命令中心
+# 我的 Skill 工作台
 
-这是一个静态版的 Everything Claude Code 中文速查页面，可以直接部署到 GitHub Pages 在线访问。
+这是一个静态版个人 Skill 工作台。ECC / Everything Claude Code 是当前接入的核心来源，后续可以继续加入你发现的好用 Skill，并按来源、场景和个人习惯沉淀成可调用的中文面板。
 
 ## 功能亮点
 

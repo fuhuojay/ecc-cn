@@ -1228,7 +1228,7 @@ def load_data():
 # -----------------------------
 # 主流程
 # -----------------------------
-parser = argparse.ArgumentParser(description="ECC 中文命令中心生成器")
+parser = argparse.ArgumentParser(description="我的 Skill 工作台生成器")
 parser.add_argument("--local", action="store_true", help="本地重建：使用现有 data.json 重新生成网页，不访问 GitHub")
 parser.add_argument("--update", action="store_true", help="增量更新：从 GitHub 拉取最新文件，保留已有翻译")
 args = parser.parse_args()
@@ -1269,7 +1269,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ECC 中文命令中心</title>
+<title>我的 Skill 工作台</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--ink:#172033;--muted:#617085;--line:#dbe3ea;--teal:#0e7484;--teal-2:#0f5964;--green:#2e8b68;--amber:#b7791f;--bluegray:#52677d;--bg:#f6f8fb;--panel:#fff;--code:#111827;--soft:#f8fafc}
@@ -1354,6 +1354,9 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 .source-title{font-size:15px;font-weight:800;color:#172033}
 .source-desc{font-size:12px;color:var(--muted);line-height:1.65;margin-top:6px}
 .source-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.source-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.source-links a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid #cbd6df;background:#fff;border-radius:8px;padding:7px 10px;color:#173b31;font-weight:700;font-size:12px}
+.source-links a:hover{border-color:var(--teal);color:var(--teal);background:#f4fbfc}
 .source-section{margin-top:14px}
 .personal-note{background:#f8fafc;border:1px solid #e1e8ee;border-radius:8px;padding:10px;margin-top:10px;font-size:13px;color:#405064;line-height:1.65}
 .workflow-callout{border:1px solid #d7e6df;background:#fbfefc;border-radius:10px;padding:13px}
@@ -1420,18 +1423,19 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 <header class="hero">
   <div class="hero-inner">
     <div>
-      <div class="eyebrow">Everything Claude Code / ECC</div>
-      <h1>ECC 中文命令中心</h1>
-      <p>按场景选择 Everything Claude Code 的命令、Agent 和 Skill。先搜索问题，再复制合适的命令提示，把它当成日常开发里的中文命令面板。</p>
+      <div class="eyebrow">Personal Skill Workbench</div>
+      <h1>我的 Skill 工作台</h1>
+      <p>把 ECC 和后续发现的好用 Skill 按来源、场景和个人习惯组织起来。先按场景搜索，再复制适合 Claude Code 或 Codex 的调用问法。</p>
       <div class="hero-actions">
+        <span class="hero-chip">我的精选 Skill</span>
         <span class="hero-chip">场景优先</span>
-        <span class="hero-chip">命令速查</span>
+        <span class="hero-chip">来源可追溯</span>
         <span class="hero-chip">Codex 可参考</span>
-        <span class="hero-chip"><a id="heroRepoLink" href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener noreferrer">原项目 GitHub</a></span>
+        <span class="hero-chip"><a id="heroRepoLink" href="https://github.com/fuhuojay/ecc-cn" target="_blank" rel="noopener noreferrer">工作台 GitHub</a></span>
       </div>
     </div>
     <div class="hero-install">
-      <div class="hero-install-label"><span>快速安装</span><span>Claude Code Plugin</span></div>
+      <div class="hero-install-label"><span>当前核心来源</span><span>ECC Plugin</span></div>
       <code id="heroInstallCommand">npx claudepluginhub affaan-m/ecc --plugin ecc</code>
       <button class="copy-btn" onclick="copyCommand(document.getElementById('heroInstallCommand').textContent)">复制安装命令</button>
     </div>
@@ -1449,7 +1453,7 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
     <div class="nav-block">
       <div class="nav-label">主入口</div>
       <div class="nav-grid primary-nav">
-        <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">首页</button>
+        <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">工作台</button>
         <button class="filter-btn" data-filter="scenarios" onclick="setFilter('scenarios',this)">场景案例</button>
         <button class="filter-btn" data-filter="personal" onclick="setFilter('personal',this)">我的精选 Skill</button>
         <button class="filter-btn" data-filter="高频" onclick="setFilter('tag:高频',this)">高频命令</button>
@@ -1491,10 +1495,10 @@ const WORKFLOWS=[
   {name:'文档同步',steps:['update-codemaps','update-docs','docs-lookup']}
 ];
 const DEFAULT_REPO={
-  full_name:'affaan-m/ECC',
-  html_url:'https://github.com/affaan-m/ECC',
+  full_name:'fuhuojay/ecc-cn',
+  html_url:'https://github.com/fuhuojay/ecc-cn',
   api_base:'https://api.github.com/repos/affaan-m/ECC',
-  readme_url:'https://github.com/affaan-m/ECC#readme'
+  readme_url:'https://github.com/fuhuojay/ecc-cn#readme'
 };
 const DEFAULT_INSTALL_COMMAND=`npx claudepluginhub affaan-m/ecc --plugin ecc`;
 const SCENARIOS=[
@@ -1831,6 +1835,9 @@ function renderPersonalWorkbench(q=''){
   });
   const sourceCards=sources.map(s=>{
     const count=(bySource.get(s.id)||[]).length;
+    const repoLink=s.repo||s.homepage||'';
+    const deployLink=s.deploy_url||'';
+    const localPath=s.local_path||'';
     return `<div class="source-card">
       <div class="source-title">${escapeHtml(s.name)}</div>
       <div class="source-desc">${escapeHtml(s.description||'')}</div>
@@ -1839,34 +1846,32 @@ function renderPersonalWorkbench(q=''){
         <span class="tag ${s.trust_status==='approved'?'beginner':'caution'}">${escapeHtml(s.trust_status||'pending')}</span>
         <span class="tag hot">${count} 条</span>
       </div>
+      <div class="source-links">
+        ${repoLink&&/^https?:/.test(repoLink)?`<a href="${escapeHtml(repoLink)}" target="_blank" rel="noopener noreferrer">原项目地址</a>`:''}
+        ${deployLink&&/^https?:/.test(deployLink)?`<a href="${escapeHtml(deployLink)}" target="_blank" rel="noopener noreferrer">部署链接</a>`:''}
+        ${localPath?`<span class="tag readonly">${escapeHtml(localPath)}</span>`:''}
+      </div>
       ${s.install_command?`<details class="reference-box"><summary>安装方式</summary><div class="reference-detail"><p>${escapeHtml(s.install_command)}</p><button class="copy-btn" onclick="copyCommand(this.previousElementSibling.textContent)">复制安装方式</button></div></details>`:''}
     </div>`;
   }).join('');
-  const sections=sources.map(s=>{
-    const list=(bySource.get(s.id)||[]);
-    if(!list.length)return '';
-    const cards=list.slice(0, s.id==='ecc'?12:80).map(e=>renderCompactSkillCard(e)).join('');
-    const more=s.id==='ecc'&&list.length>12?`<div class="empty">ECC 来源共 ${list.length} 条，这里展示前 12 条；可在“全部条目”继续搜索。</div>`:'';
-    return `<section class="panel source-section"><h2>${escapeHtml(s.name)}</h2><div class="home-skill-grid">${cards}</div>${more}</section>`;
-  }).join('');
   const pref=meta.personal_preferences||{};
   const preferenceHtml=`<section class="panel"><h2>我的整理偏好</h2><div class="personal-note">${escapeHtml(pref.curation_rule||'保留原始来源，沉淀个人增强说明，必要时创建个人改良版。')}</div></section>`;
-  return `<section class="panel"><h2>我的精选 Skill 来源</h2><div class="source-grid">${sourceCards}</div></section>${preferenceHtml}${renderPersonalWorkflows(q)}${sections}`;
+  return `<section class="panel"><h2>我的精选 Skill 来源</h2><div class="source-grid">${sourceCards}</div></section>${preferenceHtml}${renderPersonalWorkflows(q)}`;
 }
 function renderInstallPanel(){
   const repo=repoConfig();
   const command=installCommand();
   return `<section class="panel install-panel">
     <div class="install-lead">
-      <h2>安装 ECC 插件</h2>
-      <p>先把 Everything Claude Code 安装到 Claude Code，再用这个中文命令面板按场景选择命令、Agent 和 Skill。</p>
+      <h2>我的 Skill 工作台</h2>
+      <p>这里不是单一项目说明页，而是你的个人 Skill 调用面板。ECC 是当前接入的核心来源，后续新增的好用 Skill 会按来源、场景和个人习惯继续沉淀进来。</p>
       <div class="install-links">
-        <a class="link-btn" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer">打开原项目</a>
-        <a class="link-btn" href="${escapeHtml(repo.readme_url||repo.html_url)}" target="_blank" rel="noopener noreferrer">查看官方 README</a>
+        <a class="link-btn" href="https://github.com/fuhuojay/ecc-cn" target="_blank" rel="noopener noreferrer">打开工作台仓库</a>
+        <a class="link-btn" href="https://fuhuojay.github.io/ecc-cn/ecc_cn_command_center/" target="_blank" rel="noopener noreferrer">查看部署页面</a>
       </div>
     </div>
     <div class="install-code">
-      <div class="install-code-label">Claude Code 插件安装</div>
+      <div class="install-code-label">当前核心来源：ECC 安装</div>
       <pre>${escapeHtml(command)}</pre>
       <button class="copy-btn" onclick="copyCommand(installCommand())">复制安装命令</button>
     </div>
