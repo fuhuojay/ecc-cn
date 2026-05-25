@@ -24,7 +24,7 @@ SOURCE_REPO = {
     "readme_url": "https://github.com/affaan-m/ECC#readme",
 }
 
-INSTALL_COMMAND = "/plugin marketplace add https://github.com/affaan-m/ECC\n/plugin install ecc@ecc"
+INSTALL_COMMAND = "npx claudepluginhub affaan-m/ecc --plugin ecc"
 
 # category / sub / zh_name / zh_desc / simple
 TRANSLATIONS = {
@@ -1173,42 +1173,53 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <title>ECC 中文命令中心</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--ink:#172033;--muted:#607086;--line:#dfe7ee;--teal:#0e7484;--green:#2e8b68;--amber:#c98716;--paper:#fffdf8;--soft:#f5f8fa}
-body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;background:linear-gradient(180deg,#f7f2e8 0,#f4f7f8 360px,#eef3f6 100%);color:var(--ink)}
-.hero{position:relative;min-height:330px;background-image:linear-gradient(90deg,rgba(255,253,248,.96) 0%,rgba(255,253,248,.9) 34%,rgba(255,253,248,.54) 58%,rgba(255,253,248,.18) 100%),url("./assets/hero-command-center.png");background-size:cover;background-position:center;color:var(--ink);overflow:hidden}
-.hero-inner{max-width:1180px;margin:0 auto;padding:54px 20px 34px}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid rgba(14,116,132,.28);border-radius:999px;background:rgba(255,255,255,.72);color:#0d6675;font-size:12px;font-weight:700}
-.hero h1{max-width:560px;font-size:42px;line-height:1.12;margin:18px 0 12px;letter-spacing:0}
-.hero p{max-width:560px;font-size:15px;line-height:1.8;color:#3b4b5f}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.hero-chip{border:1px solid rgba(14,116,132,.22);background:rgba(255,255,255,.76);border-radius:999px;padding:7px 12px;color:#244154;font-size:12px}
+:root{--ink:#172033;--muted:#617085;--line:#dbe3ea;--teal:#0e7484;--teal-2:#0f5964;--green:#2e8b68;--amber:#b7791f;--bluegray:#52677d;--bg:#f6f8fb;--panel:#fff;--code:#111827;--soft:#f8fafc}
+body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.hero{position:relative;background:#f8fafc;border-bottom:1px solid var(--line);color:var(--ink);overflow:hidden}
+.hero::after{content:"";position:absolute;right:0;top:0;bottom:0;width:48%;background-image:linear-gradient(90deg,rgba(248,250,252,.98),rgba(248,250,252,.72)),url("./assets/hero-command-center.png");background-size:cover;background-position:center;opacity:.42;pointer-events:none}
+.hero-inner{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:34px 20px 22px;display:grid;grid-template-columns:minmax(0,1fr) minmax(360px,470px);gap:28px;align-items:end}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#0d6675;font-size:12px;font-weight:800;letter-spacing:0}
+.hero h1{font-size:38px;line-height:1.12;margin:12px 0 10px;letter-spacing:0}
+.hero p{max-width:620px;font-size:15px;line-height:1.8;color:#3d4d61}
+.hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;opacity:.88}
+.hero-chip{border:1px solid #d5e5e8;background:rgba(255,255,255,.76);border-radius:999px;padding:5px 9px;color:#4e6275;font-size:11px}
 .hero-chip a{color:inherit;text-decoration:none}
-.toolbar{background:rgba(255,255,255,.95);backdrop-filter:blur(14px);padding:16px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 12px 28px rgba(23,32,51,.08)}
+.hero-install{background:#111827;border:1px solid #263244;border-radius:10px;padding:12px;box-shadow:0 14px 34px rgba(17,24,39,.16)}
+.hero-install-label{display:flex;justify-content:space-between;gap:12px;align-items:center;color:#9fb3c8;font-size:12px;font-weight:800;margin-bottom:8px}
+.hero-install code{display:block;white-space:pre-wrap;word-break:break-word;color:#e5f4f6;font-family:"Cascadia Code","Fira Code",monospace;font-size:13px;line-height:1.55}
+.hero-install .copy-btn{margin-top:10px;width:100%;background:#0e7484;border-color:#0e7484}
+.toolbar{background:rgba(255,255,255,.96);backdrop-filter:blur(14px);padding:14px 20px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 8px 24px rgba(23,32,51,.06)}
 .toolbar-inner{max-width:1180px;margin:0 auto}
 .toolbar-top{display:grid;grid-template-columns:minmax(260px,1fr) auto;gap:14px;align-items:center}
-.nav-label{font-size:13px;font-weight:800;color:#123c49;margin:14px 0 9px;display:flex;align-items:center;gap:8px}
-.nav-label::before{content:"";width:4px;height:16px;border-radius:999px;background:linear-gradient(180deg,var(--teal),var(--green))}
-.nav-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px}
-#search{width:100%;padding:13px 15px;font-size:15px;border:1px solid #cbd6df;border-radius:10px;outline:none;background:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
-#search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(14,116,132,.13)}
-.filter-btn,.copy-btn,.update-btn{padding:11px 14px;font-size:14px;font-weight:700;border:1px solid #cbd6df;border-radius:10px;background:#fff;cursor:pointer;transition:all .15s;color:#263445;min-height:44px}
+.nav-block{margin-top:12px}
+.nav-label{font-size:12px;font-weight:800;color:#526276;margin:0 0 7px;display:flex;align-items:center;gap:8px}
+.nav-grid{display:flex;gap:6px;flex-wrap:wrap}
+.primary-nav{display:inline-flex;background:#eef3f6;border:1px solid #d5dee7;border-radius:10px;padding:4px;max-width:100%;overflow:auto}
+.primary-nav .filter-btn{border:0;background:transparent;border-radius:7px;min-height:36px;padding:8px 13px}
+.primary-nav .filter-btn.active{background:#fff;color:#0d6675;box-shadow:0 1px 3px rgba(23,32,51,.1)}
+.secondary-nav{gap:8px}
+.secondary-nav .filter-btn{font-size:12px;min-height:34px;padding:7px 10px;border-radius:999px;background:#fff}
+#search{width:100%;padding:15px 16px;font-size:16px;border:1px solid #b8c8d6;border-radius:11px;outline:none;background:#fff;box-shadow:0 1px 0 rgba(255,255,255,.8),0 8px 20px rgba(23,32,51,.04)}
+#search:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(14,116,132,.13)}
+.filter-btn,.copy-btn,.update-btn{padding:10px 14px;font-size:14px;font-weight:700;border:1px solid #cbd6df;border-radius:9px;background:#fff;cursor:pointer;transition:all .15s;color:#263445;min-height:40px}
 .filter-btn:hover,.update-btn:hover{border-color:var(--teal);color:var(--teal);background:#f4fbfc}
-.filter-btn.active{background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 6px 16px rgba(14,116,132,.2)}
-.container{max-width:1180px;margin:0 auto;padding:18px}
-.panel{background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:8px;padding:17px;margin-bottom:14px;box-shadow:0 10px 28px rgba(23,32,51,.05)}
-.panel h2{font-size:17px;margin-bottom:11px;color:#123c49}
-.task-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:11px}
-.task-card{position:relative;border:1px solid var(--line);border-radius:8px;padding:13px 13px 13px 16px;background:#fff;cursor:pointer;overflow:hidden;transition:transform .15s,border-color .15s,box-shadow .15s}
-.task-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--teal),var(--green))}
-.task-card:hover{transform:translateY(-1px);border-color:#9bc7cf;box-shadow:0 10px 22px rgba(14,116,132,.11)}
+.filter-btn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.container{max-width:1180px;margin:0 auto;padding:18px 20px 30px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:14px;box-shadow:none}
+.panel h2{font-size:16px;margin-bottom:11px;color:#172033;display:flex;align-items:center;gap:8px}
+.panel h2::before{content:"";width:4px;height:16px;border-radius:999px;background:var(--teal)}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.task-card{position:relative;border:1px solid var(--line);border-radius:8px;padding:12px;background:#fff;cursor:pointer;overflow:hidden;transition:border-color .15s,background .15s}
+.task-card:hover{border-color:#9bc7cf;background:#f8fcfd}
 .task-title{font-weight:700;font-size:14px;color:#162233}
 .task-desc{font-size:12px;color:var(--muted);line-height:1.55;margin-top:5px}
 .workflow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:11px}
-.workflow{border:1px solid #d7e6df;background:linear-gradient(180deg,#fbfefb,#f3faf5);border-radius:8px;padding:13px}
+.workflow{border:1px solid #d7e6df;background:#fbfefc;border-radius:8px;padding:13px}
 .workflow-name{font-weight:700;font-size:14px;color:#173b31}
 .workflow-steps{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.step-pill{font-size:12px;color:#275343;background:#fff;border:1px solid #d8eadf;border-radius:999px;padding:4px 8px}
-.install-panel{display:grid;grid-template-columns:1fr minmax(320px,1.15fr);gap:14px;align-items:stretch;background:linear-gradient(135deg,#ffffff,#f2faf8);border-color:#cfe5dc}
+.step-pill{font-size:12px;color:#275343;background:#fff;border:1px solid #d8eadf;border-radius:999px;padding:4px 8px;display:inline-flex;align-items:center;gap:6px}
+.step-pill:not(:last-child)::after{content:"→";color:#7b9287;margin-left:2px}
+.install-panel{display:grid;grid-template-columns:1fr minmax(320px,1.15fr);gap:14px;align-items:stretch;background:#fff;border-color:#cfe5dc}
 .install-lead{display:flex;flex-direction:column;justify-content:center}
 .install-lead h2{font-size:20px;margin-bottom:8px}
 .install-lead p{font-size:13px;color:#526276;line-height:1.7}
@@ -1219,8 +1230,10 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 .install-code-label{font-size:12px;color:#9fb3c8;margin-bottom:8px;font-weight:700}
 .install-code pre{white-space:pre-wrap;word-break:break-word;font-size:13px;line-height:1.65;font-family:"Cascadia Code","Fira Code",monospace}
 .install-code .copy-btn{margin-top:10px;background:#2e8b68;border-color:#2e8b68}
+.home-skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
 .scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:12px}
-.scenario-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;box-shadow:0 8px 20px rgba(23,32,51,.04)}
+.scenario-card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px;box-shadow:none}
+.scenario-card:hover{border-color:#aacdd4;background:#fbfeff}
 .scenario-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:8px}
 .scenario-title{font-size:15px;font-weight:800;color:#172033}
 .scenario-kind{font-size:11px;color:#80530f;background:#fff7e6;border:1px solid #f1d8a4;border-radius:999px;padding:3px 8px;white-space:nowrap}
@@ -1230,27 +1243,36 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 .scenario-guide{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
 .scenario-guide-item{border:1px solid #dce8ee;background:#fbfdff;border-radius:8px;padding:8px;font-size:12px;line-height:1.55;color:#526276}
 .scenario-guide-item strong{display:block;color:#203246;margin-bottom:2px}
-.scenario-prompt{margin-top:10px;background:#f4f7f8;border:1px solid #dfe8ee;border-radius:7px;padding:9px;font-size:12px;color:#243348;line-height:1.6}
+.scenario-prompt{margin-top:10px;background:#111827;border:1px solid #253044;border-radius:8px;padding:10px;font-size:12px;color:#e6f6f7;line-height:1.6;font-family:"Cascadia Code","Fira Code",monospace}
 .scenario-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.mini-btn{border:1px solid #cbd6df;background:#fff;border-radius:7px;padding:6px 10px;font-size:12px;color:#263445;cursor:pointer}
+.mini-btn{border:1px solid #cbd6df;background:#fff;border-radius:7px;padding:7px 10px;font-size:12px;font-weight:700;color:#263445;cursor:pointer}
+.mini-btn.primary{background:var(--teal);border-color:var(--teal);color:#fff}
 .mini-btn:hover{border-color:var(--teal);color:var(--teal);background:#f4fbfc}
+.mini-btn.primary:hover{background:#0b5d69;color:#fff}
 .match-reasons{margin-top:8px;font-size:11px;color:#0b6672;background:#edf8fa;border:1px solid #d4ebef;border-radius:999px;padding:4px 9px;display:inline-flex}
-.stats{display:flex;gap:10px;margin:-34px 0 16px;flex-wrap:wrap;position:relative;z-index:2}
-.stat{background:rgba(255,255,255,.92);border-radius:8px;padding:12px 17px;border:1px solid var(--line);text-align:center;min-width:96px;box-shadow:0 12px 30px rgba(23,32,51,.06)}
+.stats{display:flex;gap:10px;margin:0 0 14px;flex-wrap:wrap;position:relative;z-index:2}
+.stat{background:#fff;border-radius:8px;padding:10px 15px;border:1px solid var(--line);text-align:center;min-width:88px;box-shadow:none}
 .stat-num{font-size:24px;font-weight:700;color:var(--teal)}
 .stat-label{font-size:12px;color:var(--muted);margin-top:2px}
 .cat-header{font-size:18px;font-weight:700;color:#123c49;margin:25px 0 10px;padding-bottom:7px;border-bottom:2px solid var(--teal);display:flex;align-items:center;gap:8px}
 .cat-header .badge{font-size:12px;background:var(--teal);color:#fff;padding:2px 8px;border-radius:10px}
 .sub-header{font-size:14px;font-weight:700;color:#49586b;margin:16px 0 8px;padding-left:4px}
-.card{background:rgba(255,255,255,.94);border-radius:8px;padding:16px;margin-bottom:10px;border:1px solid var(--line);transition:box-shadow .15s,border-color .15s,transform .15s}
-.card:hover{transform:translateY(-1px);box-shadow:0 12px 28px rgba(23,32,51,.08);border-color:#bfd5df}
+.card{background:#fff;border-radius:10px;padding:15px;margin-bottom:10px;border:1px solid var(--line);transition:border-color .15s,background .15s}
+.card:hover{border-color:#b5cbd7;background:#fcfeff}
 .card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .card-name{font-size:15px;font-weight:700;color:#111827}
 .card-original{font-size:11px;color:#8492a6;font-family:monospace;margin-top:2px}
 .tags{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .tag{font-size:11px;color:#0d5461;background:#e9f6f7;border:1px solid #cce8ec;border-radius:999px;padding:3px 8px;white-space:nowrap}
-.card-simple{font-size:14px;color:#0d5c6a;background:linear-gradient(90deg,#edf8fa,#f7fbf7);border-radius:7px;padding:9px 12px;margin-top:11px;line-height:1.5;border:1px solid #dceff1}
+.tag.hot{color:#0b6672;background:#e6f7f8;border-color:#bae1e6}
+.tag.beginner{color:#17623f;background:#eaf8ef;border-color:#c8ead5}
+.tag.caution{color:#7a4b0b;background:#fff7e6;border-color:#f1d49a}
+.tag.readonly{color:#41576d;background:#eef4f8;border-color:#d7e2eb}
+.card-simple{font-size:14px;color:#0d5c6a;background:#edf8fa;border-radius:7px;padding:9px 12px;margin-top:11px;line-height:1.5;border:1px solid #dceff1}
 .card-desc,.guide{font-size:13px;color:#4b5563;line-height:1.6;margin-top:8px}
+.guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9px}
+.guide{background:#f8fafc;border:1px solid #e1e8ee;border-radius:8px;padding:8px;margin-top:0}
+.guide.environment{grid-column:1/-1}
 .guide strong{color:#263445}
 .card-cmd{display:flex;align-items:center;gap:8px;margin-top:10px}
 .card-cmd code{background:#f3f6f8;padding:7px 10px;border-radius:6px;font-size:12px;color:#253040;font-family:"Cascadia Code","Fira Code",monospace;flex:1;overflow:auto;border:1px solid #e1e8ee}
@@ -1282,22 +1304,28 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
 .last-updated{font-size:11px;color:#64748b}
 .toast{position:fixed;top:20px;right:20px;padding:12px 20px;border-radius:8px;color:#fff;font-size:14px;z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.show{opacity:1}.toast.ok{background:var(--green)}.toast.warn{background:var(--amber)}.toast.info{background:var(--teal)}
-@media(max-width:760px){.hero{min-height:300px;background-position:62% center}.hero-inner{padding:38px 18px 30px}.hero h1{font-size:31px}.stats{margin:0 0 14px}.toolbar{position:static}.toolbar-top{grid-template-columns:1fr}.update-bar{justify-content:flex-start}.nav-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.install-panel{grid-template-columns:1fr}}
-@media(max-width:640px){.card-head{display:block}.tags{justify-content:flex-start;margin-top:8px}.card-cmd{align-items:stretch;flex-direction:column}.update-bar{margin-left:0}.hero-actions{gap:8px}}
+@media(max-width:820px){.hero::after{display:none}.hero-inner{grid-template-columns:1fr;padding:28px 18px 20px}.hero h1{font-size:31px}.toolbar{position:static;padding:12px 14px}.toolbar-top{grid-template-columns:1fr}.update-bar{justify-content:space-between}.primary-nav,.secondary-nav{flex-wrap:nowrap;overflow:auto;padding-bottom:2px}.filter-btn{white-space:nowrap}.install-panel{grid-template-columns:1fr}.scenario-guide,.guide-grid{grid-template-columns:1fr}.guide.environment{grid-column:auto}}
+@media(max-width:520px){.container{padding:14px}.hero-actions{display:none}#search{font-size:15px;padding:13px}.last-updated{white-space:normal}.update-bar{align-items:flex-start}.card-head{display:block}.tags{justify-content:flex-start;margin-top:8px}.card-cmd{align-items:stretch;flex-direction:column}.copy-btn,.update-btn,.mini-btn{width:100%}.scenario-grid,.workflow-grid,.task-grid,.home-skill-grid,.ref-library{grid-template-columns:1fr}.hero-install code,.card-cmd code{font-size:12px}}
 </style>
 </head>
 <body>
 <header class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Everything Claude Code 中文导航</div>
-    <h1>把 Skill 变成中文开发者的高效工作台</h1>
-    <p>按任务找命令，按工作流组合使用。从代码审查、构建修复、测试质量到文档与安全，把每个命令该怎么用讲清楚。</p>
-    <div class="hero-actions">
-      <span class="hero-chip">任务导航</span>
-      <span class="hero-chip">推荐工作流</span>
-      <span class="hero-chip">中文场景搜索</span>
-      <span class="hero-chip">一键复制用法</span>
-      <span class="hero-chip"><a id="heroRepoLink" href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener noreferrer">原项目 GitHub</a></span>
+    <div>
+      <div class="eyebrow">Everything Claude Code / ECC</div>
+      <h1>ECC 中文命令中心</h1>
+      <p>按场景选择 Everything Claude Code 的命令、Agent 和 Skill。先搜索问题，再复制合适的命令提示，把它当成日常开发里的中文命令面板。</p>
+      <div class="hero-actions">
+        <span class="hero-chip">场景优先</span>
+        <span class="hero-chip">命令速查</span>
+        <span class="hero-chip">Codex 可参考</span>
+        <span class="hero-chip"><a id="heroRepoLink" href="https://github.com/affaan-m/ECC" target="_blank" rel="noopener noreferrer">原项目 GitHub</a></span>
+      </div>
+    </div>
+    <div class="hero-install">
+      <div class="hero-install-label"><span>快速安装</span><span>Claude Code Plugin</span></div>
+      <code id="heroInstallCommand">npx claudepluginhub affaan-m/ecc --plugin ecc</code>
+      <button class="copy-btn" onclick="copyCommand(document.getElementById('heroInstallCommand').textContent)">复制安装命令</button>
     </div>
   </div>
 </header>
@@ -1310,18 +1338,26 @@ body{font-family:"Microsoft YaHei","PingFang SC","Helvetica Neue",sans-serif;bac
         <button class="update-btn" id="updateBtn" onclick="checkUpdate()">检查更新</button>
       </div>
     </div>
-    <div class="nav-label">快速导航</div>
-    <div class="nav-grid">
-      <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">首页</button>
-      <button class="filter-btn" data-filter="catalog" onclick="setFilter('catalog',this)">全部条目</button>
-      <button class="filter-btn" data-filter="scenarios" onclick="setFilter('scenarios',this)">场景案例</button>
-      <button class="filter-btn" data-filter="入门推荐" onclick="setFilter('tag:入门推荐',this)">新手推荐</button>
-      <button class="filter-btn" data-filter="高频" onclick="setFilter('tag:高频',this)">高频命令</button>
-      <button class="filter-btn" data-filter="代码审查" onclick="setFilter('task:代码审查',this)">代码审查</button>
-      <button class="filter-btn" data-filter="修复构建" onclick="setFilter('task:修复构建',this)">修复构建</button>
-      <button class="filter-btn" data-filter="功能规划" onclick="setFilter('task:功能规划',this)">功能规划</button>
-      <button class="filter-btn" data-filter="文档资料" onclick="setFilter('task:文档资料',this)">文档资料</button>
-      <button class="filter-btn" data-filter="reference" onclick="setFilter('reference',this)">原参考库</button>
+    <div class="nav-block">
+      <div class="nav-label">主入口</div>
+      <div class="nav-grid primary-nav">
+        <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">首页</button>
+        <button class="filter-btn" data-filter="scenarios" onclick="setFilter('scenarios',this)">场景案例</button>
+        <button class="filter-btn" data-filter="高频" onclick="setFilter('tag:高频',this)">高频命令</button>
+        <button class="filter-btn" data-filter="catalog" onclick="setFilter('catalog',this)">全部条目</button>
+        <button class="filter-btn" data-filter="reference" onclick="setFilter('reference',this)">原参考库</button>
+      </div>
+    </div>
+    <div class="nav-block">
+      <div class="nav-label">任务筛选</div>
+      <div class="nav-grid secondary-nav">
+        <button class="filter-btn" data-filter="代码审查" onclick="setFilter('task:代码审查',this)">代码审查</button>
+        <button class="filter-btn" data-filter="修复构建" onclick="setFilter('task:修复构建',this)">修复构建</button>
+        <button class="filter-btn" data-filter="测试质量" onclick="setFilter('task:测试质量',this)">测试质量</button>
+        <button class="filter-btn" data-filter="功能规划" onclick="setFilter('task:功能规划',this)">功能规划</button>
+        <button class="filter-btn" data-filter="安全合规" onclick="setFilter('task:安全合规',this)">安全合规</button>
+        <button class="filter-btn" data-filter="文档资料" onclick="setFilter('task:文档资料',this)">文档资料</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1351,8 +1387,7 @@ const DEFAULT_REPO={
   api_base:'https://api.github.com/repos/affaan-m/ECC',
   readme_url:'https://github.com/affaan-m/ECC#readme'
 };
-const DEFAULT_INSTALL_COMMAND=`/plugin marketplace add https://github.com/affaan-m/ECC
-/plugin install ecc@ecc`;
+const DEFAULT_INSTALL_COMMAND=`npx claudepluginhub affaan-m/ecc --plugin ecc`;
 const SCENARIOS=[
   {
     kind:'从 0 到 1',
@@ -1442,9 +1477,11 @@ function syncRepoLinks(){
   const repo=repoConfig();
   const hero=document.getElementById('heroRepoLink');
   if(hero)hero.href=repo.html_url;
+  const heroCommand=document.getElementById('heroInstallCommand');
+  if(heroCommand)heroCommand.textContent=installCommand();
 }
 // 检查 GitHub 更新
-const REPO_DIRS={Agents:'agents',Commands:'commands','Legacy Commands':'legacy-command-shims'};
+const REPO_DIRS={Agents:'agents',Commands:'commands','Legacy Commands':'legacy-command-shims/commands'};
 async function checkUpdate(){
   const btn=document.getElementById('updateBtn');
   btn.disabled=true;btn.textContent='检查中...';
@@ -1593,6 +1630,17 @@ function matchReasons(e,q){
   const hits=fields.filter(([,v])=>terms.some(t=>String(v||'').toLowerCase().includes(t))).map(([k])=>k);
   return hits.length?`<div class="match-reasons">命中：${escapeHtml([...new Set(hits)].join(' / '))}</div>`:'';
 }
+function tagClass(t){
+  if(t==='高频')return 'hot';
+  if(t==='入门推荐')return 'beginner';
+  if(t==='可能改代码'||t==='需要谨慎')return 'caution';
+  if(t==='只读分析')return 'readonly';
+  return '';
+}
+function commandPath(name){
+  const value=String(name||'');
+  return value.startsWith('/')?value.slice(1):value;
+}
 function renderScenarios(q=''){
   const byOriginal=new Map(entries.map(e=>[String(e.original).toLowerCase(),e]));
   const list=SCENARIOS.filter(s=>matchesScenarioSearch(s,q));
@@ -1602,6 +1650,11 @@ function renderScenarios(q=''){
     return `<div class="scenario-card">
       <div class="scenario-top"><div class="scenario-title">${escapeHtml(s.title)}</div><span class="scenario-kind">${escapeHtml(s.kind)}</span></div>
       <div class="scenario-problem">${escapeHtml(s.problem)}</div>
+      <div class="scenario-prompt">${escapeHtml(s.prompt)}</div>
+      <div class="scenario-actions">
+        <button class="mini-btn primary" onclick="copyCommand(this.closest('.scenario-card').querySelector('.scenario-prompt').textContent)">复制示范提问</button>
+        ${related?`<button class="mini-btn" onclick="document.getElementById('search').value='${escapeHtml(related)}';setFilter('catalog',document.querySelector('[data-filter=catalog]'))">查看相关命令</button>`:''}
+      </div>
       <div class="scenario-row"><strong>推荐组合：</strong><div class="workflow-steps">${stepHtml}</div></div>
       <div class="scenario-guide">
         <div class="scenario-guide-item"><strong>第一步复制什么</strong>先复制下方示范提问，让模型只做定位、规划或最小修复。</div>
@@ -1610,11 +1663,6 @@ function renderScenarios(q=''){
         <div class="scenario-guide-item"><strong>常见误用提醒</strong>不要一次要求规划、实现、测试、提交全做完；先收敛范围再执行。</div>
       </div>
       <div class="scenario-row"><strong>预期产出：</strong>${escapeHtml(s.output)}</div>
-      <div class="scenario-prompt">${escapeHtml(s.prompt)}</div>
-      <div class="scenario-actions">
-        <button class="mini-btn" onclick="copyCommand(this.closest('.scenario-card').querySelector('.scenario-prompt').textContent)">复制示范提问</button>
-        ${related?`<button class="mini-btn" onclick="document.getElementById('search').value='${escapeHtml(related)}';setFilter('all',document.querySelector('[data-filter=all]'))">查看相关命令</button>`:''}
-      </div>
     </div>`;
   }).join('');
   return `<section class="panel"><h2>按应用场景选 Skill</h2><div class="scenario-grid">${cards}</div></section>`;
@@ -1636,8 +1684,8 @@ function renderInstallPanel(){
   const command=installCommand();
   return `<section class="panel install-panel">
     <div class="install-lead">
-      <h2>原项目与安装命令</h2>
-      <p>本导航站基于 Everything Claude Code 的命令、Agent 和 Skill 内容整理，建议先按官方插件方式安装原项目，再用本页面按中文场景查找用法。</p>
+      <h2>安装 ECC 插件</h2>
+      <p>先把 Everything Claude Code 安装到 Claude Code，再用这个中文命令面板按场景选择命令、Agent 和 Skill。</p>
       <div class="install-links">
         <a class="link-btn" href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer">打开原项目</a>
         <a class="link-btn" href="${escapeHtml(repo.readme_url||repo.html_url)}" target="_blank" rel="noopener noreferrer">查看官方 README</a>
@@ -1657,7 +1705,10 @@ function renderHome(){
     const steps=w.steps.map(s=>`<span class="step-pill">${escapeHtml(byOriginal.get(s.toLowerCase())?.name||s)}</span>`).join('');
     return `<div class="workflow"><div class="workflow-name">${w.name}</div><div class="workflow-steps">${steps}</div></div>`;
   }).join('');
-  return `${renderInstallPanel()}${renderScenarios()}<section class="panel"><h2>按任务找 Skill</h2><div class="task-grid">${taskHtml}</div></section><section class="panel"><h2>推荐工作流</h2><div class="workflow-grid">${workflowHtml}</div></section><section class="panel"><h2>原网页参考库</h2><div class="empty">旧版网页的详细说明已整合进命令卡片，也可以点击上方“原参考库”单独浏览。</div></section>`;
+  const starter=entries.filter(e=>(e.tags||[]).includes('入门推荐')).slice(0,6);
+  const frequent=entries.filter(e=>(e.tags||[]).includes('高频')).slice(0,6);
+  const compactCards=list=>list.map(e=>`<div class="task-card" onclick="document.getElementById('search').value='${escapeHtml(e.original)}';setFilter('catalog',document.querySelector('[data-filter=catalog]'))"><div class="task-title">${escapeHtml(e.name)}</div><div class="task-desc">${escapeHtml(e.simple)}</div><div class="tags" style="justify-content:flex-start;margin-top:8px">${(e.tags||[]).slice(0,3).map(t=>`<span class="tag ${tagClass(t)}">${escapeHtml(t)}</span>`).join('')}</div></div>`).join('');
+  return `${renderInstallPanel()}<section class="panel"><h2>新手从这里开始</h2><div class="home-skill-grid">${compactCards(starter)}</div></section><section class="panel"><h2>推荐工作流</h2><div class="workflow-grid">${workflowHtml}</div></section><section class="panel"><h2>高频 Skill</h2><div class="home-skill-grid">${compactCards(frequent)}</div></section>${renderScenarios()}<section class="panel"><h2>任务筛选</h2><div class="task-grid">${taskHtml}</div></section>`;
 }
 function render(){
   const q=document.getElementById('search').value.toLowerCase();
@@ -1673,6 +1724,7 @@ function render(){
   const app=document.getElementById('app');
   if(!entries.length){app.innerHTML='<div class="empty">正在加载数据...</div>';return}
   if(!filtered.length){app.innerHTML=(q?renderReferenceLibrary(q):renderHome())+'<div class="empty">没有找到匹配的命令卡片，已继续搜索原网页参考库</div>';return}
+  if(currentFilter==='all'&&!q){app.innerHTML=renderHome();return}
   const counts={};
   entries.forEach(e=>{counts[e.category]=(counts[e.category]||0)+1});
   let html='<div class="stats">';
@@ -1680,13 +1732,13 @@ function render(){
   for(const[k,v]of Object.entries(counts))html+=`<div class="stat"><div class="stat-num">${v}</div><div class="stat-label">${k}</div></div>`;
   html+=`<div class="stat"><div class="stat-num">${references.length}</div><div class="stat-label">原参考</div></div>`;
   html+='</div>';
-  if(currentFilter==='all'&&!q){html+=renderHome();app.innerHTML=html;return}
   let curCat='',curSub='';
   filtered.forEach(e=>{
     if(e.category!==curCat){curCat=e.category;curSub='';const n=filtered.filter(x=>x.category===curCat).length;html+=`<div class="cat-header">${curCat} <span class="badge">${n}</span></div>`}
     if(e.sub!==curSub){curSub=e.sub;html+=`<div class="sub-header">${curSub}</div>`}
     const prompt=escapeHtml(e.recommended_prompt||e.slash_command);
-    const tags=(e.tags||[]).slice(0,4).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('');
+    const typeTag=e.category?`<span class="tag readonly">${escapeHtml(e.category)}</span>`:'';
+    const tags=typeTag+(e.tags||[]).slice(0,4).map(t=>`<span class="tag ${tagClass(t)}">${escapeHtml(t)}</span>`).join('');
     const ref=findReference(e);
     const refHtml=ref?`<details class="reference-box"><summary>原网页详细说明：${escapeHtml(ref.brief)}</summary><div class="reference-detail">${sanitizeReferenceHtml(ref.zh)}${ref.en?`<div class="reference-en">${escapeHtml(ref.en)}</div>`:''}</div></details>`:'';
     const codexPrompt=escapeHtml(e.codex_prompt||`请参考 ECC 的 ${e.original} 能力，结合当前项目给出执行方案。`);
@@ -1695,9 +1747,11 @@ function render(){
       ${matchReasons(e,q)}
       <div class="card-simple">${escapeHtml(e.simple)}</div>
       <div class="card-desc">${escapeHtml(e.description)}</div>
-      <div class="guide"><strong>什么时候用：</strong>${escapeHtml(e.use_case)}</div>
-      <div class="guide"><strong>不适合：</strong>${escapeHtml(e.avoid_case)}</div>
-      <div class="guide"><strong>适用环境：</strong>${escapeHtml((e.environments||[]).join(' / ')||'Claude Code / Codex 可参考')}。${escapeHtml(e.environment_note||'')}</div>
+      <div class="guide-grid">
+        <div class="guide"><strong>什么时候用：</strong>${escapeHtml(e.use_case)}</div>
+        <div class="guide"><strong>不适合：</strong>${escapeHtml(e.avoid_case)}</div>
+        <div class="guide environment"><strong>适用环境：</strong>${escapeHtml((e.environments||[]).join(' / ')||'Claude Code / Codex 可参考')}。${escapeHtml(e.environment_note||'')}</div>
+      </div>
       <div class="card-cmd"><code>${prompt}</code><button class="copy-btn" onclick="copyCommand(this.previousElementSibling.textContent)">复制推荐用法</button></div>
       <details class="reference-box"><summary>Codex 版示范问法</summary><div class="reference-detail"><p>${codexPrompt}</p><button class="copy-btn" onclick="copyCommand(this.previousElementSibling.textContent)">复制 Codex 问法</button></div></details>
       ${refHtml}

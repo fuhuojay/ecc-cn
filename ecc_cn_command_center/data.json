@@ -136,7 +136,7 @@
         "readme_url": "https://github.com/affaan-m/ECC#readme"
       },
       "install": {
-        "plugin_command": "/plugin marketplace add https://github.com/affaan-m/ECC\n/plugin install ecc@ecc",
+        "plugin_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
         "plugin_id": "ecc@ecc",
         "marketplace": "https://github.com/affaan-m/ECC"
       }
