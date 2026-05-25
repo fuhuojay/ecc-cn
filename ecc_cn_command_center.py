@@ -1487,13 +1487,28 @@ function syncRepoLinks(){
   const heroCommand=document.getElementById('heroInstallCommand');
   if(heroCommand)heroCommand.textContent=installCommand();
 }
+function entryKeys(e){
+  const keys=[
+    e.original,
+    e.name,
+    e.ref_key,
+    e.slash_command,
+    ...(e.reference_ids||[])
+  ];
+  return keys.map(normKey).filter(Boolean);
+}
+function knownRepoKeys(){
+  const fromMeta=Object.values(meta.repo_files||{}).flat().map(normKey).filter(Boolean);
+  const fromEntries=entries.flatMap(entryKeys);
+  return new Set([...fromMeta,...fromEntries]);
+}
 // 检查 GitHub 更新
 const REPO_DIRS={Agents:'agents',Commands:'commands','Legacy Commands':'legacy-command-shims/commands'};
 async function checkUpdate(){
   const btn=document.getElementById('updateBtn');
   btn.disabled=true;btn.textContent='检查中...';
   try {
-    const existing=new Set(entries.map(e=>e.original));
+    const existing=knownRepoKeys();
     let newFiles=[];
     const repo=repoConfig();
     for(const[cat,dir]of Object.entries(REPO_DIRS)){
@@ -1506,7 +1521,7 @@ async function checkUpdate(){
       for(const f of files){
         if(f.name.endsWith('.md')){
           const key=f.name.replace('.md','');
-          if(!existing.has(key))newFiles.push({name:key,category:cat,dir});
+          if(!existing.has(normKey(key)))newFiles.push({name:key,category:cat,dir});
         }
       }
     }
