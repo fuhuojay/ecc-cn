@@ -1,7 +1,7 @@
 [
   {
     "_meta": {
-      "last_updated": "2026-05-28T10:02:14.942325",
+      "last_updated": "2026-05-28T15:56:19.981943",
       "repo_files": {
         "agents": [
           "a11y-architect",
@@ -54,6 +54,8 @@
           "pr-test-analyzer",
           "python-reviewer",
           "pytorch-build-resolver",
+          "react-build-resolver",
+          "react-reviewer",
           "refactor-cleaner",
           "rust-build-resolver",
           "rust-reviewer",
@@ -127,6 +129,9 @@
           "prune",
           "python-review",
           "quality-gate",
+          "react-build",
+          "react-review",
+          "react-test",
           "refactor-clean",
           "resume-session",
           "review-pr",
@@ -2786,6 +2791,93 @@
     "recommended_prompt": "/ecc:plan \"network-troubleshooter\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"network-troubleshooter\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 network-troubleshooter 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "react-build-resolver",
+    "original": "react-build-resolver",
+    "description": "Diagnose and fix React build failures across Vite, webpack, Next.js, CRA, Parcel, esbuild, and Bun. Handles JSX/TSX compile errors, hydration mismatches, server/client component boundary failures, mis...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"react-build-resolver\"",
+    "task_groups": [
+      "修复构建"
+    ],
+    "keywords": [
+      "依赖冲突",
+      "报错",
+      "构建失败",
+      "编译不过",
+      "跑不起来"
+    ],
+    "tags": [
+      "会修改代码",
+      "可能改代码",
+      "故障处理",
+      "高频"
+    ],
+    "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
+    "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
+    "recommended_prompt": "/ecc:plan \"react-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"react-build-resolver\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 react-build-resolver 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "react-reviewer",
+    "original": "react-reviewer",
+    "description": "Expert React/JSX code reviewer specializing in hook correctness, render performance, server/client component boundaries, accessibility, and React-specific security. Use for any change touching .tsx/.j...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"react-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"react-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"react-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 react-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
@@ -5839,6 +5931,135 @@
     "recommended_prompt": "/ecc:plan \"PRD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"PRD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 PRD Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "React Build and Fix",
+    "original": "React Build and Fix",
+    "description": "Fix React build failures (Vite, webpack, Next.js, CRA, Parcel, esbuild, Bun) incrementally — JSX/TSX compile errors, hydration mismatches, server/client component boundary failures, missing types. Inv...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"React Build and Fix\"",
+    "task_groups": [
+      "修复构建"
+    ],
+    "keywords": [
+      "依赖冲突",
+      "报错",
+      "构建失败",
+      "编译不过",
+      "跑不起来"
+    ],
+    "tags": [
+      "会修改代码",
+      "可能改代码",
+      "故障处理",
+      "高频"
+    ],
+    "use_case": "项目编译、构建、类型检查或依赖安装失败时，用它定位并修复必要问题。",
+    "avoid_case": "只是想了解概念或讨论方案时，不必优先使用修复类命令。",
+    "recommended_prompt": "/ecc:plan \"React Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"React Build and Fix\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 React Build and Fix 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "React Code Review",
+    "original": "React Code Review",
+    "description": "Comprehensive React/JSX code review for hook correctness, render performance, server/client component boundaries, accessibility, and React-specific security. Invokes the react-reviewer agent (and type...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"React Code Review\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"React Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"React Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 React Code Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "React TDD Command",
+    "original": "React TDD Command",
+    "description": "Enforce TDD workflow for React. Write React Testing Library tests first (behavior-focused, accessibility-first), then implement components. Detects Vitest or Jest and verifies coverage targets.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"React TDD Command\"",
+    "task_groups": [
+      "测试质量"
+    ],
+    "keywords": [
+      "先写测试",
+      "回归测试",
+      "测试",
+      "端到端",
+      "覆盖率"
+    ],
+    "tags": [
+      "提交前",
+      "质量保障"
+    ],
+    "use_case": "需要补测试、跑端到端流程、检查覆盖率或防止回归时使用。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"React TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"React TDD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 React TDD Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
