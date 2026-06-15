@@ -1,10 +1,11 @@
 [
   {
     "_meta": {
-      "last_updated": "2026-06-15T12:14:27.493533",
+      "last_updated": "2026-06-15T20:55:25.331149",
       "repo_files": {
         "agents": [
           "a11y-architect",
+          "agent-evaluator",
           "architect",
           "build-error-resolver",
           "chief-of-staff",
@@ -63,11 +64,13 @@
           "security-reviewer",
           "seo-specialist",
           "silent-failure-hunter",
+          "spec-miner",
           "swift-build-resolver",
           "swift-reviewer",
           "tdd-guide",
           "type-design-analyzer",
-          "typescript-reviewer"
+          "typescript-reviewer",
+          "vue-reviewer"
         ],
         "commands": [
           "aside",
@@ -80,6 +83,13 @@
           "cpp-review",
           "cpp-test",
           "ecc-guide",
+          "epic-claim",
+          "epic-decompose",
+          "epic-publish",
+          "epic-review",
+          "epic-sync",
+          "epic-unblock",
+          "epic-validate",
           "evolve",
           "fastapi-review",
           "feature-dev",
@@ -153,7 +163,8 @@
           "skill-health",
           "test-coverage",
           "update-codemaps",
-          "update-docs"
+          "update-docs",
+          "vue-review"
         ],
         "legacy-command-shims/commands": [
           "agent-sort",
@@ -2354,6 +2365,42 @@
   {
     "category": "Agents",
     "sub": "其他",
+    "name": "agent-evaluator",
+    "original": "agent-evaluator",
+    "description": "Evaluates agent output against 5-axis quality rubric (accuracy, completeness, clarity, actionability, conciseness). Use after any non-trivial task when the user wants a quality assessment, or when the...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"agent-evaluator\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Agents",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"agent-evaluator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"agent-evaluator\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 agent-evaluator 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
     "name": "django-build-resolver",
     "original": "django-build-resolver",
     "description": "Django/Python build, migration, and dependency error resolution specialist. Fixes pip/Poetry errors, migration conflicts, import errors, Django configuration issues, and collectstatic failures with mi...",
@@ -2945,6 +2992,42 @@
   {
     "category": "Agents",
     "sub": "其他",
+    "name": "spec-miner",
+    "original": "spec-miner",
+    "description": "Extracts behavioral specs from existing codebases for OpenSpec. Produces flat Requirement and Invariant blocks with structured metadata (entities, enforced, id, test anchors). Outputs openspec/specs/<...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"spec-miner\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Agents",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"spec-miner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"spec-miner\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 spec-miner 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
     "name": "swift-build-resolver",
     "original": "swift-build-resolver",
     "description": "Swift/Xcode build, compilation, and dependency error resolution specialist. Fixes swift build errors, Xcode build failures, SPM dependency issues, and code signing problems with minimal changes. Use w...",
@@ -3014,6 +3097,49 @@
     "recommended_prompt": "/ecc:plan \"swift-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"swift-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 swift-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "vue-reviewer",
+    "original": "vue-reviewer",
+    "description": "Expert Vue.js code reviewer specializing in Composition API correctness, reactivity pitfalls, component architecture, template security, and Vue-specific performance. Use for any change touching .vue,...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"vue-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"vue-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"vue-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 vue-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
@@ -5805,6 +5931,265 @@
   {
     "category": "Commands",
     "sub": "其他",
+    "name": "/epic-claim",
+    "original": "/epic-claim",
+    "description": "Claim an epic issue, stamp coordination state, and sync local ownership.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/epic-claim\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/epic-claim\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/epic-claim\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /epic-claim 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "/epic-decompose",
+    "original": "/epic-decompose",
+    "description": "Break an epic into task children without creating task branches.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/epic-decompose\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/epic-decompose\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/epic-decompose\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /epic-decompose 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "/epic-publish",
+    "original": "/epic-publish",
+    "description": "Publish a validated epic update back to the issue and local cache.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/epic-publish\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/epic-publish\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/epic-publish\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /epic-publish 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "/epic-review",
+    "original": "/epic-review",
+    "description": "Mark epic review requested, approved, or changes requested.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/epic-review\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/epic-review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/epic-review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /epic-review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "/epic-sync",
+    "original": "/epic-sync",
+    "description": "Sync epic issue bodies, labels, and local coordination snapshots from GitHub.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/epic-sync\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/epic-sync\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/epic-sync\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /epic-sync 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "/epic-unblock",
+    "original": "/epic-unblock",
+    "description": "Sweep blocked epic issues and reopen anything whose dependencies are closed.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/epic-unblock\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/epic-unblock\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/epic-unblock\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /epic-unblock 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "/epic-validate",
+    "original": "/epic-validate",
+    "description": "Validate epic readiness, dependencies, and coordination policy.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/epic-validate\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/epic-validate\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/epic-validate\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /epic-validate 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
     "name": "/marketing-campaign",
     "original": "/marketing-campaign",
     "description": "Plan and execute a full marketing campaign. Accepts a product brief and returns positioning, landing page copy, email sequence, social posts, ad variants, video scripts, and a content calendar. Can al...",
@@ -6354,6 +6739,49 @@
     "recommended_prompt": "/ecc:plan \"Security Scan Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"Security Scan Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 Security Scan Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "Vue Code Review",
+    "original": "Vue Code Review",
+    "description": "Comprehensive Vue.js code review for Composition API correctness, reactivity, composable patterns, template security, accessibility, and Vue-specific performance. Invokes the vue-reviewer agent (and t...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Vue Code Review\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Vue Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Vue Code Review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Vue Code Review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
