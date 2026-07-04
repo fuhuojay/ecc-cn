@@ -1,7 +1,7 @@
 [
   {
     "_meta": {
-      "last_updated": "2026-07-03T19:22:19.335581",
+      "last_updated": "2026-07-04T08:36:41.040391",
       "repo_files": {
         "agents": [
           "a11y-architect",
@@ -130,6 +130,7 @@
           "orch-change-feature",
           "orch-fix-defect",
           "orch-refine-code",
+          "orch-review",
           "plan-prd",
           "plan",
           "pm2",
@@ -6410,6 +6411,49 @@
     "recommended_prompt": "/ecc:plan \"/orch-refine-code\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"/orch-refine-code\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 /orch-refine-code 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "/orch-review",
+    "original": "/orch-review",
+    "description": "Run the orch-review native Workflow over a diff (local changes or a GitHub PR) and report blocking vs advisory findings. Surface for the orch-review workflow.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"/orch-review\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"/orch-review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"/orch-review\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 /orch-review 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
