@@ -1,7 +1,7 @@
 [
   {
     "_meta": {
-      "last_updated": "2026-07-08T19:25:10.909642",
+      "last_updated": "2026-07-09T03:17:30.975792",
       "repo_files": {
         "agents": [
           "a11y-architect",
@@ -131,6 +131,7 @@
           "orch-fix-defect",
           "orch-refine-code",
           "orch-review",
+          "plan-canvas",
           "plan-prd",
           "plan",
           "pm2",
@@ -6611,6 +6612,49 @@
     "recommended_prompt": "/ecc:plan \"PRD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"PRD Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 PRD Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "Plan Canvas Command",
+    "original": "Plan Canvas Command",
+    "description": "Open a plan or HTML artifact in the browser Plan Canvas for annotate-and-approve review",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Plan Canvas Command\"",
+    "task_groups": [
+      "功能规划"
+    ],
+    "keywords": [
+      "功能开发",
+      "技术方案",
+      "架构",
+      "规划",
+      "需求拆解"
+    ],
+    "tags": [
+      "偏分析",
+      "入门推荐",
+      "只读分析"
+    ],
+    "use_case": "需求还不够清楚、要拆任务或设计实现路径时，先用它做方案。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Plan Canvas Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Plan Canvas Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Plan Canvas Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
