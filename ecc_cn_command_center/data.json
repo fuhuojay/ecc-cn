@@ -1,12 +1,13 @@
 [
   {
     "_meta": {
-      "last_updated": "2026-10-09T22:20:22.227211",
+      "last_updated": "2026-10-10T04:35:22.448578",
       "repo_files": {
         "agents": [
           "a11y-architect",
           "agent-evaluator",
           "architect",
+          "bengali-reviewer",
           "build-error-resolver",
           "chief-of-staff",
           "code-architect",
@@ -14,6 +15,7 @@
           "code-reviewer",
           "code-simplifier",
           "comment-analyzer",
+          "commit-reviewer",
           "conversation-analyzer",
           "cpp-build-resolver",
           "cpp-reviewer",
@@ -60,6 +62,7 @@
           "react-build-resolver",
           "react-reviewer",
           "refactor-cleaner",
+          "ruby-reviewer",
           "rust-build-resolver",
           "rust-reviewer",
           "security-reviewer",
@@ -165,6 +168,7 @@
           "skill-create",
           "skill-health",
           "test-coverage",
+          "token-card",
           "update-codemaps",
           "update-docs",
           "vue-review"
@@ -2404,6 +2408,92 @@
   {
     "category": "Agents",
     "sub": "其他",
+    "name": "bengali-reviewer",
+    "original": "bengali-reviewer",
+    "description": "Reviews code handling Bengali (Bangla) text for Unicode correctness, proper normalization, script-aware processing, and internationalization best practices. Use when code processes, displays, or store...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"bengali-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"bengali-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"bengali-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 bengali-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "commit-reviewer",
+    "original": "commit-reviewer",
+    "description": "Reviews a staged diff and drafts a Conventional Commits-compliant message matching the repository's actual history norms. Use before committing, or when asked to write or check a commit message.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"commit-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"commit-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"commit-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 commit-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
     "name": "django-build-resolver",
     "original": "django-build-resolver",
     "description": "Django/Python build, migration, and dependency error resolution specialist. Fixes pip/Poetry errors, migration conflicts, import errors, Django configuration issues, and collectstatic failures with mi...",
@@ -3020,6 +3110,49 @@
     "recommended_prompt": "/ecc:plan \"react-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"react-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 react-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Agents",
+    "sub": "其他",
+    "name": "ruby-reviewer",
+    "original": "ruby-reviewer",
+    "description": "Expert Ruby and Rails code reviewer specializing in idiomatic Ruby, Active Record query safety, Rails security defaults, and RSpec/Minitest quality. Use for all Ruby code changes. MUST BE USED for Rub...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"ruby-reviewer\"",
+    "task_groups": [
+      "代码审查"
+    ],
+    "keywords": [
+      "代码审查",
+      "提交前",
+      "看看代码有没有问题",
+      "质量检查"
+    ],
+    "tags": [
+      "会读代码",
+      "偏分析",
+      "提交前",
+      "高频"
+    ],
+    "use_case": "写完或修改代码后，用它从规范、风险和可维护性角度做一次复查。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"ruby-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"ruby-reviewer\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 ruby-reviewer 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
@@ -6871,6 +7004,42 @@
     "recommended_prompt": "/ecc:plan \"Security Scan Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"Security Scan Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 Security Scan Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "Token Card",
+    "original": "Token Card",
+    "description": "Render a token-usage stat card from local agent session logs and commit it to the repo. Invokes the token-card skill.",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"Token Card\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"Token Card\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"Token Card\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 Token Card 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
