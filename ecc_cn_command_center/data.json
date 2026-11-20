@@ -1,7 +1,7 @@
 [
   {
     "_meta": {
-      "last_updated": "2026-11-19T20:00:09.558031",
+      "last_updated": "2026-11-20T05:55:44.283898",
       "repo_files": {
         "agents": [
           "a11y-architect",
@@ -173,6 +173,7 @@
           "skill-host-compat",
           "test-coverage",
           "token-card",
+          "ui-canvas",
           "update-codemaps",
           "update-docs",
           "vue-review"
@@ -7173,6 +7174,42 @@
     "recommended_prompt": "/ecc:plan \"Token Card\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "claude_prompt": "/ecc:plan \"Token Card\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
     "codex_prompt": "请参考 ECC 的 Token Card 能力，结合当前项目给出执行方案、风险点和验证步骤。",
+    "environments": [
+      "Claude Code",
+      "Codex 可参考"
+    ],
+    "environment_note": "Claude Code 可直接使用插件命令；Codex 中请把它当作能力/角色提示来改写。",
+    "ref_key": null,
+    "reference_ids": [],
+    "source_id": "ecc",
+    "source_name": "ECC / Everything Claude Code",
+    "source_type": "github",
+    "source_url": "https://github.com/affaan-m/ECC",
+    "install_command": "npx claudepluginhub affaan-m/ecc --plugin ecc",
+    "trust_status": "approved",
+    "personal_layer": "原始来源层"
+  },
+  {
+    "category": "Commands",
+    "sub": "其他",
+    "name": "UI Canvas Command",
+    "original": "UI Canvas Command",
+    "description": "Preview a UI component mockup in the browser UI Canvas where the user hand-edits it (move, resize, text, delete, restyle), tests it across viewports, chats with you, and clicks Save and Finish; you th...",
+    "simple": "暂无简介，待补充",
+    "slash_command": "/plan \"UI Canvas Command\"",
+    "task_groups": [
+      "其他"
+    ],
+    "keywords": [
+      "Commands",
+      "其他"
+    ],
+    "tags": [],
+    "use_case": "不确定该命令是否合适时，可以先读说明，再用更具体的中文目标调用它。",
+    "avoid_case": "如果只是闲聊或问一个概念，直接提问通常比调用命令更快。",
+    "recommended_prompt": "/ecc:plan \"UI Canvas Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "claude_prompt": "/ecc:plan \"UI Canvas Command\" 请结合当前项目，说明适用范围、关键风险，并给出可执行建议。",
+    "codex_prompt": "请参考 ECC 的 UI Canvas Command 能力，结合当前项目给出执行方案、风险点和验证步骤。",
     "environments": [
       "Claude Code",
       "Codex 可参考"
